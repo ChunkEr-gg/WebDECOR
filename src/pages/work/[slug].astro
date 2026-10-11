@@ -1,104 +1,23 @@
 ---
 import Icon from '../../components/Icon.astro';
-import ConceptInterface from '../../components/ConceptInterface.astro';
-import StudioLayout from '../../layouts/StudioLayout.astro';
+import CyberAsterisk from '../../components/agency/CyberAsterisk.astro';
+import AgencyLayout from '../../layouts/AgencyLayout.astro';
+import CyberProjectWordmark from '../../components/CyberProjectWordmark.astro';
+import AgencyInvitation from '../../components/agency/AgencyInvitation.astro';
+import ResponsiveStudy from '../../components/agency/ResponsiveStudy.astro';
 import { studies } from '../../data/agency';
-
-export function getStaticPaths() {
-  return studies.map(study => ({ params: { slug: study.slug }, props: { study } }));
-}
-
-const { study } = Astro.props;
-const next = studies.find(item => item.slug !== study.slug)!;
-const object = study.slug === 'object';
-const title = object ? 'OBJECT / ROOM' : 'FORME';
-const description = object
-  ? 'A furniture showroom concept with an editorial collection index and a clear object detail page.'
-  : 'A fashion storefront concept with a campaign-led collection page and a focused product detail page.';
-const decisions = object ? [
-  { title: 'An index with a point of view', text: 'A numbered collection list gives visitors a way into the work. The opening image establishes the setting without replacing the navigation.' },
-  { title: 'Information beside the object', text: 'The detail page separates the main image, object name, material notes, and related collection. Each has a distinct place in the hierarchy.' },
-  { title: 'A quieter small screen', text: 'The image and information stack into one column. The collection index follows the introduction, so reading order stays clear without horizontal scrolling.' },
-] : [
-  { title: 'Campaign first, products close by', text: 'The collection page pairs an expressive image with a short introduction and visible collection categories. Visitors can understand the range before opening an item.' },
-  { title: 'A practical product hierarchy', text: 'The item page groups the image, name, material, finish, and construction notes. Product information has a calm layout around the expressive art direction.' },
-  { title: 'The same content on a small screen', text: 'Image and product details stack into one column. Navigation stays short, labels remain readable, and information stays in the same order.' },
-];
+export function getStaticPaths(){return studies.map(study=>({params:{slug:study.slug},props:{study}}));}
+const { study }=Astro.props;
+const next=studies.find(item=>item.slug!==study.slug)!;
+const object=study.slug==='object';
 ---
-<StudioLayout title={`${title} — Interface concept — WebDECOR`} description={description} active="work">
-  <div class="site-wrap case-page">
-    <section class="case-intro site-section" aria-labelledby="case-title">
-      <a class="case-back" href="/#work"><Icon name="arrow-left" /> Back to concept work</a>
-      <p class="site-kicker">SELF-INITIATED INTERFACE CONCEPT / {study.number}</p>
-      <div class="case-title-row">
-        <h1 id="case-title">{title}</h1>
-        <div>
-          <p class="case-summary">{description}</p>
-          <p class="case-disclaimer">A design exploration by WebDECOR. This is not a client commission or a live store.</p>
-        </div>
-      </div>
-      <dl class="case-facts">
-        <div><dt>Focus</dt><dd>{object ? 'Furniture & interiors' : 'Fashion & commerce'}</dd></div>
-        <div><dt>Scope</dt><dd>Art direction, page design, responsive layout</dd></div>
-        <div><dt>Pages shown</dt><dd>{object ? 'Showroom & object detail' : 'Collection & product detail'}</dd></div>
-      </dl>
-    </section>
-
-    <section class="case-question site-section site-rule" aria-labelledby="case-question">
-      <div><p class="site-kicker">THE DESIGN QUESTION</p><h2 id="case-question">{object ? 'Give the objects room. Make the information easy to find.' : 'Make an impression. Keep the collection easy to understand.'}</h2></div>
-      <p>{object ? 'The concept brings together an editorial showroom and a structured object catalogue. Photography sets the atmosphere; a numbered index and material notes give the visitor something concrete to explore.' : 'The concept treats the collection as a visual world, then gives its products a clear structure. Campaign imagery makes the first impression; concise categories and useful item details carry the experience forward.'}</p>
-    </section>
-
-    <section class="case-screen site-section" aria-labelledby="landing-title">
-      <div class="case-screen-heading"><div><p class="site-kicker">01 / {object ? 'SHOWROOM' : 'COLLECTION'} PAGE</p><h2 id="landing-title">{object ? 'A collection, in context.' : 'An entrance with character.'}</h2></div><p>{object ? 'A strong image introduces the world of the collection. The adjacent index gives the objects and spaces a readable structure.' : 'An expressive campaign sits inside a simple page structure: identity, collection introduction, image, and a clear product index.'}</p></div>
-      <ConceptInterface variant={study.slug} />
-    </section>
-
-    <section class="case-screen site-section" aria-labelledby="detail-title">
-      <div class="case-screen-heading"><div><p class="site-kicker">02 / {object ? 'OBJECT' : 'PRODUCT'} DETAIL</p><h2 id="detail-title">{object ? 'A closer look, with useful context.' : 'A quieter space for the details.'}</h2></div><p>{object ? 'The detail page places the object beside its form, material, and setting. A related collection list continues the browsing journey.' : 'A dedicated product page places the name, material, finish, and construction notes together. The image gets room without pushing the information out of view.'}</p></div>
-      <ConceptInterface variant={study.slug} view="detail" />
-      <p class="case-preview-note">Static interface concepts. Product descriptions and display controls are illustrative; no orders or inquiries are processed here.</p>
-    </section>
-
-    <section class="case-decisions site-section site-rule" aria-labelledby="decisions-title">
-      <div class="case-section-heading"><p class="site-kicker">DESIGN DECISIONS</p><h2 id="decisions-title">Character with a clear structure.</h2></div>
-      <div class="case-decision-grid">{decisions.map((decision, index) => <article><span class="site-kicker">0{index + 1}</span><h3>{decision.title}</h3><p>{decision.text}</p></article>)}</div>
-      <div class="case-deliverables"><h3>What this concept includes</h3><ul><li>{object ? 'Editorial art direction for a furniture collection' : 'Campaign art direction for a fashion collection'}</li><li>{object ? 'A showroom landing page and object detail page' : 'A collection landing page and product detail page'}</li><li>A shared typography, colour, and spacing system</li><li>Responsive layouts with a consistent content order</li></ul></div>
-    </section>
-
-    <section class="case-next site-section site-rule" aria-labelledby="next-title">
-      <div><p class="site-kicker">NEXT CONCEPT</p><h2 id="next-title">{next.name}</h2><p>{next.summary}</p><a class="site-button secondary" href={`/work/${next.slug}/`}>View {next.name} <Icon name="arrow-up-right" /></a></div>
-      <div><p class="site-kicker">YOUR WEBSITE</p><h2>A direction of your own.</h2><p>Tell Max what you are building and what your website needs to do.</p><a class="site-button" href="/start/">Start a project <Icon name="arrow-up-right" /></a></div>
-    </section>
-  </div>
-</StudioLayout>
-
-<style>
-  .case-page{padding-top:32px;padding-bottom:80px}
-  .case-back{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:14px;color:var(--site-muted);width:fit-content}
-  .case-back:hover{color:var(--site-text)}
-  .case-intro{padding-top:0!important}
-  .case-intro>.site-kicker{margin-top:38px}
-  .case-title-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  h1{font:600 clamp(48px,6.5vw,92px)/.95 'Space Grotesk Variable',sans-serif;letter-spacing:-.065em;margin:0;max-width:650px}
-  .case-summary{font-size:clamp(20px,2.2vw,27px);line-height:1.45;margin:0;max-width:560px}
-  .case-disclaimer{font-size:14px;line-height:1.6;color:var(--site-muted);margin:22px 0 0;max-width:480px}
-  .case-facts{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;border-top:1px solid var(--site-line);padding-top:22px;margin:40px 0 0}
-  .case-facts dt{font:500 12px/1.5 'JetBrains Mono Variable',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--site-muted);margin-bottom:8px}
-  .case-facts dd{font-size:15px;line-height:1.5;margin:0}
-  h2{font:500 clamp(28px,3.5vw,46px)/1.13 'Space Grotesk Variable',sans-serif;letter-spacing:-.045em;margin:10px 0 0;max-width:620px}
-  .case-question,.case-screen-heading{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  .case-question>p,.case-screen-heading>p{font-size:17px;line-height:1.75;color:var(--site-muted);margin:28px 0 0;max-width:540px}
-  .case-screen-heading{margin-bottom:30px}
-  .case-preview-note{font-size:13px;line-height:1.6;color:var(--site-muted);margin:16px 0 0;max-width:780px}
-  .case-decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:36px}
-  .case-decision-grid h3{font:500 22px/1.3 'Space Grotesk Variable',sans-serif;letter-spacing:-.03em;margin:15px 0 12px;max-width:300px}
-  .case-decision-grid p{font-size:15px;line-height:1.7;color:var(--site-muted);margin:0;max-width:360px}
-  .case-deliverables{display:grid;grid-template-columns:1fr 2fr;gap:32px;border-top:1px solid var(--site-line);padding-top:24px;margin-top:42px}
-  .case-deliverables h3{font:500 18px/1.4 'Space Grotesk Variable',sans-serif;margin:0}
-  .case-deliverables ul{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;margin:0;padding-left:20px;color:var(--site-muted);font-size:14px;line-height:1.6}
-  .case-next{display:grid;grid-template-columns:1fr 1fr;gap:72px}
-  .case-next h2{font-size:36px}
-  .case-next p:not(.site-kicker){font-size:16px;line-height:1.7;color:var(--site-muted);max-width:470px;margin:18px 0 24px}
-  @media(max-width:760px){.case-title-row,.case-question,.case-screen-heading,.case-next{grid-template-columns:1fr;gap:22px}.case-summary{font-size:20px}.case-facts{grid-template-columns:1fr;gap:18px;margin-top:28px}.case-facts dt{margin-bottom:4px}.case-question>p,.case-screen-heading>p{margin-top:0}.case-decision-grid{grid-template-columns:1fr;gap:30px}.case-decision-grid h3,.case-decision-grid p{max-width:none}.case-deliverables{grid-template-columns:1fr;gap:18px}.case-deliverables ul{grid-template-columns:1fr}.case-next{gap:44px}.case-page{padding-bottom:48px}.case-intro>.site-kicker{margin-top:28px}}
-</style>
+<AgencyLayout title={`${study.name} — Design study — WebDECOR`} active="work" description={study.summary}>
+<div class={`wd-case wd-case-${study.slug}`}>
+<section data-layout-key="hero" class="ag-study-hero"><div class="ag-rail"><a href="/#work"><Icon name="arrow-left"/> DESIGN STUDIES</a><span>SELF-INITIATED CONCEPT / {study.number}</span></div><div class="ag-study-heading"><h1><CyberProjectWordmark project={study.slug}/><span class="cy-sr-only">{study.name}</span></h1><div><span class="cy-label">{study.category}</span><p>{study.summary}</p><span class="ag-study-disclaimer">Illustrative design study. Not a client commission or live business.</span></div></div><div class="wd-case-art"><figure class="ag-study-art"><img src={study.image} alt={study.alt} width={study.width} height={study.height}/><figcaption><span>WD / STUDY {study.number}</span><span>IMAGE / FORM / INTERFACE</span><span aria-hidden="true"><Icon name="plus"/></span></figcaption></figure><aside class="wd-case-art-notes"><span class="cy-label">VISUAL DNA</span><strong>{object ? 'SPACE\nBECOMES\nSTRUCTURE' : 'MATERIAL\nBECOMES\nIDENTITY'}</strong><span class="wd-micro">{object ? 'PHOTOGRAPH / LINE / SCALE' : 'SCAN / TEXTURE / TENSION'}</span><div class="wd-case-pattern" aria-hidden="true"></div></aside></div></section>
+<section data-layout-key="narrative" class="ag-study-narrative"><div><span class="cy-label">THE QUESTION</span><h2>{study.challenge}</h2></div><div><article><span class="cy-label">VISUAL DIRECTION</span><p>{study.direction}</p></article><article><span class="cy-label">THE EXPERIENCE</span><p>{study.experience}</p></article><ul class="ag-study-tags">{study.deliverables.map(item=><li>{item}</li>)}</ul></div></section>
+<section data-layout-key="interface" class="wd-case-interface"><div class="wd-case-interface-heading"><span class="cy-label">FROM ART DIRECTION TO INTERFACE</span><h2>{object ? 'An archive you\ncan move through.' : 'Expression meets\na clear hierarchy.'}</h2><p>{object ? 'The object and its setting lead the composition. Quiet navigation and an archival index leave space for the work.' : 'Campaign imagery gives the collection a signature. Clear object labels and a measured hierarchy make it easy to explore.'}</p><span class="wd-micro">INTERACTIVE LAYOUT STUDY / NOT A SHOP</span></div><ResponsiveStudy variant={study.slug} id={`${study.slug}-proof`}/></section>
+<section data-layout-key="specification" class="wd-case-specification"><div class="wd-case-type"><span class="cy-label">01 / TYPOGRAPHIC CONTRAST</span><p>{object ? 'Object.\nSpace.\nPerspective.' : 'FORM /\nFUNCTION /\nFEELING.'}</p><span class="wd-micro">DISPLAY EXPRESSION + PRECISE UTILITY TYPE</span></div><div class="wd-case-colour"><span class="cy-label">02 / PALETTE</span><div class="wd-case-swatches"><span>01<br/>INK</span><span>02<br/>PAPER</span><span>03<br/>SIGNAL</span></div><p>Monochrome makes room for the imagery. Red marks the moments that deserve attention.</p></div><div class="wd-case-detail"><span class="cy-label">03 / MATERIAL DETAIL</span><div><img src={study.image} alt={object ? 'Close crop of the chair and its wireframe drawing' : 'Close crop of the bag texture and scan marks'} width={study.width} height={study.height} loading="lazy"/></div><span class="wd-micro">{object ? 'PHOTOGRAPHIC DEPTH × DRAWING PRECISION' : 'TACTILE SURFACE × DIGITAL STRUCTURE'}</span></div></section>
+<section data-layout-key="journey" class="ag-study-system" aria-labelledby="system-title"><div><span class="cy-label">A CONCEPTUAL JOURNEY</span><h2 id="system-title">{study.headline}</h2><p>The image brings the atmosphere. The interface gives visitors a clear next step.</p></div><ol>{study.sequence.map((item,i)=><li><span>{String(i+1).padStart(2,'0')}</span><h3>{item}</h3><b aria-hidden="true">{i===2?<CyberAsterisk/>:<Icon name="arrow-right"/>}</b></li>)}</ol></section>
+<a data-layout-key="next" class="ag-next-study" href={`/work/${next.slug}/`}><span class="cy-label">NEXT / DESIGN STUDY</span><span>{next.name}</span><b aria-hidden="true"><Icon name="arrow-up-right"/></b></a>
+</div><AgencyInvitation heading="Your own visual world.\nA website to match."/>
+</AgencyLayout>

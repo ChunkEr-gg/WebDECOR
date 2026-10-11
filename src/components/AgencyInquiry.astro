@@ -2,24 +2,37 @@
 import Icon from './Icon.astro';
 const { email = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDECOR', showContactLinks = true } = Astro.props;
 ---
-<div class="project-inquiry">
-  {showContactLinks && (email || bookingUrl) && <div class="project-contact-links">{email && <a href={`mailto:${email}`}>{email}<Icon name="arrow-up-right" /></a>}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an introduction <Icon name="arrow-up-right" /></a>}</div>}
-  <form class="project-brief-form" data-email={email} data-brand={brand}>
-    <fieldset disabled>
-      <legend>Project details</legend>
-      <div class="project-field-row"><label>Your name <span class="field-hint">required</span><input name="name" autocomplete="name" required maxlength="120" placeholder="Your name" /></label><label>Company or organisation <span class="field-hint">optional</span><input name="company" autocomplete="organization" maxlength="160" placeholder="Brand or business" /></label></div>
-      <div class="project-field-row"><label>Your email <span class="field-hint">optional</span><input name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@yourcompany.com" /></label><label>What do you need?<select name="service">{services.map((service: any) => <option value={service.id}>{service.name}</option>)}<option value="explore">Help defining the project</option></select></label></div>
+<div class="ag-inquiry project-inquiry">
+  {showContactLinks && (email || bookingUrl) && <div class="ag-contact-links">{email && <a href={`mailto:${email}`} class="ag-email">{email}<span aria-hidden="true"><Icon name="arrow-up-right" /></span></a>}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an introduction <Icon name="arrow-up-right" /></a>}</div>}
+  <form class="ag-inquiry-form project-brief-form" data-email={email} data-brand={brand}>
+    <fieldset class="ag-form-fieldset" disabled>
+      <legend class="ag-form-legend">Project details</legend>
+      <div class="ag-form-rail"><span>INPUT / YOUR PROJECT</span><span aria-hidden="true"><Icon name="plus" /></span></div>
+      <div class="wd-form-divider"><span>01</span> IDENTITY / YOUR DETAILS</div>
+      <div class="ag-form-row"><label>Your name <span class="ag-optional">required</span><input name="name" autocomplete="name" required maxlength="120" placeholder="Name" /></label><label>Company / organisation <span class="ag-optional">optional</span><input name="company" autocomplete="organization" maxlength="160" placeholder="Brand or business" /></label></div>
+      <div class="ag-form-row"><label>Email <span class="ag-optional">optional</span><input name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@yourcompany.com" /></label><label>What do you need?<select name="service">{services.map((service: any) => <option value={service.id}>{service.name}</option>)}<option value="explore">Help defining the project</option></select></label></div>
+      <div class="wd-form-divider"><span>02</span> AMBITION / PROJECT SCOPE</div>
       <label>Package<select name="plan"><option value="explore">Still exploring</option>{pricing.map((plan: any) => <option value={plan.id}>{plan.name}{plan.id !== 'custom' ? ` — ${plan.price}` : ''}</option>)}</select></label>
-      <label>Project summary <span class="field-hint">required</span><textarea name="idea" required rows="5" maxlength="4000" placeholder="Your starting point, your audience, and what you want the website to do."></textarea></label>
-      <div class="project-field-row"><label>Ideal timing <span class="field-hint">optional</span><input name="timeline" maxlength="100" placeholder="A date, a season, or to discuss" /></label><label>Budget in mind <span class="field-hint">optional</span><input name="budget" maxlength="100" placeholder="A range is helpful" /></label></div>
-      <div class="project-form-actions"><button type="submit">{email ? 'Open email draft' : 'Download your brief'}<Icon name={email ? 'arrow-up-right' : 'arrow-down'} /></button>{email && <button class="secondary" type="button" data-download-brief>Download a copy<Icon name="arrow-down" /></button>}</div>
-      <p class="project-form-status" role="status">{email ? 'Opens your email app. Review the draft and send it there.' : 'Downloads to your device. Nothing is submitted or sent.'}</p>
+      <label>Tell us about the project <span class="ag-optional">required</span><textarea name="idea" required rows="5" maxlength="4000" placeholder="Your starting point, your audience, and what you want the website to do."></textarea></label>
+      <div class="wd-form-divider"><span>03</span> NEXT CHAPTER / TIMING</div>
+      <div class="ag-form-row"><label>Ideal launch date <span class="ag-optional">optional</span><input name="timeline" maxlength="100" placeholder="A date, a season, or still exploring" /></label><label>Budget in mind <span class="ag-optional">optional</span><input name="budget" maxlength="100" placeholder="A range is helpful" /></label></div>
+      <div class="ag-form-actions"><button type="submit">{email ? 'OPEN EMAIL DRAFT' : 'DOWNLOAD YOUR BRIEF'}<span aria-hidden="true"><Icon name={email ? 'arrow-up-right' : 'arrow-down'} /></span></button>{email && <button class="ag-form-secondary" type="button" data-download-brief>DOWNLOAD A COPY <span aria-hidden="true"><Icon name="arrow-down" /></span></button>}</div>
+      <p class="ag-form-status project-form-status" role="status">{email ? 'Opens your email app. Review the draft and send it there. Nothing is sent through this website.' : 'Your brief downloads to your device. Nothing is submitted or sent.'}</p>
     </fieldset>
     <noscript><p>Enable JavaScript to prepare a brief.{email && <> You can also <a href={`mailto:${email}`}>email {brand} directly</a>.</>}</p></noscript>
   </form>
 </div>
 <script>import '../scripts/agency-inquiry';</script>
 <style>
-  .project-inquiry {min-width:0;font-family:'DM Sans Variable',sans-serif}.project-contact-links {display:flex;flex-wrap:wrap;gap:12px 24px;margin-bottom:24px}.project-contact-links a {display:inline-flex;align-items:center;gap:8px;min-height:44px;text-underline-offset:5px}.project-contact-links svg {width:16px}.project-brief-form {margin:0}.project-brief-form fieldset {display:grid;gap:22px;min-width:0;padding:0;border:0;margin:0}.project-brief-form legend {font-family:'Space Grotesk Variable',sans-serif;font-weight:600;font-size:20px;padding:0 0 24px}.project-field-row {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.project-brief-form label {display:block;min-width:0;color:var(--site-text,currentColor);font-size:14px;line-height:1.5;font-weight:500}.field-hint {color:var(--site-muted,currentColor);font-size:12px;font-weight:400;margin-left:4px}.project-brief-form input,.project-brief-form select,.project-brief-form textarea {display:block;width:100%;min-height:48px;border:1px solid var(--site-line,#55554e);border-radius:0;background:var(--site-panel,#252525);color:var(--site-text,#f3f1e9);font:400 16px/1.5 'DM Sans Variable',sans-serif;padding:12px;margin:8px 0 0;box-sizing:border-box}.project-brief-form select {padding-right:32px;cursor:pointer}.project-brief-form textarea {resize:vertical;min-height:150px}.project-brief-form input::placeholder,.project-brief-form textarea::placeholder {color:var(--site-muted,#b6b6ad);opacity:1}.project-brief-form input:focus-visible,.project-brief-form select:focus-visible,.project-brief-form textarea:focus-visible,.project-brief-form button:focus-visible,.project-contact-links a:focus-visible {outline:3px solid var(--site-accent,#ff6b35);outline-offset:3px}.project-form-actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}.project-form-actions button {display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:12px 18px;border:1px solid var(--site-accent,#ff6b35);border-radius:0;background:var(--site-accent,#ff6b35);color:#1e1e1e;font:600 14px/1.4 'DM Sans Variable',sans-serif;cursor:pointer}.project-form-actions button.secondary {background:transparent;border-color:var(--site-line,#55554e);color:var(--site-text,currentColor)}.project-form-actions button:hover {filter:brightness(1.1)}.project-form-actions svg {width:18px;height:18px;flex-shrink:0}.project-brief-form fieldset:disabled {opacity:.5}.project-brief-form fieldset:disabled button {cursor:wait}.project-form-status {margin:0;color:var(--site-muted,currentColor);font-size:14px;line-height:1.6}.project-brief-form noscript p {line-height:1.6}
-  @media(max-width:540px){.project-field-row {grid-template-columns:1fr;gap:22px}.project-form-actions {flex-direction:column}.project-form-actions button {width:100%}}
+  .ag-form-legend {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+  .project-brief-form label,.project-brief-form .ag-optional,.project-brief-form .ag-form-rail,.project-brief-form .wd-form-divider,.project-brief-form .ag-form-actions button,.project-brief-form .ag-form-status {font-size:12px}
+  .project-brief-form .ag-form-status {line-height:1.6}
+  .project-brief-form input,.project-brief-form select,.project-brief-form textarea,.project-brief-form button {min-height:44px}
+  .ag-contact-links a {display:flex;align-items:center;min-height:44px}
+  .project-brief-form .ag-form-actions {flex-wrap:wrap}
+  .project-brief-form .ag-form-actions .ag-form-secondary {background:transparent;color:var(--cy-ink,currentColor);border-color:var(--cy-rule,currentColor)}
+  .project-brief-form .ag-form-actions .ag-form-secondary>span {color:inherit}
+  .project-brief-form .ag-form-actions .ag-form-secondary:hover {background:var(--cy-ink,#1c1c1b);color:var(--cy-paper,#f2f2ec)}
+  .project-brief-form fieldset:disabled button {cursor:wait}
+  .project-brief-form noscript p {font-size:14px;line-height:1.6}
 </style>

@@ -1,43 +1,52 @@
 # Agency website review — October 2026
 
+**Current state:** the owner requested the original visual style after reviewing version 67. The editorial page layouts and light default have been restored, including the alternate Cybercore appearance. Public contact, Max’s identity, email-draft/download behavior, canonical routes, and mobile preview fixes remain. The logo links home, and an explicit footer control changes the appearance. The sections below document the version 67 redesign and its measurements; they are historical, not current performance claims.
+
 Claude’s assessment identified useful problems in the previous agency homepage. Source inspection supported the main contact, hierarchy, branding, accessibility, and asset-delivery criticism. Exact measurements from that assessment were not independently reproduced against the old build.
 
-## Changes made
+## Version 67 changes
 
 | Finding | Response |
 | --- | --- |
 | No contact destination | Added the owner-supplied public address, `info@webdecor.ca`, as direct contact. The optional brief tool opens an email draft for the visitor to review and send. Download remains a separate local action. |
-| Hidden house style and logo toggle | The main site now uses dark Cybercore immediately. The logo links home; navigation stays available while scrolling. |
+| Hidden house style and logo toggle | Version 67 used dark Cybercore immediately. The logo linked home; navigation stayed available while scrolling. |
 | Decorative hero and repeated homepage | Added a prominent service proposition. Reduced the homepage to six sections, with detailed service information on Services and experiments in the Design Lab. |
 | Anonymous practice | Identified Max using the owner’s supplied name. No location, team size, experience claim, or client results were invented. |
-| Weak concept demonstrations | FORME and OBJECT / ROOM now show distinct composed landing and detail interfaces, with responsive layouts and specific design explanations. |
+| Weak concept demonstrations | Version 67 showed distinct composed landing and detail interfaces for FORME and OBJECT / ROOM, with responsive layouts and specific design explanations. |
 | Mobile preview gaps and overlaps | Corrected the old even-card stagger reset, separated mobile preview controls from artwork, and adjusted Collage and Swiss preview compositions. |
 | Small text and weak contrast | Main-site labels start at 12px, navigation and controls have at least 44px height, and the shared muted colour is lighter on the dark surfaces. Concept interface labels also start at 12px. |
-| Heavy main-page delivery | Main routes use a smaller shared layout and stylesheet with three Latin font families. Images use Astro-generated responsive sources; content below the hero loads lazily. The homepage has no canvas effects or hidden world images. |
+| Heavy main-page delivery | Version 67 used a smaller shared layout and stylesheet with three Latin font families. Images used Astro-generated responsive sources; content below the hero loaded lazily. That homepage had no canvas effects or hidden world images. |
 | Incomplete navigation context | Main inner pages show the current page in their breadcrumb. Legacy route redirects continue to target the canonical paths directly. |
 
 ## Criticism qualified or rejected
 
 - Removing concept labels would misrepresent the work. The owner confirmed there are no launched client projects yet. Concepts remain accurately labelled; real work and testimonials can be added when evidence and permission exist.
-- “No storefront screens at all” overstated the old implementation: a basic responsive DOM mock existed. It needed fuller interfaces, which are now shown.
-- “No design tokens” was inaccurate. Colour variables already existed, although the old cascade was difficult to maintain. Main-site colours, typography, and spacing are now centralised in `studio-site.css`.
-- The count of canvas elements did not establish that twelve canvases were actively rendering. Experimental rendering already had world, visibility, and motion guards. The new main homepage avoids those effects entirely.
+- “No storefront screens at all” overstated the old implementation: a basic responsive DOM mock existed. Version 67 added fuller interfaces; the owner subsequently requested the original visual composition.
+- “No design tokens” was inaccurate. Colour variables already existed, although the old cascade was difficult to maintain. Version 67 centralised main-site colours, typography, and spacing in `studio-site.css`; that stylesheet was removed when the original style was restored.
+- The count of canvas elements did not establish that twelve canvases were actively rendering. Experimental rendering already had world, visibility, and motion guards. The version 67 homepage avoided those effects entirely.
 
 ## Scope and behavior
 
 The brief tool does not submit to a backend or send email automatically. Visitors must review and send the draft in their email app. The visible email address works independently of the form. Package budgets retain the existing prices; page count, functionality, currency, and schedule require agreement in the proposal.
 
-The richer layouts and interactions remain available inside the Design Lab. Performance and typography improvements to the main agency routes should not be interpreted as a rewrite of every experimental experience.
+Version 67 kept richer layouts and interactions inside the Design Lab. Its performance and typography improvements to the main agency routes did not rewrite every experimental experience. The restored site uses the original design archive and main-page effects.
 
 ## Cleanup candidates
 
-- `src/scripts/agency-activation.ts` — retired logo-toggle implementation, with no remaining source import. Can be removed after deciding whether to retain it as an experiment.
-- `scripts/check-ascii.mjs`, `scripts/check-energy.mjs`, `scripts/check-hackerlair.mjs` — manual checks for experimental behavior, currently outside npm scripts and CI. Keep and document a supported invocation, or archive them if that workflow is retired.
+- `scripts/check-ascii.mjs`, `scripts/check-energy.mjs`, `scripts/check-hackerlair.mjs` — manual checks outside npm scripts and CI. After `npm ci`, they run with `node scripts/check-ascii.mjs`, `node scripts/check-energy.mjs`, and `node scripts/check-hackerlair.mjs`. These use bundled source with small DOM adapters: ASCII and Hackerlair cover the terminal study; energy covers the restored agency effects. Keep them while those effects remain supported; consider adding documented npm commands if they become part of routine verification.
 - `docs/sculptural-art-direction.md` — archived generation notes. Retained for provenance; an archive directory would make its status clearer if more historical documents accumulate.
 
-Original images remain needed by the experimental routes. Generated `dist/`, `node_modules/`, temporary QA files, and deployment archives are not source files to mirror to GitHub.
+`src/scripts/agency-activation.ts` is retained and required by the restored appearance control. Original images remain needed by the main and experimental routes. Generated `dist/`, `node_modules/`, temporary QA files, and deployment archives are not source files to mirror to GitHub.
 
-## Verification
+## Visual restoration verification
+
+- Production build completed for 20 content pages and 14 compatibility redirects.
+- All 615 built internal links and fragments resolved.
+- Installed Chromium checked the seven main pages at 390px and 1920px: restored editorial layouts, no horizontal page overflow, no missing loaded images, and no JavaScript errors.
+- The footer appearance control switched to Cybercore and retained the selection after reload. The logo continued to navigate home.
+- The restored inquiry form enabled correctly, preserved service/package presets, enforced required fields, downloaded the expected brief, and generated an email draft to `info@webdecor.ca` with the same content. No email was sent. Hackerlair’s action buttons fit at 320px and 390px after adding wrapping.
+
+## Historical version 67 verification
 
 - Production Astro build completed for 20 content pages plus 14 static redirects.
 - All built internal links and fragments resolved, with one h1 on each main route.
