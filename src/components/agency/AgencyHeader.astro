@@ -1,0 +1,19 @@
+---
+import Icon from '../Icon.astro';
+const { active = 'home', world = 'cybercore' } = Astro.props;
+const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',href:'/cybercore/services/#pricing'},{id:'services',label:'SERVICES',href:'/cybercore/services/'},{id:'work',label:'STUDIES',href:'/explore/'},{id:'studio',label:'STUDIO',href:'/cybercore/studio/'}];
+---
+<header class="cy-header ag-header" id="top">
+  <div class="ag-header-brand">
+  {world==='cybercore'?<button type="button" class="cy-logo wd-activation-logo" data-activation-toggle aria-pressed="false" aria-label="WebDECOR — activate Cybercore" title="Click to activate Cybercore">wd<span>®</span></button>:<a class="cy-logo" href="/" aria-label="WebDECOR home">wd<span>®</span></a>}
+  <a class="wd-personality-logo wd-collage-logo" href="/" aria-label="WebDECOR home">wd!<span>independent & imaginative</span></a>
+  <a class="wd-personality-logo wd-swiss-logo" href="/" aria-label="WebDECOR home">WebDECOR<span>Design practice / 03</span></a>
+  </div>
+  <nav aria-label="Main navigation">{links.map(link=><a href={link.href} aria-current={active===link.id?'page':undefined}>{link.label}</a>)}</nav>
+  {world==='cybercore'&&<details class="ag-header-menu" data-header-menu>
+    <summary aria-label="Open navigation" aria-controls="agency-mobile-nav"><span>MENU</span><span class="ag-menu-open" aria-hidden="true"><Icon name="menu"/></span><span class="ag-menu-close" aria-hidden="true"><Icon name="close"/></span></summary>
+    <nav id="agency-mobile-nav" aria-label="Compact navigation">{links.map(link=><a href={link.href} aria-current={active===link.id?'page':undefined}>{link.label}<Icon name="arrow-right"/></a>)}</nav>
+  </details>}
+  <a class="ag-header-cta" href="/cybercore/start/">START A PROJECT <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>
+  {world!=='cybercore'&&<span class="cy-header-code">DESIGN / BUILD</span>}
+</header>

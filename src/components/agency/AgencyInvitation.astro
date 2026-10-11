@@ -1,0 +1,5 @@
+---
+import Icon from '../Icon.astro';
+const { label = 'NEXT / YOUR WEBSITE', heading = 'A new chapter.\nA distinct point of view.' } = Astro.props;
+---
+<section data-layout-key="invitation" class="ag-invitation" aria-label="Start a project"><div class="ag-rail" aria-hidden="true"><span>WD / OPEN BRIEF</span><span class="cy-barcode"></span><span>IDEA <Icon name="arrow-right"/> WEBSITE</span></div><div class="ag-invitation-body"><div><span class="cy-label">{label}</span><h2>{heading.split(/\\n|\n/).map(line=><span>{line}</span>)}</h2><p>Give the next version of your website a clear starting point.</p></div><a class="ag-button ag-button-red" href="/cybercore/start/">START A PROJECT <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a></div></section>

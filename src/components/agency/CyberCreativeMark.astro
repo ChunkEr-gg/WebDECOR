@@ -1,0 +1,41 @@
+<button type="button" class="wd-creative-mark" data-creative-mark disabled aria-label="Replay creative mark animation">
+  <svg viewBox="0 0 270 105" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+    <g data-gadget="human">
+      <path data-part="human-conduit" d="M14 29h25q12 0 12 12v27q0 12 12 12h21"/>
+      <path data-part="human-cross" d="M14 46h48q12 0 12 12v7"/>
+      <path data-part="human-spine" d="M30 15v56q0 22 22 22"/>
+      <path data-part="human-rail" d="M14 63h24"/>
+      <path data-part="human-gate" d="M88 17v28H65q-12 0-12 12"/>
+    </g>
+    <g data-gadget="expression">
+      <path data-part="expression-frame" d="M115 16h23v26h29v25h-29v26h-23V67H92V42h23z"/>
+      <path data-part="expression-cross" d="M105 53h48"/>
+      <path data-part="expression-spine" d="M126 28v53"/>
+    </g>
+    <g data-gadget="integration">
+      <path data-part="integration-frame" d="M187 18h27v27h25v28h-26v20"/>
+      <path data-part="integration-bridge" d="M200 18v48h-22V44h62V19h17v53h-16"/>
+      <path data-part="integration-rail" d="M184 84h15"/>
+      <path data-part="integration-joint" d="M228 32v12"/>
+    </g>
+    <g class="wd-creative-trace" data-part="trace" stroke-width=".8" stroke-dasharray="3 6">
+      <path d="M52 98H78M114 101H140M201 99H227"/>
+    </g>
+  </svg>
+</button>
+<script>
+  import '../../scripts/agency-creative-mark';
+</script>
+<style>
+  .wd-creative-mark{display:block;width:100%;max-width:260px;padding:0;margin:0;border:0;border-radius:3px;background:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .wd-creative-mark svg{display:block;width:100%;height:auto;overflow:visible;stroke-linecap:butt;stroke-linejoin:round}
+  .wd-creative-mark:focus-visible{outline:1.5px solid currentColor;outline-offset:7px}
+  .wd-creative-mark:disabled{cursor:default}
+  .wd-creative-mark [data-part]{transform-box:view-box;transform-origin:0 0}
+  .wd-creative-mark [data-part=expression-frame]{transform-origin:126px 54px}
+  .wd-creative-mark [data-part=expression-cross]{transform-origin:126px 53px}
+  .wd-creative-mark [data-part=integration-bridge]{transform-origin:200px 44px}
+  .wd-creative-mark [data-part=integration-joint]{transform-origin:228px 44px}
+  .wd-creative-trace{opacity:0}
+  @media(prefers-reduced-motion:reduce){.wd-creative-mark{cursor:default}.wd-creative-trace{display:none}}
+</style>

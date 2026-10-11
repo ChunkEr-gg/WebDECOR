@@ -1,0 +1,289 @@
+/* HACKERLAIR — photographs rendered as living text, inside a phosphor terminal. */
+.wd-hacker-art{display:none}.wd-ascii-canvas{display:none;position:absolute;pointer-events:none;z-index:1}.wd-ascii-host{position:relative}
+html[data-world=hackerlair]{color-scheme:dark}
+html[data-world=hackerlair] body.agency{--cy-paper:#050907;--cy-ink:#d9edcf;--cy-muted:#9bab94;--cy-red:#b6ff89;--cy-rule:#b6ff8938;background:#030604;color:var(--cy-ink);font-family:'VT323',monospace}
+html[data-world=hackerlair] .cy-shell{background:var(--cy-paper);border-color:var(--cy-rule);border-radius:0;max-width:1600px;overflow:hidden}
+html[data-world=hackerlair] .agency :is(h1,h2,h3){font-family:'VT323',monospace;letter-spacing:-.065em;font-weight:500;line-height:1.12}
+html[data-world=hackerlair] .agency :is(p,li){line-height:1.8}
+html[data-world=hackerlair] .agency em{font-style:normal;color:var(--cy-red)}
+html[data-world=hackerlair] .agency :is(.cy-wordmark,.wd-section-wordmark,.cy-project-wordmark){display:none}
+html[data-world=hackerlair] .wd-alt-wordmark{display:block;font-family:'VT323',monospace;letter-spacing:-.075em;line-height:1.12;font-weight:500}
+html[data-world=hackerlair] .wd-alt-brand>span{color:#c29dff;font-size:18px;letter-spacing:0}
+html[data-world=hackerlair] .ag-header{background:#080e0a}
+html[data-world=hackerlair] .agency :is(.ag-header nav,.cy-logo,.ag-header-cta){font-family:'VT323',monospace;color:var(--cy-red)}
+html[data-world=hackerlair] .wd-world-control{background:#080e0a}
+.wd-slider-field{width:min(510px,55%)}.wd-slider-labels{font-size:18px;gap:8px}.wd-slider-intro label{font-size:18px}
+html[data-world=hackerlair] .wd-slider-intro>span{font-family:'VT323',monospace;color:var(--cy-red)}
+html[data-world=hackerlair] .wd-slider-field input::-webkit-slider-thumb{box-shadow:0 0 20px #b6ff8970}
+html[data-world=hackerlair] .wd-slider-field input::-moz-range-thumb{box-shadow:0 0 20px #b6ff8970}
+html[data-world=hackerlair] .cy-hero{display:grid;grid-template-columns:1.05fr 1fr;gap:0 5%;padding:32px 4% 0;margin:0;border:0;background:radial-gradient(ellipse at 85% 40%,#16301655,transparent 65%),#050907;isolation:isolate}
+html[data-world=hackerlair] .cy-hero :is(.cy-archive-row,.cy-system-cell,.cy-human-cell,.cy-organic,.cy-calibration,.cy-title-coordinate,.cy-wordmark-foot){display:none}
+html[data-world=hackerlair] .cy-title-cell{grid-column:1;grid-row:1;padding:20px 0 0;border:0;align-self:end;min-width:0}
+html[data-world=hackerlair] .cy-title-meta{font:18px/1.6 'VT323';color:var(--cy-muted);letter-spacing:0}
+html[data-world=hackerlair] .cy-title-meta b{color:var(--cy-red)}
+html[data-world=hackerlair] .cy-title-cell h1{margin:24px 0 0}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font-size:clamp(34px,5vw,78px);color:var(--cy-red);text-shadow:0 0 25px #b6ff892a}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand::before{content:'~/';color:#c29dff;font-size:.52em;vertical-align:middle;margin-right:.1em}
+html[data-world=hackerlair] .cy-hero-lower{grid-column:1;grid-row:2;display:block;padding:30px 0 38px;border:0;align-self:start}
+html[data-world=hackerlair] .cy-manifesto{border:0;padding:0}
+html[data-world=hackerlair] .agency .cy-manifesto h2{font-size:clamp(30px,3.8vw,58px);line-height:1.15;max-width:17ch;color:var(--cy-ink)}
+html[data-world=hackerlair] .cy-manifesto>p{font:16px/1.8 'VT323';color:var(--cy-muted);margin:24px 0 30px}
+html[data-world=hackerlair] .cy-manifesto>a{font:20px 'VT323';color:var(--cy-red);width:max-content;max-width:100%;gap:25px;border:1px solid var(--cy-rule);padding:16px}
+html[data-world=hackerlair] .wd-hacker-art{display:flex;flex-direction:column;grid-column:2;grid-row:1/3;margin:10px 0 40px;border:1px solid var(--cy-rule);background:#040806;box-shadow:0 0 60px #b6ff8909;align-self:center;min-width:0}
+.wd-terminal-rail,.wd-hacker-art figcaption{display:flex;justify-content:space-between;gap:12px;padding:13px 16px;font:18px/1.5 'VT323';color:#9bab94;background:#0a120c}
+.wd-terminal-rail{border-bottom:1px solid #b6ff8938}.wd-terminal-rail>span:first-child{color:#b6ff89}.wd-terminal-rail>span:first-child::before{content:'> ';color:#c29dff}
+.wd-hacker-image{position:relative;aspect-ratio:1.1;overflow:hidden}.wd-hacker-image img{display:block;width:100%;height:100%;object-fit:cover}
+.wd-hacker-art figcaption{border-top:1px solid #b6ff8938}
+html[data-world=hackerlair] .cy-bottom-grid{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:22px 0;border:0;border-top:1px solid var(--cy-rule);min-height:0}
+html[data-world=hackerlair] .cy-bottom-grid>*{padding:0;border:0}
+html[data-world=hackerlair] .cy-field-note{display:flex;align-items:center;gap:25px}
+html[data-world=hackerlair] .cy-field-note p{font:20px/1.6 'VT323';color:var(--cy-muted)}
+html[data-world=hackerlair] .cy-next{gap:22px;background:none;color:var(--cy-red)}
+html[data-world=hackerlair] .cy-next>span{font:18px/1.6 'VT323'}
+/* The source images remain the fallback; only a sampled image gets the text layer. */
+html[data-world=hackerlair] .wd-ascii-ready>.wd-ascii-canvas{display:block}
+html[data-world=hackerlair] .wd-ascii-host>img{filter:grayscale(1) contrast(1.2);opacity:.7}
+html[data-world=hackerlair] .wd-ascii-ready>img{opacity:.18}
+html[data-world=hackerlair] .wd-ascii-ready::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,#0002 0 1px,transparent 1px 4px);mix-blend-mode:multiply}
+html[data-world=hackerlair] .cy-project-image{padding:0;background:#040806;overflow:hidden}
+html[data-world=hackerlair] .cy-project-image::before{display:none}
+html[data-world=hackerlair] .cy-project-image>span{z-index:4;color:#050907;background:var(--cy-red)}
+html[data-world=hackerlair] .cy-project-identity{z-index:3;background:#0a120c;border-top:1px solid var(--cy-rule);color:var(--cy-red)}
+html[data-world=hackerlair] .wd-alt-project{font-size:clamp(26px,3.3vw,50px)}
+html[data-world=hackerlair] .agency :is(.cy-work,.cy-studio,.ag-services,.ag-process,.ag-faq,.ag-pricing,.wd-capability,.wd-evolution,.wd-manifesto,.wd-principles,.wd-studio-proof,.ag-study-system,.wd-case-spec,.ag-brief-note,.ag-inquiry-form,.wd-proof,.wd-design-specimen){background:#080e0a;color:var(--cy-ink)}
+html[data-world=hackerlair] .agency :is(.ag-service-panels,.ag-price-plan,.wd-proof-stage,.wd-case-interface,.ag-study-art img){background:#050907}
+html[data-world=hackerlair] .agency :is(.ag-price-expanded,.wd-brief-note,.wd-design){background:#0e1910;color:var(--cy-ink)}
+html[data-world=hackerlair] .agency :is(.ag-invitation,.ag-footer){background:#050907;color:var(--cy-ink);border-color:var(--cy-rule)}
+html[data-world=hackerlair] .agency :is(.ag-invitation .cy-label,.ag-invitation p,.ag-footer-top nav,.cy-footer-details){color:var(--cy-muted)}
+html[data-world=hackerlair] .ag-invitation .ag-button{color:var(--cy-red);border-color:var(--cy-red)}
+html[data-world=hackerlair] .ag-invitation h2{font-size:clamp(34px,5vw,76px)}
+html[data-world=hackerlair] .ag-footer .cy-footer-wordmark{width:100%;max-width:100%}
+html[data-world=hackerlair] .ag-footer .wd-alt-brand{font-size:clamp(38px,10vw,145px);color:var(--cy-red)}
+html[data-world=hackerlair] .agency :is(.cy-label,.wd-micro,.ag-rail,.ag-price-rail,.ag-step-output,.ag-price-plan ul,.wd-output-strip,.ag-service-index>a,.cy-project-meta,.cy-project-caption>span){font-family:'VT323',monospace;font-size:18px;letter-spacing:0}
+html[data-world=hackerlair] .agency :is(.ag-price-amount,.ag-step-number,.wd-specimen-type){font-family:'VT323',monospace;color:var(--cy-red);letter-spacing:-.07em}
+html[data-world=hackerlair] .ag-price-amount{font-size:clamp(34px,4vw,60px)}
+html[data-world=hackerlair] .agency :is(.ag-service-tabs button[aria-selected=true],.wd-proof-controls button[aria-pressed=true]){background:var(--cy-red);color:#050907}
+html[data-world=hackerlair] .ag-service-tabs button[aria-selected=true]>span{color:#203820}
+html[data-world=hackerlair] .agency :is(.ag-button,.cy-text-link,.ag-form-actions button){font-family:'VT323',monospace;font-size:20px;letter-spacing:0}
+html[data-world=hackerlair] .agency :is(.ag-button:hover,.ag-service-index a:hover,.ag-service-tabs button:hover:not([aria-selected=true]),.ag-next-study:hover){background:#17271a;color:var(--cy-red)}
+html[data-world=hackerlair] .agency :is(.wd-page-mark,.ag-study-heading){color:var(--cy-red)}
+html[data-world=hackerlair] .wd-page-mark .wd-alt-section{font-size:clamp(36px,9vw,138px)}
+html[data-world=hackerlair] .agency :is(.wd-capability-art figcaption,.wd-proof-rail){z-index:3;background:#0e1910;color:var(--cy-red);border-top:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .wd-art-target{display:none}
+html[data-world=hackerlair] .agency :is(.ag-inquiry-form input,.ag-inquiry-form select,.ag-inquiry-form textarea){border-color:var(--cy-rule);font-family:'VT323',monospace}
+html[data-world=hackerlair] .agency :is(.wd-design .cy-text-link,.wd-design .cy-label){color:var(--cy-red)}
+html[data-world=hackerlair] .agency :is(.wd-output-strip>span::before,.ag-price-plan li::before,.wd-evolution li>span,.wd-evolution li>b,.wd-mini-header b,.wd-mini-art>span,.wd-mini-bottom>span:last-child,.wd-manifesto h2 em,.ag-service-index>a>span,.ag-study-disclaimer,.wd-expression b,.wd-experience span,.wd-intention b){color:var(--cy-red)}
+html[data-world=hackerlair] .agency :is(a,button,input,textarea,select,summary):focus-visible{outline:2px solid #c29dff;outline-offset:4px}
+html[data-world=hackerlair] ::selection{background:#b6ff89;color:#050907}
+@media(max-width:850px){.wd-world-control{display:block}.wd-slider-intro{justify-content:space-between;margin-bottom:8px}.wd-slider-field{width:100%}html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font-size:clamp(34px,5.5vw,60px)}html[data-world=hackerlair] .wd-terminal-rail,html[data-world=hackerlair] .wd-hacker-art figcaption{padding:12px;font-size:18px}}
+@media(max-width:600px){.wd-slider-labels{font-size:18px;gap:4px}.wd-slider-labels span{font-size:0}.wd-slider-labels span::after{font-size:18px;content:attr(data-world-label);text-transform:capitalize}.wd-slider-intro label{font-size:18px}html[data-world=hackerlair] .cy-hero{grid-template-columns:1fr;padding:25px 6% 0;gap:0}html[data-world=hackerlair] .cy-title-cell{grid-column:1;grid-row:1}html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font-size:clamp(32px,9vw,55px)}html[data-world=hackerlair] .cy-hero-lower{grid-column:1;grid-row:2;padding:25px 0}html[data-world=hackerlair] .agency .cy-manifesto h2{font-size:clamp(27px,7.5vw,42px)}html[data-world=hackerlair] .cy-manifesto>p{font-size:22px}html[data-world=hackerlair] .wd-hacker-art{grid-column:1;grid-row:3;margin:0 0 25px}html[data-world=hackerlair] .cy-bottom-grid{grid-row:4;gap:20px}html[data-world=hackerlair] .cy-field-note{display:block}html[data-world=hackerlair] .cy-field-note .cy-label{display:none}html[data-world=hackerlair] .cy-field-note p{font-size:18px}html[data-world=hackerlair] .cy-project:nth-child(2){margin-left:0}html[data-world=hackerlair] .cy-project-caption{flex-direction:column}html[data-world=hackerlair] .cy-project-caption>span{text-align:left;max-width:none}html[data-world=hackerlair] .wd-page-mark .wd-alt-section{font-size:clamp(28px,8.4vw,50px);overflow-wrap:anywhere}html[data-world=hackerlair] .ag-price-amount{font-size:44px}}
+html[data-world=hackerlair] .agency :is(.wd-case-art-notes,.wd-brief-stamp,.wd-specimen-swatches span:last-child,.wd-case-swatches span:last-child){color:#050907}
+html[data-world=hackerlair] .wd-case-art-notes .cy-label{color:#203820}
+html[data-world=hackerlair] .wd-case-art-notes .wd-case-pattern{background:repeating-linear-gradient(90deg,#203820 0 1px,transparent 1px 12px);border-color:#203820}
+html[data-world=hackerlair] .wd-case-object :is(.wd-case-art-notes,.wd-case-interface){background:#0e1910;color:var(--cy-ink)}
+html[data-world=hackerlair] .wd-case-interface-heading p{color:var(--cy-muted)}
+html[data-world=hackerlair] .agency :is(.ag-header nav a[aria-current=page],.ag-header nav a:hover,.cy-section-heading h2 em){color:var(--cy-red)}
+html[data-world=hackerlair] .cy-bottom-grid .cy-next{min-height:44px}
+html[data-world=hackerlair] .ag-study-heading h1 .wd-alt-project{font-size:clamp(40px,6vw,90px)}
+@media(max-width:600px){html[data-world=hackerlair] .ag-study-heading h1 .wd-alt-project{font-size:clamp(32px,8vw,50px)}html[data-world=hackerlair] .ag-study-heading{gap:25px}html[data-world=hackerlair] .wd-case-type>p{font-size:clamp(30px,8vw,48px)}}
+html[data-world=hackerlair] .wd-start-body{background:#080e0a}
+html[data-world=hackerlair] .wd-brief-output{background:#0e1910;color:var(--cy-ink);border:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .wd-brief-output :is(.cy-label,p){color:var(--cy-muted)}
+html[data-world=hackerlair] .wd-start-body :is(input,select,textarea):focus{background:#0e1910}
+html[data-world=hackerlair] .wd-start-body .ag-form-actions button{color:#050907}
+html[data-world=hackerlair] .wd-start-body .ag-form-actions button>span{color:#203820}
+html[data-world=hackerlair] .wd-start-body .ag-form-actions button:hover{background:#c29dff;color:#050907}
+html[data-world=hackerlair] .wd-brief-checklist li>span{color:var(--cy-red)}
+/* A complete shell composition. Hackerlair has its own structure and density. */
+.wd-terminal-bar,.wd-terminal-sidebar{display:none}
+html[data-world=hackerlair] body.agency{padding:20px;background:#020503}
+html[data-world=hackerlair] .cy-shell{display:grid;grid-template-columns:190px minmax(0,1fr);border:1px solid #b6ff8938;box-shadow:0 0 90px #b6ff8907;margin:auto;max-width:1540px}
+html[data-world=hackerlair] .wd-terminal-bar{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 20px;background:#0d160f;border-bottom:1px solid var(--cy-rule);font:18px/1.6 'VT323';color:var(--cy-muted)}
+html[data-world=hackerlair] .wd-terminal-bar>a{color:var(--cy-red)}
+html[data-world=hackerlair] .ag-header{display:none}
+html[data-world=hackerlair] .wd-world-control{grid-column:1/-1;padding:14px 20px;background:#050907;border-bottom:1px solid var(--cy-rule);gap:25px}
+html[data-world=hackerlair] .wd-slider-intro{gap:14px}
+html[data-world=hackerlair] .wd-slider-intro label{color:var(--cy-muted)}
+html[data-world=hackerlair] .wd-slider-intro>span{font-size:18px}
+html[data-world=hackerlair] .wd-slider-labels{font-size:18px}
+html[data-world=hackerlair] .wd-slider-field{width:min(500px,52%)}
+html[data-world=hackerlair] .wd-terminal-sidebar{display:block;grid-column:1;grid-row:3/5;padding:28px 16px;border-right:1px solid var(--cy-rule);background:#070c08;min-width:0;font:20px/1.8 'VT323'}
+.wd-terminal-directory{display:block;color:#b6ff89;margin:0 0 22px 5px;font-size:18px}
+.wd-terminal-sidebar nav{display:flex;flex-direction:column;gap:5px}
+.wd-terminal-sidebar nav a{padding:9px 6px;color:#9bab94;display:flex;gap:10px;border-left:2px solid transparent;overflow-wrap:anywhere}
+.wd-terminal-sidebar nav a[aria-current=page],.wd-terminal-sidebar nav a:hover{color:#b6ff89;background:#b6ff890a;border-left-color:#b6ff89}
+.wd-terminal-sidebar nav a>span{color:#c29dff}
+.wd-terminal-readme{border-top:1px dashed #b6ff8938;margin-top:40px;padding:20px 5px;color:#9bab94;font-size:18px}
+.wd-terminal-readme>span{color:#617b5e}.wd-terminal-readme p{font-size:18px;margin:14px 0 25px;line-height:1.8}
+html[data-world=hackerlair] main{grid-column:2;min-width:0;padding:0 30px}
+html[data-world=hackerlair] .agency :is(h1,h2,h3){font:400 32px/1.45 'VT323';letter-spacing:-.025em}
+html[data-world=hackerlair] .agency :is(p,li){font-size:20px}
+html[data-world=hackerlair] .agency :is(.cy-label,.wd-micro){color:var(--cy-muted);font-size:18px}
+html[data-world=hackerlair] .agency :is(.cy-work,.cy-studio,.ag-services,.ag-process,.ag-faq,.ag-pricing,.wd-capability,.wd-evolution,.wd-manifesto,.wd-principles,.wd-studio-proof,.ag-study-system,.wd-case-specification,.ag-study-narrative,.ag-studio-links,.wd-case-interface,.wd-start-body){display:block;margin:0;padding:32px 0;background:none;border:0;border-top:1px dashed var(--cy-rule)}
+html[data-world=hackerlair] main>section::before,html[data-world=hackerlair] .wd-case>section::before{display:block;content:'webdecor@studio:~ $ cat ' attr(data-layout-key) '.txt';font:18px/1.8 'VT323';color:var(--cy-red);margin-bottom:26px}
+html[data-world=hackerlair] .wd-capability::before{content:'webdecor@studio:~ $ ./services.sh --' attr(id)}
+html[data-world=hackerlair] .wd-dossier::before{content:'webdecor@studio:~ $ ls -la'}
+html[data-world=hackerlair] .cy-hero{grid-template-columns:1fr;gap:0;padding:32px 0 28px;margin:0;background:none}
+html[data-world=hackerlair] .cy-hero::before{grid-column:1;content:'webdecor@studio:~ $ ./hello-world';margin-bottom:22px}
+html[data-world=hackerlair] .cy-title-cell{grid-column:1;grid-row:auto;padding:0;align-self:auto}
+html[data-world=hackerlair] .cy-title-meta{display:none}
+html[data-world=hackerlair] .cy-title-cell h1{margin:0}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font:400 42px/1.4 'VT323';letter-spacing:-.045em;text-shadow:none}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand::before{content:'[ ';font-size:1em;vertical-align:baseline;margin:0;color:#c29dff}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand::after{content:' ]';color:#c29dff}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand>span{display:none}
+html[data-world=hackerlair] .cy-hero-lower{grid-column:1;grid-row:auto;padding:12px 0 24px}
+html[data-world=hackerlair] .agency .cy-manifesto h2{font:400 24px/1.7 'VT323';letter-spacing:0;max-width:none}
+html[data-world=hackerlair] .cy-manifesto h2 br{display:none}
+html[data-world=hackerlair] .cy-manifesto h2 .wd-motion-word{margin-right:.1em}
+html[data-world=hackerlair] .cy-manifesto>p{font-size:20px;margin:8px 0 18px}
+html[data-world=hackerlair] .cy-manifesto>p br{display:none}
+html[data-world=hackerlair] .cy-manifesto>a{font-size:18px;border:0;border-bottom:1px solid var(--cy-rule);padding:8px 0;min-height:40px;gap:20px}
+html[data-world=hackerlair] .wd-hacker-art{grid-column:1;grid-row:auto;margin:0;border:1px solid var(--cy-rule);width:100%;box-shadow:none}
+html[data-world=hackerlair] .wd-hacker-image{aspect-ratio:2.2;max-height:420px}
+html[data-world=hackerlair] .wd-terminal-rail,html[data-world=hackerlair] .wd-hacker-art figcaption{padding:10px 14px;font-size:18px;background:#080e0a}
+html[data-world=hackerlair] .cy-bottom-grid{grid-row:auto;border:0;padding:20px 0 0}
+html[data-world=hackerlair] .cy-bottom-grid .cy-next{display:none}
+html[data-world=hackerlair] .cy-field-note{display:block}
+html[data-world=hackerlair] .cy-field-note .cy-label{display:none}
+html[data-world=hackerlair] .cy-field-note p{font-size:18px;color:var(--cy-muted)}
+html[data-world=hackerlair] .cy-field-note p::before{content:'// ';color:#c29dff}
+html[data-world=hackerlair] .cy-field-note p br{display:none}
+html[data-world=hackerlair] .agency :is(.cy-section-heading,.ag-section-heading,.ag-pricing-heading,.ag-process-heading){display:block;padding:0;margin:0 0 24px}
+html[data-world=hackerlair] .agency :is(.cy-section-heading,.ag-section-heading,.ag-pricing-heading,.ag-process-heading)>h2{font-size:24px;margin:10px 0}
+html[data-world=hackerlair] .agency :is(.cy-section-heading,.ag-section-heading,.ag-pricing-heading,.ag-process-heading)>p{max-width:70ch;font-size:20px;margin:10px 0}
+html[data-world=hackerlair] .cy-section-heading>.cy-label:last-child{display:none}
+html[data-world=hackerlair] .ag-study-note{font-size:18px;margin:0 0 25px;color:var(--cy-muted)}
+html[data-world=hackerlair] .cy-work-rail{display:none}
+html[data-world=hackerlair] .cy-project-grid{display:block;border:0}
+html[data-world=hackerlair] .cy-project{display:grid;grid-template-columns:minmax(180px,35%) 1fr;gap:16px 25px;padding:24px 0;border:0;border-top:1px solid var(--cy-rule);margin:0}
+html[data-world=hackerlair] .cy-project:nth-child(2){margin:0;border-left:0}
+html[data-world=hackerlair] .cy-project-image{grid-column:1;grid-row:1/3}
+html[data-world=hackerlair] .cy-project-image>img{aspect-ratio:1.5}
+html[data-world=hackerlair] .cy-project-meta{grid-column:2;grid-row:1;display:block;padding:0;font-size:18px}
+html[data-world=hackerlair] .cy-project-meta>span{display:block;margin-bottom:8px}
+html[data-world=hackerlair] .cy-project-meta>span:first-child{color:var(--cy-red)}
+html[data-world=hackerlair] .cy-project-caption{grid-column:2;grid-row:2;display:block;padding:0;align-self:end}
+html[data-world=hackerlair] .cy-project-caption h3{font-size:20px;margin-bottom:8px}
+html[data-world=hackerlair] .cy-project-caption>span{font-size:18px;max-width:none;text-align:left}
+html[data-world=hackerlair] .cy-project-identity{display:none}
+html[data-world=hackerlair] .ag-service-console{display:grid;grid-template-columns:1fr 1.4fr;border:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .ag-service-tabs button{padding:18px 14px}
+html[data-world=hackerlair] .ag-service-tabs strong{font:20px/1.6 'VT323';letter-spacing:0}
+html[data-world=hackerlair] .ag-service-panels [role=tabpanel]{padding:24px}
+html[data-world=hackerlair] .ag-service-panels h3{font-size:20px}
+html[data-world=hackerlair] .ag-service-panels p{font-size:20px;margin:16px 0}
+html[data-world=hackerlair] .ag-pricing-grid{display:block;border:0}
+html[data-world=hackerlair] .ag-price-plan{display:grid;grid-template-columns:.65fr 1.5fr 1fr;gap:5px 24px;padding:24px 0;border:0;border-top:1px solid var(--cy-rule);background:none}
+html[data-world=hackerlair] .ag-price-rail{display:none}
+html[data-world=hackerlair] .ag-price-plan h3{grid-column:1;grid-row:1;font-size:18px}
+html[data-world=hackerlair] .ag-price-amount{grid-column:1;grid-row:2;margin:6px 0;font-size:24px;line-height:1.4}
+html[data-world=hackerlair] .ag-price-description{grid-column:2;grid-row:1/3;max-width:none;margin:0;font-size:20px}
+html[data-world=hackerlair] .ag-price-plan ul{grid-column:2;grid-row:3;border:0;padding:10px 0 0;margin:0;font-size:18px}
+html[data-world=hackerlair] .ag-price-plan .ag-button{grid-column:3;grid-row:1/4;align-self:start;margin:0;padding:12px;font-size:18px}
+html[data-world=hackerlair] .cy-studio-label{display:none}
+html[data-world=hackerlair] .cy-studio-copy{padding:0;border:0}
+html[data-world=hackerlair] .cy-studio-copy h2{font-size:24px}
+html[data-world=hackerlair] .cy-studio-copy .cy-lede{font-size:22px;margin:16px 0}
+html[data-world=hackerlair] .cy-studio-copy>div{display:block;max-width:80ch}
+html[data-world=hackerlair] .cy-studio-copy>div p{font-size:20px;margin-bottom:16px}
+html[data-world=hackerlair] .ag-process-grid{display:block;border:0}
+html[data-world=hackerlair] .ag-process-grid li{display:grid;grid-template-columns:40px 1fr;gap:0 16px;padding:22px 0;border:0;border-top:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .ag-step-number{font-size:18px;border:0;padding:0;grid-row:1/4}
+html[data-world=hackerlair] .ag-step-number>span{display:none}
+html[data-world=hackerlair] .ag-process-grid h3{font-size:18px;margin:0 0 8px}
+html[data-world=hackerlair] .ag-process-grid p{font-size:20px;margin:0 0 12px;max-width:70ch}
+html[data-world=hackerlair] .ag-faq>div{padding:0}
+html[data-world=hackerlair] .ag-faq h2{font-size:24px;margin:12px 0}
+html[data-world=hackerlair] .ag-faq-mark{display:none}
+html[data-world=hackerlair] .ag-faq-list{margin-top:25px}
+html[data-world=hackerlair] .ag-faq-list h3{font-size:22px;line-height:1.7}
+html[data-world=hackerlair] .ag-faq-list summary{padding:18px 0}
+html[data-world=hackerlair] .ag-invitation{padding:32px 0;background:none;border-top:1px dashed var(--cy-rule)}
+html[data-world=hackerlair] .ag-invitation .ag-rail{display:none}
+html[data-world=hackerlair] .ag-invitation-body{display:block;padding:0}
+html[data-world=hackerlair] .ag-invitation h2{font-size:24px;line-height:1.5}
+html[data-world=hackerlair] .ag-invitation p{font-size:20px;margin:15px 0}
+html[data-world=hackerlair] .ag-invitation .ag-button{width:max-content;max-width:100%;font-size:20px;margin-top:24px;padding:14px}
+html[data-world=hackerlair] .ag-footer{grid-column:2;padding:20px 30px;border-top:1px solid var(--cy-rule);font:18px/1.7 'VT323'}
+html[data-world=hackerlair] .ag-footer-top,html[data-world=hackerlair] .ag-footer .cy-footer-wordmark{display:none}
+html[data-world=hackerlair] .cy-footer-details{padding:0;display:flex;flex-wrap:wrap;font-size:18px;color:var(--cy-muted)}
+html[data-world=hackerlair] .cy-footer-details>a{font-size:18px}
+/* Other files open inside the same shell rather than as editorial cover pages. */
+html[data-world=hackerlair] .wd-dossier,html[data-world=hackerlair] .ag-study-hero{margin:0;border:0;padding:32px 0}
+html[data-world=hackerlair] .agency .ag-rail{display:none}
+html[data-world=hackerlair] .wd-page-mark{padding:0 0 20px;border:0}
+html[data-world=hackerlair] .wd-page-mark .wd-alt-section{font-size:30px;line-height:1.4;letter-spacing:-.025em}
+html[data-world=hackerlair] .wd-hero-split{grid-template-columns:1.1fr 1fr;gap:30px}
+html[data-world=hackerlair] .wd-hero-copy{padding:0}
+html[data-world=hackerlair] .agency :is(.wd-hero-copy h2,.wd-studio-intro h2,.wd-manifesto h2,.wd-capability-heading h2,.wd-evolution h2,.wd-studio-proof h2,.wd-case-interface-heading h2,.wd-brief-intro h2,.ag-study-narrative h2,.ag-study-system h2){font-size:24px;line-height:1.45;letter-spacing:-.025em;margin:15px 0}
+html[data-world=hackerlair] .wd-capability-art{min-height:300px;border:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .ag-service-index{padding:0;grid-template-columns:1fr 1fr;border:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .ag-service-index>a{padding:14px;font-size:18px}
+html[data-world=hackerlair] .wd-capability-heading{max-width:75ch;margin-bottom:24px}
+html[data-world=hackerlair] .wd-capability-heading p{max-width:75ch}
+html[data-world=hackerlair] .agency :is(.wd-direction-map,.wd-design-specimen,.wd-proof){max-width:700px;margin:25px 0}
+html[data-world=hackerlair] .wd-output-strip{margin-top:25px;font-size:18px}
+html[data-world=hackerlair] .wd-principles article{padding:24px 0;border:0;border-bottom:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .wd-principles h2{font-size:20px;margin:0 0 12px}
+html[data-world=hackerlair] .wd-principle-art{display:none}
+html[data-world=hackerlair] .wd-studio-composition{gap:25px;grid-template-columns:1fr 1fr}
+html[data-world=hackerlair] .wd-observation{min-height:320px}
+html[data-world=hackerlair] .wd-studio-intro{padding:0;border:0}
+html[data-world=hackerlair] .wd-studio-signature{padding-top:25px}
+html[data-world=hackerlair] .wd-studio-signature b{font-size:55px}
+html[data-world=hackerlair] .wd-eye-reticle{display:none}
+html[data-world=hackerlair] .wd-manifesto h2{max-width:35ch}
+html[data-world=hackerlair] .wd-manifesto p{max-width:75ch}
+html[data-world=hackerlair] .wd-brief-heading{display:block;border:0}
+html[data-world=hackerlair] .wd-brief-stamp{display:none}
+html[data-world=hackerlair] .wd-brief-intro{display:block;padding:0}
+html[data-world=hackerlair] .wd-brief-intro p{max-width:70ch}
+html[data-world=hackerlair] .wd-start-body aside h2{font-size:20px}
+html[data-world=hackerlair] .wd-brief-sidebar{margin-bottom:32px}
+html[data-world=hackerlair] .wd-brief-checklist{max-width:70ch}
+html[data-world=hackerlair] .wd-brief-output{display:none}
+html[data-world=hackerlair] .ag-study-heading{display:block;padding:0 0 24px}
+html[data-world=hackerlair] .ag-study-heading h1 .wd-alt-project{font-size:30px;line-height:1.4}
+html[data-world=hackerlair] .ag-study-heading p{font-size:20px;max-width:75ch}
+html[data-world=hackerlair] .wd-case-art,html[data-world=hackerlair] .wd-case-object .wd-case-art{display:block;border:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .wd-case-art-notes{display:none}
+html[data-world=hackerlair] .ag-study-art img{max-height:500px;object-fit:cover}
+html[data-world=hackerlair] .wd-case-type>p{font-size:30px;margin:20px 0}
+html[data-world=hackerlair] .wd-case-colour{max-width:500px;margin:30px 0}
+html[data-world=hackerlair] .wd-case-detail{display:none}
+html[data-world=hackerlair] .ag-study-system h2{font-size:24px}
+html[data-world=hackerlair] .ag-next-study{display:flex;justify-content:space-between;gap:20px;padding:25px 0;border-top:1px solid var(--cy-rule)}
+html[data-world=hackerlair] .ag-next-study>span:nth-child(2){font-size:22px}
+@media(max-width:1000px){html[data-world=hackerlair] body.agency{padding:12px}html[data-world=hackerlair] .cy-shell{grid-template-columns:160px minmax(0,1fr)}html[data-world=hackerlair] main{padding:0 22px}html[data-world=hackerlair] .wd-world-control{display:block}html[data-world=hackerlair] .wd-slider-field{width:100%}html[data-world=hackerlair] .wd-slider-intro{justify-content:space-between}html[data-world=hackerlair] .wd-terminal-sidebar{padding:24px 10px;font-size:18px}html[data-world=hackerlair] .ag-price-plan{grid-template-columns:1fr 1.8fr}html[data-world=hackerlair] .ag-price-plan .ag-button{grid-column:1;grid-row:3;margin-top:15px}html[data-world=hackerlair] .ag-price-plan ul{grid-column:2;grid-row:3}html[data-world=hackerlair] .ag-service-console{grid-template-columns:1fr}html[data-world=hackerlair] .ag-service-tabs{border-right:0}html[data-world=hackerlair] .ag-service-tabs button{border-right:0}html[data-world=hackerlair] .wd-hero-split{grid-template-columns:1fr}html[data-world=hackerlair] .wd-capability-art{min-height:340px}}
+@media(max-width:700px){html[data-world=hackerlair] body.agency{padding:8px}html[data-world=hackerlair] .cy-shell{display:block}html[data-world=hackerlair] .wd-terminal-bar{padding:12px;gap:12px;flex-wrap:wrap;font-size:18px}html[data-world=hackerlair] .wd-terminal-version{display:none}html[data-world=hackerlair] .wd-terminal-bar>span{width:100%;font-size:18px}html[data-world=hackerlair] .wd-world-control{padding:12px}html[data-world=hackerlair] .wd-terminal-sidebar{border-right:0;border-bottom:1px solid var(--cy-rule);padding:8px 12px}html[data-world=hackerlair] .wd-terminal-directory,html[data-world=hackerlair] .wd-terminal-readme{display:none}html[data-world=hackerlair] .wd-terminal-sidebar nav{flex-direction:row;flex-wrap:wrap;gap:0 12px}html[data-world=hackerlair] .wd-terminal-sidebar nav a{padding:7px 0;font-size:18px;gap:5px;border-left:0}html[data-world=hackerlair] .wd-terminal-sidebar nav a[aria-current=page]{background:none;text-decoration:underline;text-underline-offset:5px}html[data-world=hackerlair] main{padding:0 16px}html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font-size:27px}html[data-world=hackerlair] .agency .cy-manifesto h2{font-size:22px}html[data-world=hackerlair] .wd-hacker-image{aspect-ratio:1.3}html[data-world=hackerlair] .wd-terminal-rail,html[data-world=hackerlair] .wd-hacker-art figcaption{padding:10px 8px;font-size:18px;flex-wrap:wrap}html[data-world=hackerlair] .cy-project{grid-template-columns:1fr;gap:14px}html[data-world=hackerlair] .cy-project-meta{grid-column:1;grid-row:1}html[data-world=hackerlair] .cy-project-image{grid-column:1;grid-row:2}html[data-world=hackerlair] .cy-project-caption{grid-column:1;grid-row:3}html[data-world=hackerlair] .ag-price-plan{grid-template-columns:1fr}html[data-world=hackerlair] .ag-price-plan h3{grid-column:1;grid-row:1}html[data-world=hackerlair] .ag-price-amount{grid-column:1;grid-row:2}html[data-world=hackerlair] .ag-price-description{grid-column:1;grid-row:3}html[data-world=hackerlair] .ag-price-plan ul{grid-column:1;grid-row:4}html[data-world=hackerlair] .ag-price-plan .ag-button{grid-column:1;grid-row:5;margin-top:15px}html[data-world=hackerlair] .wd-studio-composition{grid-template-columns:1fr;gap:25px}html[data-world=hackerlair] .wd-observation{min-height:280px}html[data-world=hackerlair] .ag-footer{padding:18px 16px}html[data-world=hackerlair] .cy-footer-details{gap:12px}html[data-world=hackerlair] .ag-service-index{display:block}html[data-world=hackerlair] .ag-service-index>a{border:0;border-top:1px solid var(--cy-rule)}html[data-world=hackerlair] .ag-service-index>a:first-child{border-top:0}html[data-world=hackerlair] .wd-capability-art{min-height:280px}html[data-world=hackerlair] .ag-invitation h2{font-size:22px}html[data-world=hackerlair] .ag-next-study{flex-wrap:wrap}html[data-world=hackerlair] .wd-start-body .ag-inquiry-form{padding:20px 14px}html[data-world=hackerlair] .wd-start-body .ag-form-rail{margin:-20px -14px 24px;padding:14px}html[data-world=hackerlair] .ag-form-row{grid-template-columns:1fr}}
+html[data-world=hackerlair] .cy-hero::before{grid-row:1}
+html[data-world=hackerlair] .cy-title-cell{grid-row:2}
+html[data-world=hackerlair] .cy-hero-lower{grid-row:3}
+html[data-world=hackerlair] .wd-hacker-art{grid-row:4}
+html[data-world=hackerlair] .cy-bottom-grid{grid-row:5}
+html[data-world=hackerlair] .cy-hero>.wd-hero-field{display:none}
+html[data-world=hackerlair] .wd-case-interface-heading>.wd-micro{color:var(--cy-muted)}
+html[data-world=hackerlair] .cy-manifesto{min-height:0;display:block}
+html[data-world=hackerlair] .cy-manifesto>a{margin-top:0}
+html[data-world=hackerlair] .cy-manifesto h2 br,html[data-world=hackerlair] .cy-manifesto>p br{display:block}
+html[data-world=hackerlair] .wd-hacker-image{max-height:360px}
+
+/* VT323 brings the letterforms of a raster terminal to the entire shell. */
+html[data-world=hackerlair] .agency{font:400 20px/1.45 'VT323',monospace}
+html[data-world=hackerlair] .agency :is(h1,h2,h3,a,button,input,select,textarea,label,p,li,span,small,strong,b,em,summary){font-family:'VT323',monospace;font-weight:400;letter-spacing:0}
+html[data-world=hackerlair] .wd-world-control :is(label,span){font-size:18px}
+html[data-world=hackerlair] .wd-terminal-sidebar{font-family:'VT323',monospace;font-size:22px}
+html[data-world=hackerlair] .wd-terminal-directory{font-size:20px}
+html[data-world=hackerlair] .wd-terminal-readme p{font-size:18px}
+html[data-world=hackerlair] .agency :is(h2,h3){font-size:30px;line-height:1.2}
+html[data-world=hackerlair] .agency :is(p,li){font-size:20px;line-height:1.5}
+html[data-world=hackerlair] .agency .cy-manifesto h2{font-size:26px;line-height:1.25}
+html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font:400 42px/1.2 'VT323',monospace;letter-spacing:0}
+html[data-world=hackerlair] .ag-service-tabs strong{font:400 22px/1.3 'VT323',monospace}
+html[data-world=hackerlair] .agency :is(.ag-price-plan h3,.ag-process-grid h3,.cy-project-caption h3){font-size:28px}
+html[data-world=hackerlair] .ag-price-amount{font:400 34px/1.2 'VT323',monospace}
+html[data-world=hackerlair] .agency :is(.ag-price-rail,.ag-price-plan ul,.ag-price-plan li,.cy-field-note p,.wd-terminal-readme p,.ag-study-note){font-size:18px}
+html[data-world=hackerlair] .wd-start-body :is(input,textarea,select){font-size:22px}
+@media(max-width:700px){html[data-world=hackerlair] .wd-terminal-bar{font-size:18px}html[data-world=hackerlair] .wd-terminal-sidebar nav a{font-size:18px}html[data-world=hackerlair] .wd-terminal-sidebar nav{gap:0 14px}html[data-world=hackerlair] .cy-title-cell .wd-alt-brand{font-size:38px}html[data-world=hackerlair] .agency .cy-manifesto h2{font-size:24px}html[data-world=hackerlair] .wd-hacker-art figcaption{font-size:18px}}
+@media(max-width:600px){html[data-world=hackerlair] .wd-slider-labels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}html[data-world=hackerlair] .wd-slider-labels span{font-size:0;white-space:nowrap}html[data-world=hackerlair] .wd-slider-labels span::after{font-size:18px}html[data-world=hackerlair] .wd-slider-labels span:last-child{text-align:right}}

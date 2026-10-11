@@ -1,0 +1,5 @@
+---
+import Icon from '../Icon.astro';
+import {agency} from '../../data/agency';
+---
+<section class="u-faq u-editorial-section" id="questions" data-window="Help / Before we begin"><span class="u-meta">BEFORE WE BEGIN</span><h2>Good questions.<br/><span>Clear answers.</span></h2><div class="u-services">{agency.faqs.map((faq,i)=><details><summary><span>{String(i+1).padStart(2,'0')}</span><h3>{faq.question}</h3><span aria-hidden="true"><Icon name="plus"/></span></summary><div><p>{faq.answer}</p></div></details>)}</div></section>

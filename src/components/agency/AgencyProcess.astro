@@ -1,0 +1,66 @@
+---
+import Icon from '../Icon.astro';
+import { agency } from '../../data/agency';
+import '../../styles/agency-process.css';
+const { world = 'cybercore' } = Astro.props;
+---
+{world === 'cybercore' ? <section data-layout-key="process" id="process" class="ag-process cy-process" aria-labelledby="process-title">
+  <div class="cy-process-rail"><span class="cy-label">04 / HOW IT COMES TOGETHER</span><span>IDEA <Icon name="arrow-right"/> INTERFACE</span></div>
+  <div class="ag-process-heading">
+    <h2 id="process-title">A clear path.<br/><em>Room to explore.</em></h2>
+    <div><p>Creative work moves forward when the decisions are shared. Each stage gives the next one a stronger foundation.</p><span class="cy-process-method">FOUR STAGES. ONE CONNECTED PRACTICE.</span></div>
+  </div>
+  <div class="cy-process-body">
+    <figure class="cy-process-map">
+      <div class="cy-process-map-meta"><span>FIG. 04 / PROJECT ANATOMY</span><span>NOT TO SCALE</span></div>
+      <svg class="cy-process-schematic" viewBox="0 0 420 490" fill="none" role="img" aria-labelledby="process-diagram-title process-diagram-desc">
+        <title id="process-diagram-title">From a shared brief to a live website</title>
+        <desc id="process-diagram-desc">A connected technical drawing: discover the direction, design the visual system, build the website, then launch and hand over.</desc>
+        <g class="cy-process-construction" stroke="currentColor" stroke-width=".7">
+          <path d="M32 32H388V456H32Z M32 114H388 M32 196H388 M32 278H388 M32 360H388 M112 32V456 M210 32V456 M308 32V456"/>
+          <path d="M32 32L388 456 M388 32L32 456" stroke-dasharray="2 5"/>
+          <circle cx="210" cy="244" r="151"/><circle cx="210" cy="244" r="118"/>
+          <path d="M18 244H402 M210 18V472" stroke-dasharray="5 5"/>
+        </g>
+        <g class="cy-process-map-object" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M69 144L165 111L281 158L185 191Z M69 144V174L185 221L281 188V158 M185 191V221"/>
+          <path d="M103 143L165 122L247 156L185 178Z M132 137L214 171 M160 127L242 161"/>
+          <path d="M120 235L210 204L326 250L236 283Z M120 235V264L236 311L326 280V250 M236 283V311"/>
+          <path d="M148 236L210 215L298 250L236 272Z M179 227L267 261 M208 217L296 251"/>
+          <path d="M73 330L165 299L281 345L189 377Z M73 330V360L189 407L281 375V345 M189 377V407"/>
+          <path d="M99 331L165 309L257 345L190 368Z"/>
+        </g>
+        <g class="cy-process-map-accent" stroke="currentColor" stroke-width="1.8">
+          <path d="M165 81V111 M281 173H353V250H326 M120 250H55V330H73 M189 407V435H312"/>
+          <path d="M161 86L165 81L169 86 M348 170L353 173L348 176 M59 325L55 330L51 325 M307 431L312 435L307 439"/>
+          <circle cx="165" cy="72" r="9"/><circle cx="353" cy="173" r="4"/><circle cx="55" cy="330" r="4"/><circle cx="321" cy="435" r="9"/>
+          <path d="M152 323L176 314L215 330L191 339Z M152 323V345L191 361L215 352V330 M191 339V361"/>
+        </g>
+        <g class="cy-process-map-type" fill="currentColor">
+          <text x="183" y="76">01 / DISCOVER</text><text x="289" y="212">02 / DESIGN</text>
+          <text x="72" y="289">03 / BUILD</text><text x="247" y="457">04 / LAUNCH</text>
+        </g>
+        <g class="cy-process-map-dimensions" stroke="currentColor" stroke-width=".8">
+          <path d="M69 101V83 M281 150V83 M69 90H281 M67 93L71 87 M279 93L283 87 M339 250H372 M339 311H372 M365 250V311 M362 252L368 248 M362 313L368 309"/>
+        </g>
+        <g class="cy-process-map-small" fill="currentColor"><text x="142" y="83">DIRECTION</text><text x="371" y="285" transform="rotate(90 371 285)">SYSTEM</text></g>
+      </svg>
+      <figcaption><span>A decision becomes a direction.<br/>A direction becomes a website.</span><Icon name="arrow-down-right"/></figcaption>
+    </figure>
+    <ol class="cy-process-sequence">
+      {agency.process.map((step,i)=><li>
+        <span class="cy-process-index">{step.number}</span>
+        <div class="cy-process-stage"><h3>{step.name}</h3><p>{step.text}</p><div class="cy-process-output"><span>OUTPUT</span><strong>{step.output}</strong></div></div>
+        <div class="cy-process-stage-art" aria-hidden="true">
+          <svg viewBox="0 0 112 88" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="miter">
+            {i===0&&<><path d="M30 13H67L80 26V74H30Z M67 13V26H80 M39 36H68 M39 43H64 M39 50H68 M39 57H53"/><circle cx="65" cy="59" r="13"/><path class="cy-process-art-accent" d="M74 69L85 80 M60 58L64 62L71 54"/><path class="cy-process-art-guide" d="M18 13H23 M18 74H23 M20 13V74"/></>}
+            {i===1&&<><path d="M19 18H89V71H19Z M19 31H89 M53 31V71 M25 39H46V60H25 M60 39H81 M60 46H81 M60 53H74"/><path class="cy-process-art-accent" d="M25 39L46 60 M25 60L46 39 M82 59L94 70L87 72L85 79Z"/><path class="cy-process-art-guide" d="M14 12H94 M13 11V75"/></>}
+            {i===2&&<><path d="M16 18H81V59H16Z M39 59V68H59 M31 68H67 M74 34H98V76H74Z M80 69H92"/><path class="cy-process-art-accent" d="M38 30L31 37L38 44 M59 30L66 37L59 44 M53 28L45 46 M80 42H92 M80 48H90"/><path class="cy-process-art-guide" d="M16 11H81 M104 34V76"/></>}
+            {i===3&&<><path d="M21 60H91V76H21Z M30 60V46H83V60 M38 46V31H75V46"/><path class="cy-process-art-accent" d="M56 45V13 M44 25L56 13L68 25 M29 69H42 M77 53L84 59L98 42"/><path class="cy-process-art-guide" d="M15 82H97 M15 76V84 M97 76V84"/></>}
+          </svg>
+        </div>
+      </li>)}
+    </ol>
+  </div>
+  <div class="cy-process-end"><span>FROM THE FIRST QUESTION TO THE FINAL HANDOVER.</span><a href="/cybercore/start/">Tell us where you’re starting <Icon name="arrow-up-right"/></a></div>
+</section> : <section data-layout-key="process" id="process" class="ag-process" aria-labelledby="process-title"><div class="ag-process-heading"><span class="cy-label">04 / HOW IT COMES TOGETHER</span><h2 id="process-title">A clear path.<br/><em>Room to explore.</em></h2><p>Creative work moves forward when the decisions are shared. Each stage gives the next one a stronger foundation.</p></div><ol class="ag-process-grid">{agency.process.map(step=><li><div class="ag-step-number" aria-hidden="true">{step.number}<span><Icon name="plus"/></span></div><h3>{step.name}</h3><p>{step.text}</p><span class="ag-step-output"><Icon name="branch-right"/> {step.output}</span></li>)}</ol></section>}

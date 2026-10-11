@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+const { email = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDECOR' } = Astro.props;
+---
+<div class="ag-inquiry">
+{(email || bookingUrl) && <div class="ag-contact-links">{email && <a href={`mailto:${email}`} class="ag-email">{email}<span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an introduction <Icon name="arrow-up-right"/></a>}</div>}
+<form class="ag-inquiry-form" data-email={email} data-brand={brand}>
+<fieldset class="ag-form-fieldset" disabled><div class="ag-form-rail"><span>INPUT / YOUR PROJECT</span><span aria-hidden="true"><Icon name="plus"/></span></div>
+<div class="wd-form-divider"><span>01</span> IDENTITY / YOUR DETAILS</div>
+<div class="ag-form-row"><label>Your name<input name="name" autocomplete="name" required maxlength="120" placeholder="Name"/></label><label>Company / organisation<input name="company" autocomplete="organization" maxlength="160" placeholder="Brand or business"/></label></div>
+<div class="ag-form-row"><label>Email <span class="ag-optional">optional</span><input name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@yourcompany.com"/></label><label>What do you need?<select name="service">{services.map((service:any)=><option value={service.id}>{service.name}</option>)}<option value="explore">Help defining the project</option></select></label></div>
+<div class="wd-form-divider"><span>02</span> AMBITION / PROJECT SCOPE</div>
+<label>Package<select name="plan"><option value="explore">Still exploring</option>{pricing.map((plan:any)=><option value={plan.id}>{plan.name}{plan.id !== 'custom' ? ` — ${plan.price}` : ''}</option>)}</select></label>
+<label>Tell us about the project<textarea name="idea" required rows="5" maxlength="4000" placeholder="Your starting point, your audience, and what you want the website to do."></textarea></label>
+<div class="wd-form-divider"><span>03</span> NEXT CHAPTER / TIMING</div>
+<div class="ag-form-row"><label>Ideal launch date<input name="timeline" maxlength="100" placeholder="A date, a season, or still exploring"/></label><label>Budget in mind <span class="ag-optional">optional</span><input name="budget" maxlength="100" placeholder="A range is helpful"/></label></div>
+<div class="ag-form-actions"><button type="submit">DOWNLOAD YOUR BRIEF <span aria-hidden="true"><Icon name="arrow-down"/></span></button>{email && <button type="button" data-compose-email>COMPOSE EMAIL <Icon name="arrow-up-right"/></button>}</div>
+<p class="ag-form-status" role="status">Your brief downloads to your device. Nothing is submitted or sent.</p>
+</fieldset><noscript><p>Enable JavaScript to download your project brief.</p></noscript>
+</form>
+</div>
+<script>import '../scripts/agency-inquiry';</script>

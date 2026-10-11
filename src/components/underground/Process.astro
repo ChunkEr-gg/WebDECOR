@@ -1,0 +1,4 @@
+---
+import {agency} from '../../data/agency';
+---
+<section class="u-process u-editorial-section" id="process" data-window="Process / How it comes together"><div class="u-section-top"><span>HOW IT COMES TOGETHER</span><span>FROM FIRST QUESTION TO LAUNCH</span></div><h2>A clear path.<br/><span>Room to explore.</span></h2><p class="u-section-lede">Creative work moves forward when the decisions are shared. Each stage gives the next one a stronger foundation.</p><ol class="u-process-list">{agency.process.map(step=><li><span class="u-meta">{step.number}</span><h3>{step.name}</h3><p>{step.text}</p><span class="u-meta">{step.output}</span></li>)}</ol></section>

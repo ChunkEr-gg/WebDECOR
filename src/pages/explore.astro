@@ -1,0 +1,13 @@
+---
+import Icon from '../components/Icon.astro';
+import AgencyLayout from '../layouts/AgencyLayout.astro';
+import CyberSectionWordmark from '../components/agency/CyberSectionWordmark.astro';
+import DesignArchive from '../components/agency/DesignArchive.astro';
+import AgencyInvitation from '../components/agency/AgencyInvitation.astro';
+---
+<AgencyLayout title="Design archive — WebDECOR" active="work" description="Four self-initiated design studies. Explore Collage, Swiss, Hackerlair, and The Weird Internet.">
+  <section class="wd-archive-intro wd-dossier"><div class="ag-rail"><a href="/">WEBDECOR / HOME</a><span>DESIGN ARCHIVE / 01—04</span></div><h1 class="wd-page-mark"><CyberSectionWordmark text="ARCHIVE" weight={16}/><span class="cy-sr-only">Design archive</span></h1><div class="wd-archive-intro-copy"><h2>One practice.<br/>Many points of view.</h2><div><p>Our identity is Cybercore. The work is about finding the right identity for every idea.</p><p>Four worlds, developed to explore how art direction, composition, typography, and interaction change the feeling of a website. Open a study to see the thinking, then step inside the live experience.</p><span class="wd-study-disclaimer">SELF-INITIATED DESIGN STUDIES / NOT CLIENT COMMISSIONS.</span></div></div></section>
+  <DesignArchive full/>
+  <section class="wd-archive-projects"><div><span class="cy-label">FROM DIRECTION TO CONTEXT</span><h2>Identity meets<br/>a real-world idea.</h2><p>Two additional concepts explore how our Cybercore language can become a fashion storefront or a digital showroom.</p></div><nav aria-label="Concept project studies"><a href="/cybercore/work/forme/"><span class="cy-label">FASHION / COMMERCE</span><strong>FORME</strong><span aria-hidden="true"><Icon name="arrow-up-right"/></span></a><a href="/cybercore/work/object/"><span class="cy-label">INTERIORS / CULTURE</span><strong>OBJECT / ROOM</strong><span aria-hidden="true"><Icon name="arrow-up-right"/></span></a></nav></section>
+  <AgencyInvitation heading="Your own point of view.\nA website to match."/>
+</AgencyLayout>

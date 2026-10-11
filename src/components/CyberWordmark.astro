@@ -1,0 +1,27 @@
+---
+const { instance = 'hero' } = Astro.props;
+const prefix = `wd-neon-${instance}`;
+const paths = [
+  'M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65',
+  'M263 145h-77q-18 0-18-18V85q0-20 20-20h62q16 0 16 20v20h-96',
+  'M309 27v119h68q23 0 23-23V89q0-24-24-24h-64',
+  'M544 27v119h-68q-23 0-23-23V89q0-24 24-24h64',
+  'M690 145h-77q-18 0-18-18V85q0-20 20-20h62q16 0 16 20v20h-96',
+  'M833 65h-68q-23 0-23 23v35q0 23 23 23h68',
+  'M1028 146V86q0-21 21-21h68',
+];
+---
+<svg viewBox="0 0 1210 180" fill="none" aria-hidden="true" class="cy-wordmark" stroke-width="25" stroke-linecap="square" stroke-linejoin="round">
+  <defs>
+    <g id={`${prefix}-shape`}>{paths.map(d=><path d={d}/>)}<rect x="879" y="65" width="97" height="81" rx="21"/></g>
+    <linearGradient id={`${prefix}-face`} x1="0" y1="0" x2="0" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#fff0da"/><stop offset=".38" stop-color="#ffac77"/><stop offset=".62" stop-color="#ff6034"/><stop offset="1" stop-color="#c33113"/></linearGradient>
+    <linearGradient id={`${prefix}-side`} x1="0" y1="0" x2="0" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#9a3017"/><stop offset=".55" stop-color="#70200b"/><stop offset="1" stop-color="#280a04"/></linearGradient>
+  </defs>
+  <g class="wd-logo-energy wd-logo-bloom" stroke="#ff592a"><use href={`#${prefix}-shape`}/></g>
+  <g class="wd-logo-energy wd-logo-mount" stroke="#090706" stroke-width="29" transform="translate(0 8)"><use href={`#${prefix}-shape`}/><path d="M1162 125h27v27h-27z" fill="#090706" stroke="none"/></g>
+  <g class="wd-logo-energy wd-logo-depth" stroke={`url(#${prefix}-side)`}>{[7,6,5,4,3,2,1].map(i=><g transform={`translate(${i*.65} ${i*.75})`}><use href={`#${prefix}-shape`}/><path d="M1162 125h27v27h-27z" fill={`url(#${prefix}-side)`} stroke="none"/></g>)}</g>
+  <g class="wd-logo-face" stroke="currentColor" style={`--neon-face:url(#${prefix}-face)`}>{paths.map(d=><path d={d}/>)}<rect x="879" y="65" width="97" height="81" rx="21"/><path d="M1162 125h27v27h-27z" fill="currentColor" stroke="none" class="wd-logo-dot"/></g>
+  <g class="wd-logo-energy wd-logo-filament" stroke="#ffedce" stroke-width="2.2"><use href={`#${prefix}-shape`}/></g>
+</svg>
+<span class="wd-alt-wordmark wd-alt-brand" aria-hidden="true">WebDECOR<span>®</span></span>
+<span class="wd-play-wordmark" aria-hidden="true"><b>W</b><b>e</b><b>b</b><b>D</b><b>E</b><b>C</b><b>O</b><b>R</b></span>

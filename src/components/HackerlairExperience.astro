@@ -1,0 +1,116 @@
+---
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/hackerlair-tui.css';
+import AgencyInquiry from './AgencyInquiry.astro';
+import Icon from './Icon.astro';
+import { agency, studies } from '../data/agency';
+import { designStudies } from '../data/design-studies';
+const files = [
+  {id:'readme',name:'README.md',type:'md',title:'Start here',image:'/images/crt-eye.webp',art:'Human eye / character field',alt:'A close view of a human eye rendered as terminal characters'},
+  {id:'services',name:'services.md',type:'md',title:'Capabilities',image:'/images/crt-foil.webp',art:'Material study / character field',alt:'Folded metallic foil rendered as terminal characters'},
+  {id:'studies',name:'studies/',type:'dir',title:'Design studies',image:'/images/crt-monitor.webp',art:'CRT monitor / character field',alt:'A CRT monitor rendered as terminal characters'},
+  {id:'pricing',name:'pricing.cfg',type:'cfg',title:'Project scope',image:'/images/crt-keyboard.webp',art:'Keyboard / character field',alt:'A computer keyboard rendered as terminal characters'},
+  {id:'studio',name:'studio.md',type:'md',title:'The practice',image:'/images/crt-sculpture.webp',art:'Sculpture / character field',alt:'A sculpture rendered as terminal characters'},
+  {id:'project',name:'new-project.md',type:'md',title:'Your project',image:'/images/crt-mouse.webp',art:'Computer mouse / character field',alt:'A computer mouse rendered as terminal characters'},
+];
+---
+<!doctype html>
+<html lang="en" data-world="hackerlair" data-terminal-theme="phosphor">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#080c0a"/>
+  <title>Hackerlair — A terminal design study — WebDECOR</title>
+  <meta name="description" content="Explore WebDECOR as a working terminal interface. Browse design studies, capabilities, and pricing, or prepare a project brief."/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+</head>
+<body class="hackerlair-tui">
+<a class="ht-skip" href="#ht-document">Skip to document</a>
+<div class="ht-shell">
+  <header class="ht-chrome">
+    <a class="ht-brand" href="/" aria-label="WebDECOR home">[wd<span>®</span>]</a>
+    <span class="ht-app-name">HACKERLAIR <span>/ WebDECOR workspace</span></span>
+    <div class="ht-chrome-actions"><a href="/">home <Icon name="arrow-up-right"/></a><button data-terminal-palette type="button">palette: <span data-palette-name>phosphor</span></button><button type="button" data-terminal-help aria-label="Open command reference"><Icon name="help"/></button><a href="/studies/hackerlair/" aria-label="Return to the Hackerlair design study">close <Icon name="close"/></a></div>
+  </header>
+  <div class="ht-workspace">
+    <aside class="ht-tree ht-pane" aria-label="Workspace files">
+      <div class="ht-pane-label"><span>explorer</span><span>06 files</span></div>
+      <div class="ht-tree-root"><span aria-hidden="true"><Icon name="arrow-down"/></span> ~/webdecor</div>
+      <nav class="ht-files" aria-label="Open a document">
+        {files.map((file,i)=><a href={'#'+file.id} data-terminal-file={file.id} data-art-src={file.image} data-art-caption={file.art} data-art-alt={file.alt} class:list={['ht-file',{'is-selected':i===0}]}><span class="ht-file-index">{String(i+1).padStart(2,'0')}</span><span>{file.name}</span><small>{file.type}</small></a>)}
+      </nav>
+      <div class="ht-tree-notes"><span class="ht-muted">workspace.note</span><p>An independent design practice.<br/>A less ordinary interface.</p><a href="/explore/">browse all studies <Icon name="arrow-up-right"/></a></div>
+      <div class="ht-tree-bottom"><span class="ht-led" aria-hidden="true"></span> self-initiated study</div>
+    </aside>
+    <main class="ht-document ht-pane" id="ht-document" tabindex="-1">
+      <div class="ht-document-rail"><span>~/webdecor/<strong data-document-name>README.md</strong></span><span data-document-type>markdown</span></div>
+      <div class="ht-document-scroll">
+        <section id="readme" class="ht-view" aria-labelledby="ht-readme-title">
+          <div class="ht-frontmatter"><span>name: <b>WebDECOR</b></span><span>practice: <b>independent web design</b></span><span>intent: <b>websites with character</b></span></div>
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h1 id="ht-readme-title"><span class="ht-heading-neutral">Human input.</span><br/>Strange output<span class="ht-caret" aria-hidden="true">_</span></h1></div>
+          <div class="ht-prose"><p>We turn a point of view into a website people want to explore.</p><p>Strategy, art direction, and development, working together. Clear journeys. Distinctive identities. Interfaces with a little life of their own.</p></div>
+          <div class="ht-section-rule"><span>## open a file</span><span>click / type / explore</span></div>
+          <div class="ht-launch-list">
+            <a href="#services" data-terminal-open="services"><span>01</span><strong>services.md</strong><span>What we can make together</span><b aria-hidden="true"><Icon name="arrow-right"/></b></a>
+            <a href="#studies" data-terminal-open="studies"><span>02</span><strong>studies/</strong><span>Ideas made tangible</span><b aria-hidden="true"><Icon name="arrow-right"/></b></a>
+            <a href="#project" data-terminal-open="project"><span>03</span><strong>new-project.md</strong><span>Start with your own idea</span><b aria-hidden="true"><Icon name="arrow-right"/></b></a>
+          </div>
+          <div class="ht-note"><span aria-hidden="true">//</span><p>This is a live design study. The agency information and project brief are real parts of the experience.</p></div>
+          <p class="ht-inline-prompt">Try <button type="button" data-terminal-command="open studies">open studies</button> in the prompt below.</p>
+        </section>
+        <section id="services" class="ht-view" aria-labelledby="ht-services-title">
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-services-title">Capabilities</h2></div>
+          <p class="ht-lede">A clear idea. A visual world. A working website.</p>
+          <div class="ht-service-list">{agency.services.map((service,i)=><details open={i===0}><summary><span>{service.number}</span><strong>{service.name}</strong><span class="ht-detail-state" aria-hidden="true"><Icon name="plus" class="ht-detail-plus"/><Icon name="minus" class="ht-detail-minus"/></span></summary><div class="ht-service-body"><p>{service.description}</p><ul>{service.deliverables.map(item=><li>{item}</li>)}</ul><p class="ht-outcome"><span>returns:</span> {service.outcome}</p></div></details>)}</div>
+          <a class="ht-action" href="#project" data-terminal-open="project">[ create a project brief <Icon name="arrow-right"/> ]</a>
+        </section>
+        <section id="studies" class="ht-view" aria-labelledby="ht-studies-title">
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-studies-title">Design studies</h2></div>
+          <p class="ht-lede">Self-initiated concepts. Different worlds, built with intention.</p>
+          <div class="ht-section-rule"><span>./concepts</span><span>02 entries</span></div>
+          <div class="ht-concepts">{studies.map(study=><article><div class="ht-project-art"><img src={study.image} alt={study.alt} width={study.width} height={study.height} loading="lazy"/></div><div class="ht-concept-copy"><span class="ht-muted">{study.category.toLowerCase()}</span><h3>{study.name}</h3><p>{study.summary}</p><a href={'/cybercore/work/'+study.slug+'/'}>[ read the study <Icon name="arrow-up-right"/> ]</a></div></article>)}</div>
+          <div class="ht-section-rule"><span>./visual-worlds</span><span>04 entries</span></div>
+          <div class="ht-world-files">{designStudies.map(study=><a href={study.live}><span aria-hidden="true"><Icon name="branch-right"/></span><strong>{study.slug}/</strong><span>{study.name}</span><span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>)}</div>
+        </section>
+        <section id="pricing" class="ht-view" aria-labelledby="ht-pricing-title">
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-pricing-title">Choose a scope</h2></div>
+          <p class="ht-lede">A starting point for the conversation. Deliverables and timing are agreed around your project.</p>
+          <div class="ht-pricing">{agency.pricing.map(plan=><article><div class="ht-plan-heading"><h3><span class="ht-syntax">[</span>{plan.id}<span class="ht-syntax">]</span></h3><strong>{plan.price}</strong></div><p>{plan.description}</p><ul>{plan.features.map(feature=><li>{feature}</li>)}</ul><button type="button" class="ht-action" data-terminal-plan={plan.id}>[ {plan.id==='custom'?'define your scope':'select '+plan.id} <Icon name="arrow-right"/> ]</button></article>)}</div>
+          <p class="ht-note-text">Custom work is quoted around the content, pages, and features you need.</p>
+        </section>
+        <section id="studio" class="ht-view" aria-labelledby="ht-studio-title">
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-studio-title">The practice</h2></div>
+          <p class="ht-lede">{agency.description}</p>
+          <blockquote>Character in the design.<br/>Care in the details.</blockquote>
+          <div class="ht-section-rule"><span>## project sequence</span><span>04 steps</span></div>
+          <ol class="ht-process">{agency.process.map(step=><li><span>{step.number}</span><div><h3>{step.name}</h3><p>{step.text}</p><small>output: {step.output.toLowerCase()}</small></div></li>)}</ol>
+          <div class="ht-section-rule"><span>## useful answers</span></div>
+          <div class="ht-faq">{agency.faqs.slice(0,4).map(faq=><details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>
+        </section>
+        <section id="project" class="ht-view" aria-labelledby="ht-project-title">
+          <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-project-title">Your next chapter</h2></div>
+          <p class="ht-lede">Write down the starting point. Download a brief to keep, revise, or share when you’re ready.</p>
+          <AgencyInquiry services={agency.services} pricing={agency.pricing} email={agency.email} bookingUrl={agency.bookingUrl}/>
+        </section>
+      </div>
+      <div class="ht-document-footer"><span data-document-status>README.md · read mode</span><span>UTF-8 <span class="ht-muted">/</span> design study</span></div>
+    </main>
+    <aside class="ht-inspector ht-pane" aria-label="Live character artwork">
+      <div class="ht-pane-label"><span>signal preview</span><span class="ht-live-state"><i class="ht-led" aria-hidden="true"></i>live</span></div>
+      <figure class="ht-art-figure"><div class="ht-live-art"><img data-terminal-art src="/images/crt-eye.webp" alt="A human eye rendered as a field of terminal characters" width="1280" height="1280"/></div><figcaption data-art-caption>Human eye / character field</figcaption></figure>
+      <div class="ht-image-pipeline"><span>source</span><i aria-hidden="true"><Icon name="arrow-right"/></i><span>luminance</span><i aria-hidden="true"><Icon name="arrow-right"/></i><span>glyph</span></div>
+      <div class="ht-inspector-note"><span class="ht-muted">render.note</span><p>The characters follow the photograph.<br/>Move over the image to disturb the signal.</p></div>
+      <div class="ht-glyph-ramp" aria-label="Character brightness ramp"><span class="ht-muted">ramp</span><span aria-hidden="true">. : ; i + * L C 0 8 @ #</span></div>
+      <div class="ht-inspector-footer"><span>THE INTERFACE IS THE STUDY.</span><a href="/studies/hackerlair/">design notes <Icon name="arrow-up-right"/></a></div>
+    </aside>
+  </div>
+  <div class="ht-command-area">
+    <p class="ht-command-output" id="ht-command-output" role="status">Ready. Open a file, or type help for commands.</p>
+    <form class="ht-command" data-terminal-prompt aria-label="Terminal commands"><label for="ht-command-input"><span>visitor</span>@webdecor<span class="ht-prompt-path">:~</span><b aria-hidden="true">$</b><span class="ht-sr">Command</span></label><input id="ht-command-input" name="command" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="180" placeholder="help" aria-describedby="ht-command-output" disabled/><button type="submit" disabled aria-label="Run command"><Icon name="arrow-right"/></button></form>
+  </div>
+  <footer class="ht-keybar"><span><kbd>Alt 1–6</kbd> open file</span><button type="button" data-terminal-focus><kbd>Ctrl K</kbd> command</button><button type="button" data-terminal-help><kbd>?</kbd> help</button><span class="ht-keybar-right">WebDECOR <span class="ht-muted">/</span> Hackerlair</span></footer>
+</div>
+<dialog class="ht-help" aria-labelledby="ht-help-title"><div class="ht-pane-label"><strong id="ht-help-title">command reference</strong><button type="button" data-terminal-close-help aria-label="Close help"><Icon name="close"/></button></div><p>This prompt navigates the website. Try a command:</p><dl><dt>ls</dt><dd>List workspace files</dd><dt>open services</dt><dd>Open a document; cat and cd work too</dd><dt>pricing</dt><dd>See Essential, Expanded, and Custom</dd><dt>theme amber</dt><dd>Choose phosphor, amber, or mono</dd><dt>clear</dt><dd>Clear the prompt response</dd><dt>exit</dt><dd>Return to the main WebDECOR site</dd></dl><p class="ht-muted">Alt + 1–6 opens files. Ctrl / ⌘ + K focuses the prompt. ↑ / ↓ recalls commands. Escape closes this window.</p><button type="button" class="ht-action" data-terminal-close-help>[ return to workspace ]</button></dialog>
+<noscript><p class="ht-noscript">JavaScript enables the terminal prompt and live image rendering. Use the file links to read the documents.</p></noscript>
+<script>import '../scripts/hackerlair-tui'; import '../scripts/agency-ascii';</script>
+</body>
+</html>

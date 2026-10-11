@@ -1,0 +1,29 @@
+---
+const { project = 'forme' } = Astro.props;
+---
+<svg class="cy-project-wordmark" viewBox={project === 'forme' ? '0 0 550 92' : '0 0 550 192'} fill="none" aria-hidden="true">
+<g stroke="currentColor" stroke-width="11" stroke-linecap="square" stroke-linejoin="round">
+{project === 'forme' ? <>
+<path d="M12 81V12h76M12 45h62"/>
+<rect x="117" y="12" width="72" height="69" rx="19"/>
+<path d="M222 81V12h51q22 0 22 20t-22 20h-51M264 52l35 29"/>
+<path d="M327 81V12h14l26 45 26-45h14v69"/>
+<path d="M515 12h-75v69h75M440 45h64"/>
+</> : <>
+<rect x="12" y="12" width="64" height="64" rx="16"/>
+<path d="M105 76V12h43q21 0 21 16t-21 16h-43M148 44q21 0 21 16t-21 16h-43"/>
+<path d="M254 12v44q0 20-20 20h-36V54"/>
+<path d="M347 12h-64v64h64M283 44h54"/>
+<path d="M440 12h-44q-20 0-20 20v24q0 20 20 20h44"/>
+<path d="M467 12h72M503 12v64"/>
+<path d="M43 113l-28 65"/>
+<path d="M105 178v-65h43q21 0 21 18t-21 18h-43M141 149l29 29"/>
+<rect x="199" y="113" width="64" height="65" rx="16"/>
+<rect x="294" y="113" width="64" height="65" rx="16"/>
+<path d="M389 178v-65h12l26 43 26-43h12v65"/>
+</>}
+</g>
+{project === 'forme' && <path d="M535 69h13v13h-13z" fill="currentColor"/>}
+</svg>
+
+<span class="wd-alt-wordmark wd-alt-project" aria-hidden="true">{project === "forme" ? "FORME" : "OBJECT / ROOM"}</span>

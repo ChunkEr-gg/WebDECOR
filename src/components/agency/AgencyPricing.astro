@@ -1,0 +1,5 @@
+---
+import Icon from '../Icon.astro';
+import { agency } from '../../data/agency';
+---
+<section data-layout-key="pricing" class="ag-pricing" id="pricing" aria-labelledby="pricing-title"><div class="ag-pricing-heading"><span class="cy-label">INVESTMENT / THREE STARTING POINTS</span><h2 id="pricing-title">A clear choice.<br/><em>A considered scope.</em></h2><p>Choose a starting point for your website. The final deliverables are confirmed around your brief.</p></div><div class="ag-pricing-grid">{agency.pricing.map(plan=><article class={`ag-price-plan ag-price-${plan.id}`}><div class="ag-price-rail"><span>WD / {plan.number}</span><span aria-hidden="true"><Icon name="plus"/></span></div><h3>{plan.name}</h3><p class="ag-price-amount">{plan.price}</p><p class="ag-price-description">{plan.description}</p><ul>{plan.features.map(feature=><li>{feature}</li>)}</ul><a class="ag-button" href={`/cybercore/start/?plan=${plan.id}`}>{plan.label}<span aria-hidden="true"><Icon name="arrow-up-right"/></span></a></article>)}</div></section>

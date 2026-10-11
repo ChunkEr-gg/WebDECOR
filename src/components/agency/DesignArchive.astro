@@ -1,0 +1,15 @@
+---
+import Icon from '../Icon.astro';
+import { designStudies } from '../../data/design-studies';
+import StudyPreview from './StudyPreview.astro';
+const { full = false } = Astro.props;
+const items = designStudies;
+---
+<section data-layout-key="archive" class:list={['wd-design-archive',{'wd-archive-full':full}]} id="design-archive" aria-labelledby="archive-title">
+  {!full&&<div class="wd-archive-heading"><div><span class="cy-label">THE DESIGN ARCHIVE</span><h2 id="archive-title">One practice.<br/><em>Many points of view.</em></h2></div><div><p>Our identity is Cybercore. Your website starts with its own idea. Explore the worlds we’ve built to test what a website can be.</p><a class="cy-text-link" href="/explore/">VIEW ALL {designStudies.length} STUDIES <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a></div></div>}
+  {full&&<h2 id="archive-title" class="cy-sr-only">{designStudies.length} self-initiated design studies</h2>}
+  <div class="wd-archive-rail"><span class="cy-label">CYBERCORE PRINTS / SELF-INITIATED STUDIES</span><button class="wd-preview-motion" data-preview-toggle aria-pressed="true"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="1.5"/></svg><span data-preview-motion-label>PAUSE PREVIEWS</span></button></div>
+  <div class="wd-study-grid">
+    {items.map(study=><article class={'wd-study-card wd-card-'+study.slug}><a class="wd-study-cover" href={'/studies/'+study.slug+'/'} aria-label={'Explore '+study.name+' design study'}><StudyPreview slug={study.slug}/><span class="wd-preview-open"><span>OPEN STUDY</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.5"/></svg></span></a><div class="wd-study-card-caption"><div><span class="cy-label">{study.number} / SELF-INITIATED</span><h3><a href={'/studies/'+study.slug+'/'}>{study.name}</a></h3><p>{study.summary}</p></div><a href={study.live} class="wd-study-live" aria-label={'Open '+study.name+' live experience'}>LIVE EXPERIENCE <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a></div></article>)}
+  </div>
+</section>

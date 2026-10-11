@@ -1,0 +1,11 @@
+---
+import Icon from '../../components/Icon.astro';
+import AgencyLayout from '../../layouts/AgencyLayout.astro';
+import AgencyInquiry from '../../components/AgencyInquiry.astro';
+import CyberSectionWordmark from '../../components/agency/CyberSectionWordmark.astro';
+import { agency } from '../../data/agency';
+---
+<AgencyLayout title="Start a project — WebDECOR" active="start" description="Give your next website a clear starting point. Build and download a WebDECOR project brief.">
+<section class="wd-dossier wd-brief-hero"><div class="ag-rail"><a href="/cybercore/">WEBDECOR / HOME</a><span>03 / PROJECT INTAKE</span></div><div class="wd-brief-heading"><h1 class="wd-page-mark"><CyberSectionWordmark text="BRIEF"/><span class="cy-sr-only">Start a project</span></h1><div class="wd-brief-stamp"><span>FROM IDEA<br/>TO INTERFACE</span><b aria-hidden="true"><Icon name="arrow-down-right"/></b></div></div><div class="wd-brief-intro"><span class="cy-label">A GOOD IDEA STARTS HERE</span><h2>What do you<br/>have in mind?</h2><p>Bring the ambition, the unfinished idea, or the website that needs a new chapter. Let’s give it a starting point.</p></div></section>
+<section class="ag-start-body wd-start-body" aria-label="Build a project brief"><aside class="wd-brief-sidebar"><span class="cy-label">PROJECT / WORKING DOCUMENT</span><h2>A little context.<br/>A clearer direction.</h2><p>You don’t need a finished plan. Capture the essentials before defining the scope.</p><ol class="wd-brief-checklist"><li><span>01</span><div>Identity<small>You and your organisation</small></div></li><li><span>02</span><div>Ambition<small>The audience and the goal</small></div></li><li><span>03</span><div>Scope<small>The package and priorities</small></div></li><li><span>04</span><div>Next chapter<small>The timing and budget</small></div></li></ol><div class="wd-brief-output"><span class="cy-label">OUTPUT / .TXT</span><strong>Your project,<br/>in one document.</strong><p>Download a text file to keep, edit, and share. Nothing is submitted or sent.</p><span class="wd-output-arrow" aria-hidden="true"><Icon name="arrow-down"/></span></div></aside><AgencyInquiry email={agency.email} bookingUrl={agency.bookingUrl} services={agency.services} pricing={agency.pricing} brand={agency.name}/></section>
+</AgencyLayout>

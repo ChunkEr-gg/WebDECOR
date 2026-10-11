@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+const { id, name, image, alt, category, description, services }=Astro.props;
+---
+<dialog id={`study-${id}`} class="study-dialog" aria-labelledby={`study-title-${id}`}><button class="study-close" aria-label="Close project details"><Icon name="close"/></button><img src={image} alt={alt} width="1440" height="1000" loading="lazy"/><div class="study-copy"><span class="study-label">PORTFOLIO CONCEPT / {category}</span><h2 id={`study-title-${id}`}>{name}</h2><p>{description}</p><div class="study-services">{services.map((service:string)=><span>{service}</span>)}</div><button class="study-cta" data-project-brief>Let's imagine your project</button></div></dialog>
+<style>.study-dialog{padding:0;border:0;width:min(850px,calc(100% - 30px));max-height:90dvh;overflow:auto;background:#fafaf7;color:#171717;text-align:left;font:400 16px/1.6 'DM Sans Variable',sans-serif;box-shadow:0 30px 120px #0007}.study-dialog::backdrop{background:#101017c4;backdrop-filter:blur(8px)}.study-dialog>img{width:100%;height:330px;object-fit:cover}.study-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:1px solid #171717;background:white;color:#171717;border-radius:50%;font-size:28px;line-height:1;cursor:pointer}.study-copy{padding:35px}.study-label{font:600 11px/1.5 'Space Grotesk Variable',sans-serif;letter-spacing:1px}.study-copy h2{font:600 40px/1.1 'Space Grotesk Variable',sans-serif;letter-spacing:-1.5px;margin:17px 0}.study-copy p{color:#565656;max-width:650px;margin:0}.study-services{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0}.study-services span{font-size:12px;padding:7px 12px;border:1px solid #bbb}.study-cta{border:0;background:#171717;color:white;padding:17px 22px;font:600 15px 'Space Grotesk Variable';cursor:pointer}.study-cta:hover{background:#2449ee}.study-dialog :focus-visible{outline:3px solid #2449ee;outline-offset:5px}@media(max-width:600px){.study-dialog>img{height:230px}.study-copy{padding:27px 23px}.study-copy h2{font-size:32px}}</style>
+<script>
+ document.querySelectorAll<HTMLDialogElement>('.study-dialog').forEach(dialog=>{
+  let opener:HTMLElement|null=null;
+  document.querySelectorAll<HTMLElement>('[data-study]').forEach(button=>{
+   if(`study-${button.dataset.study}`!==dialog.id)return;
+   button.addEventListener('click',()=>{opener=button;if(!dialog.open)dialog.showModal();});
+  });
+  dialog.querySelector('.study-close')?.addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>opener?.focus());
+  dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();});
+ });
+</script>

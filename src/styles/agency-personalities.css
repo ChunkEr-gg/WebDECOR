@@ -1,0 +1,192 @@
+/* Collage is a handmade playground. Swiss is a typographic design practice. */
+.wd-personality-logo,.wd-play-wordmark,.wd-collage-tagline,.wd-swiss-tagline{display:none}
+html:is([data-world=collage],[data-world=swiss]) .ag-header .cy-logo{display:none}
+html[data-world=collage] body.agency{--cy-paper:#fff04f;--cy-red:#193eee;--cy-ink:#19221b;--cy-muted:#484d35;--cy-rule:#19221b26;--world-heading:'Fredoka Variable',sans-serif;--world-weight:600}
+html[data-world=collage] .cy-shell{max-width:none}
+html[data-world=collage] .ag-header{border:0;padding:12px 4%;gap:20px}
+html[data-world=collage] .wd-collage-logo{display:flex;align-items:center;gap:16px;font:700 45px/.8 'Fredoka Variable';color:#193eee;letter-spacing:-.05em}
+html[data-world=collage] .wd-collage-logo span{font:22px/.8 'Caveat';max-width:100px;rotate:-7deg;letter-spacing:0}
+html[data-world=collage] .ag-header nav{gap:16px;align-items:center}
+html[data-world=collage] .ag-header nav a{border:0;border-radius:60% 44% 53% 40%;padding:12px 17px;font:500 14px 'Fredoka Variable';text-transform:lowercase;background:#ffb9d7;rotate:-5deg}
+html[data-world=collage] .ag-header nav a:nth-child(2){background:#b5ecc3;rotate:4deg}
+html[data-world=collage] .ag-header nav a:nth-child(3){background:#fffdf6;rotate:-3deg}
+html[data-world=collage] .ag-header nav a:nth-child(4){background:#ff694b;rotate:6deg}
+html[data-world=collage] .ag-header-cta{font:600 14px 'Fredoka Variable';border:0;color:#fff;background:#193eee;padding:15px 20px;border-radius:50px;rotate:-3deg}
+html[data-world=collage] .cy-hero{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto auto;gap:0;padding:16px 4% 0;min-height:0;overflow:visible}
+html[data-world=collage] .cy-title-cell{grid-column:1/-1;grid-row:1;z-index:3;padding:0}
+html[data-world=collage] .cy-title-cell .cy-title-meta{display:none}
+html[data-world=collage] .cy-title-cell h1{margin:0}
+html[data-world=collage] .agency .wd-alt-brand{display:none}
+html[data-world=collage] .wd-play-wordmark{display:flex;justify-content:center;gap:.008em;white-space:nowrap;font:650 clamp(60px,14.7vw,235px)/1.1 'Fredoka Variable';letter-spacing:-.075em}
+html[data-world=collage] .wd-play-wordmark b{font-weight:650;display:inline-block;color:#193eee;rotate:-7deg;text-shadow:4px 5px 0 #fffdf6}
+html[data-world=collage] .wd-play-wordmark b:nth-child(2n){rotate:8deg;translate:0 10px;color:#ff503c}
+html[data-world=collage] .wd-play-wordmark b:nth-child(3n){color:#098d53;rotate:-3deg;translate:0 -8px}
+html[data-world=collage] .wd-play-wordmark b:nth-child(5){background:#ffb9d7;padding:0 .035em;rotate:8deg;line-height:.95;border-radius:13% 3% 9% 4%}
+html[data-world=collage] .wd-collage-art{grid-column:4/-1;grid-row:2;aspect-ratio:1.5;min-height:420px;margin:10px 0 40px;width:100%;align-self:start}
+html[data-world=collage] .wd-collage-art figure{inset:0 -1% 0 0;border:0;rotate:3deg;box-shadow:none;background:transparent}
+html[data-world=collage] .wd-collage-art figure img{height:100%;object-fit:cover;clip-path:polygon(0 3%,97% 0,100% 30%,98% 62%,100% 96%,64% 99%,30% 97%,1% 100%,2% 59%)}
+html[data-world=collage] .wd-collage-art figcaption{position:absolute;bottom:2%;right:12%;font:24px 'Caveat';color:#19221b;rotate:-6deg;background:#fffdf6;padding:5px 15px;height:auto}
+html[data-world=collage] .wd-paper-back{inset:1% 1% 0 0;background:#ff503c;rotate:-4deg}
+html[data-world=collage] .wd-paper-tape{top:0;left:12%;width:20%;height:45px}
+html[data-world=collage] .wd-collage-sticker{width:155px;height:155px;right:0;bottom:10%;background:#ffb9d7;font:600 35px/.85 'Fredoka Variable';border:2px dashed #193eee;color:#193eee;rotate:11deg}
+html[data-world=collage] .wd-collage-sticker small{font:10px 'Fredoka Variable';max-width:100px;margin-top:10px}
+html[data-world=collage] .wd-collage-scrawl{left:-30%;bottom:2%;font-size:34px;color:#193eee}
+html[data-world=collage] .wd-collage-star{display:none}
+html[data-world=collage] .cy-hero-lower{grid-column:1/6;grid-row:2;z-index:4;align-self:center;margin:35px -25px 75px 0;padding:30px;background:#fffdf6;rotate:-5deg;box-shadow:4px 7px 0 #19221b12;clip-path:polygon(0 1%,98% 0,100% 35%,98% 74%,100% 98%,1% 100%)}
+html[data-world=collage] .cy-manifesto .wd-default-tagline,html[data-world=swiss] .cy-manifesto .wd-default-tagline{display:none}
+html[data-world=collage] .agency .cy-manifesto .wd-collage-tagline{display:block;font:600 clamp(34px,4.5vw,70px)/.98 'Fredoka Variable';text-transform:none;letter-spacing:-.04em;max-width:12ch}
+html[data-world=collage] .cy-manifesto .wd-collage-tagline em{color:#ff503c}
+html[data-world=collage] .cy-manifesto>p{font:14px/1.65 'DM Sans Variable';margin:20px 0;max-width:29ch}
+html[data-world=collage] .cy-manifesto>a{font:600 12px 'Fredoka Variable';border:0;background:#193eee;color:white;border-radius:50px;padding:15px 20px;gap:20px}
+html[data-world=collage] .cy-bottom-grid{grid-row:3;padding:20px 0;border:0;min-height:70px}
+html[data-world=collage] .cy-field-note .cy-label{display:none}
+html[data-world=collage] .cy-field-note p{font-size:29px;rotate:3deg}
+html[data-world=collage] .agency :is(.cy-section-heading,.ag-section-heading,.ag-process-heading,.ag-pricing-heading) h2{text-transform:none;font-weight:600;line-height:1.02}
+html[data-world=collage] .cy-work{background:#ffb9d7;padding-top:70px}
+html[data-world=collage] .cy-section-heading{grid-template-columns:1fr 2fr .8fr}
+html[data-world=collage] .cy-section-heading h2{rotate:-3deg;font-size:clamp(48px,6vw,90px)}
+html[data-world=collage] .cy-project-grid{grid-template-columns:1.15fr .85fr;gap:10%}
+html[data-world=collage] .cy-project-image{border:15px solid #fffdf6;rotate:-4deg;box-shadow:8px 10px 0 #ff503c}
+html[data-world=collage] .cy-project:nth-child(2) .cy-project-image{rotate:5deg;box-shadow:8px 10px 0 #193eee}
+html[data-world=collage] .cy-project-caption{border:0}
+html[data-world=collage] .cy-project-caption h3{font:500 30px 'Fredoka Variable'}
+html[data-world=collage] .cy-project-meta{font:23px 'Caveat';text-transform:lowercase}
+html[data-world=collage] .cy-project-meta>span:last-child{font:11px 'DM Sans Variable'}
+html[data-world=collage] .cy-studio{background:#098d53;color:#fffdf6}
+html[data-world=collage] .cy-studio-copy h2{text-transform:none;font-size:clamp(48px,6vw,85px);rotate:2deg}
+html[data-world=collage] .cy-studio-copy .cy-lede{color:#fffdf6}
+html[data-world=collage] .ag-services{background:#fffdf6}
+html[data-world=collage] .ag-service-tabs{gap:15px;padding:15px 0}
+html[data-world=collage] .ag-service-tabs button{border:0!important;border-radius:45% 32% 41% 29%;background:#ffb9d7;padding:25px 20px;rotate:-4deg}
+html[data-world=collage] .ag-service-tabs button:nth-child(even){rotate:4deg;background:#fff04f}
+html[data-world=collage] .ag-service-tabs button[aria-selected=true]{background:#193eee;color:#fff}
+html[data-world=collage] .ag-service-tabs strong{font:500 22px 'Fredoka Variable'}
+html[data-world=collage] .ag-service-panels{border:0;background:#e7f1ff;margin-top:25px;rotate:-1deg;box-shadow:7px 7px 0 #193eee}
+html[data-world=collage] .ag-service-panels h3{text-transform:none;font-family:'Fredoka Variable'}
+html[data-world=collage] .ag-process{background:#b5ecc3}
+html[data-world=collage] .ag-process-grid li{background:#fffdf6;border:0;padding:30px;box-shadow:5px 6px 0 #098d5325;rotate:-3deg}
+html[data-world=collage] .ag-process-grid li:nth-child(even){rotate:4deg;background:#fff04f}
+html[data-world=collage] .ag-step-number{font:600 70px 'Fredoka Variable';color:#ff503c}
+html[data-world=collage] .ag-process-grid h3{text-transform:none;font-family:'Fredoka Variable'}
+html[data-world=collage] .ag-pricing{background:#ff694b}
+html[data-world=collage] .ag-price-plan{background:#fffdf6;border:0;rotate:-2deg;border-radius:2% 5% 1% 4%;padding:32px;box-shadow:6px 8px 0 #19221b16}
+html[data-world=collage] .ag-price-plan:nth-child(2){rotate:3deg;background:#fff04f;margin-top:30px}
+html[data-world=collage] .ag-price-plan:nth-child(3){rotate:-3deg;background:#ffb9d7;margin-top:65px}
+html[data-world=collage] .ag-price-amount{font-family:'Fredoka Variable';color:#193eee}
+html[data-world=collage] .ag-button{border-radius:50px;font:600 14px 'Fredoka Variable'}
+html[data-world=collage] .ag-faq{background:#fffdf6}
+html[data-world=collage] .ag-faq-mark{font-family:'Fredoka Variable';color:#ff503c;rotate:12deg}
+html[data-world=collage] .ag-faq h3{font-family:'Fredoka Variable'}
+html[data-world=collage] :is(.wd-alt-section,.wd-alt-project){font-family:'Fredoka Variable';text-transform:none;rotate:-3deg}
+html[data-world=collage] :is(.wd-capability-art,.wd-observation){border:14px solid #fffdf6;rotate:4deg;box-shadow:8px 9px 0 #ff503c}
+html[data-world=collage] .wd-page-mark{border:0;padding-block:45px}
+html[data-world=collage] .ag-inquiry-form{border:0;background:#fffdf6;rotate:-1deg;box-shadow:8px 9px 0 #193eee}
+html[data-world=collage] .ag-invitation{background:#193eee;color:#fff04f}
+html[data-world=collage] .ag-footer{background:#193eee;color:#fffdf6;padding-bottom:140px}
+html[data-world=collage] .cy-footer-wordmark .wd-play-wordmark{font-size:13.5vw;text-shadow:none}
+html[data-world=collage] .cy-footer-wordmark .wd-play-wordmark b{color:#fff04f;text-shadow:none}
+html[data-world=collage] .cy-footer-wordmark .wd-play-wordmark b:nth-child(5){background:transparent}
+/* Swiss uses scale, alignment and silence rather than technical ornaments. */
+html[data-world=swiss] body.agency{--cy-paper:#fff;--cy-ink:#111;--cy-red:#1749de;--cy-muted:#555;--cy-rule:#1113;--world-heading:'DM Sans Variable',sans-serif;--world-weight:750}
+html[data-world=swiss] .cy-shell{max-width:none}
+html[data-world=swiss] .ag-header{padding:15px 4%;border:0;background:#fff}
+html[data-world=swiss] .wd-swiss-logo{display:flex;flex-direction:column;font:800 23px/.95 'DM Sans Variable';letter-spacing:-.065em;gap:7px}
+html[data-world=swiss] .wd-swiss-logo span{font:400 10px 'DM Sans Variable';letter-spacing:0}
+html[data-world=swiss] .ag-header nav{font:500 12px 'DM Sans Variable';gap:30px}
+html[data-world=swiss] .ag-header-cta{font:600 12px 'DM Sans Variable';color:#1749de;border-bottom:2px solid #1749de}
+html[data-world=swiss] .cy-hero{grid-template-columns:repeat(12,minmax(0,1fr));padding:25px 4% 0;gap:0;background:#f34f32;color:#111;min-height:740px}
+html[data-world=swiss] .cy-title-cell{grid-column:1/5;grid-row:1;padding:5px 0;border:0}
+html[data-world=swiss] .cy-title-meta,html[data-world=swiss] .cy-wordmark-foot{display:none}
+html[data-world=swiss] .cy-title-cell h1{margin:0}
+html[data-world=swiss] .cy-title-cell .wd-alt-brand{font:800 25px 'DM Sans Variable';letter-spacing:-.06em}
+html[data-world=swiss] .cy-title-cell .wd-alt-brand>span{font:9px 'DM Sans Variable';margin:0}
+html[data-world=swiss] .cy-hero-lower{grid-column:5/-1;grid-row:1/3;padding:15px 0 40px;margin:0;align-self:start;border:0}
+html[data-world=swiss] .agency .cy-manifesto .wd-swiss-tagline{display:block;font:800 clamp(72px,9.4vw,160px)/.89 'DM Sans Variable';letter-spacing:-.075em;max-width:none}
+html[data-world=swiss] .cy-manifesto .wd-swiss-tagline em{color:#fff}
+html[data-world=swiss] .cy-manifesto>p{margin:35px 0 30px 2px;font:500 17px/1.5 'DM Sans Variable';max-width:40ch;color:#111}
+html[data-world=swiss] .cy-manifesto>a{margin-left:2px;font:700 12px 'DM Sans Variable';border:0;border-bottom:2px solid #111;width:max-content;gap:45px;padding:12px 0}
+html[data-world=swiss] .wd-swiss-art{grid-column:1/5;grid-row:2;display:flex;flex-direction:column;align-self:end;padding:0 30px 45px 0;color:#111}
+html[data-world=swiss] .wd-swiss-art>b{font:800 clamp(90px,13vw,215px)/.9 'DM Sans Variable';letter-spacing:-.11em;rotate:-90deg;transform-origin:center;align-self:center;margin:70px 0}
+html[data-world=swiss] .wd-swiss-art>span{font:600 10px/1.6 'DM Sans Variable';padding:0;color:#111}
+html[data-world=swiss] .cy-bottom-grid{grid-column:1/-1;grid-row:3;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #111;padding:22px 0;gap:20px;min-height:85px}
+html[data-world=swiss] .cy-calibration{display:none}
+html[data-world=swiss] .cy-field-note{display:flex;align-items:center;gap:50px}
+html[data-world=swiss] .cy-field-note p{font:500 17px/1.2 'DM Sans Variable'}
+html[data-world=swiss] .cy-field-note .cy-label{font:600 10px 'DM Sans Variable'}
+html[data-world=swiss] .ag-services{padding:100px 4%;grid-template-columns:.85fr 1.6fr;gap:12%;background:#fff}
+html[data-world=swiss] .agency :is(.ag-section-heading,.cy-section-heading,.ag-process-heading,.ag-pricing-heading) h2{font-weight:800;letter-spacing:-.065em}
+html[data-world=swiss] .ag-service-tabs strong{font:650 45px/.95 'DM Sans Variable';letter-spacing:-.05em}
+html[data-world=swiss] .ag-service-tabs button[aria-selected=true]{color:#1749de;background:transparent}
+html[data-world=swiss] .cy-work{background:#ebeff9;padding:85px 4%}
+html[data-world=swiss] .cy-project{grid-template-columns:1fr 3fr;gap:30px;margin-bottom:75px;border-top:2px solid #111;padding-top:25px}
+html[data-world=swiss] .cy-project-image>img{aspect-ratio:1.9;filter:none}
+html[data-world=swiss] .cy-project:nth-child(2) .cy-project-image>img{aspect-ratio:1.9}
+html[data-world=swiss] .cy-project-meta>span:first-child{font:700 23px/1.1 'DM Sans Variable'}
+html[data-world=swiss] .cy-project-caption h3{font:700 35px 'DM Sans Variable'}
+html[data-world=swiss] .cy-project-identity{display:none}
+html[data-world=swiss] .cy-studio{background:#1749de;color:#fff}
+html[data-world=swiss] .cy-studio-copy h2{font-weight:800;line-height:.98;font-size:clamp(50px,6vw,90px)}
+html[data-world=swiss] .cy-studio-copy .cy-lede{color:#fff}
+html[data-world=swiss] .cy-studio-label .cy-label,html[data-world=swiss] .cy-studio-copy>div p{color:#e3eaff}
+html[data-world=swiss] .ag-step-number{font:800 72px/.9 'DM Sans Variable';color:#1749de;letter-spacing:-.07em}
+html[data-world=swiss] .ag-price-amount{font-weight:800;letter-spacing:-.065em;color:#1749de}
+html[data-world=swiss] .wd-page-mark{padding-block:45px;border-bottom:2px solid #111}
+html[data-world=swiss] .wd-alt-section{font-weight:800;letter-spacing:-.07em}
+html[data-world=swiss] .ag-footer{padding-bottom:145px}
+@media(max-width:900px){
+html[data-world=collage] .ag-header nav{gap:8px}html[data-world=collage] .ag-header nav a{padding:10px;font-size:12px}html[data-world=collage] .wd-collage-logo span{display:none}
+html[data-world=collage] .cy-hero-lower{grid-column:1/7;margin-right:0;padding:25px}html[data-world=collage] .wd-collage-art{grid-column:5/-1;min-height:370px}
+html[data-world=swiss] .agency .cy-manifesto .wd-swiss-tagline{font-size:10vw}html[data-world=swiss] .cy-hero{min-height:610px}
+}
+@media(max-width:700px){
+html[data-world=collage] .ag-header{padding:10px 5%;grid-template-areas:'logo cta' 'nav nav';gap:10px}
+html[data-world=collage] .wd-collage-logo{grid-area:logo;font-size:36px;padding:10px 0}
+html[data-world=collage] .ag-header-cta{padding:12px 17px;font-size:11px}
+html[data-world=collage] .ag-header nav{border:0;padding:10px 0;gap:8px}
+html[data-world=collage] .cy-hero{display:flex;flex-direction:column;padding:10px 5% 0;overflow:hidden}
+html[data-world=collage] .wd-play-wordmark{font-size:14.5vw;padding:8px 0 16px}
+html[data-world=collage] .wd-play-wordmark b{translate:0 0!important;text-shadow:2px 3px 0 #fff}
+html[data-world=collage] .wd-collage-art{order:2;aspect-ratio:1.5;min-height:0;margin:10px 0 20px;width:100%}
+html[data-world=collage] .wd-collage-sticker{width:95px;height:95px;font-size:24px;right:-1%;bottom:5%}
+html[data-world=collage] .wd-collage-sticker small{font-size:7px;max-width:75px;margin-top:5px}
+html[data-world=collage] .wd-collage-art figcaption{font-size:17px;right:20%;bottom:-3%}
+html[data-world=collage] .wd-collage-scrawl{display:none}
+html[data-world=collage] .cy-title-cell{order:1}
+html[data-world=collage] .cy-hero-lower{order:3;margin:10px 8px 15px;padding:25px;rotate:-3deg}
+html[data-world=collage] .agency .cy-manifesto .wd-collage-tagline{font-size:43px;max-width:none}
+html[data-world=collage] .cy-manifesto>p{max-width:none;font-size:14px}
+html[data-world=collage] .cy-bottom-grid{order:4;padding:15px 0 25px}
+html[data-world=collage] .cy-field-note p{font-size:23px}
+html[data-world=collage] .cy-project-grid{grid-template-columns:1fr;gap:55px}
+html[data-world=collage] .cy-project:nth-child(2){margin:0 15px}
+html[data-world=collage] .cy-project-image{border-width:10px}
+html[data-world=collage] .ag-service-tabs{gap:12px}
+html[data-world=collage] .ag-service-tabs button{padding:20px 13px}
+html[data-world=collage] .ag-service-tabs strong{font-size:18px}
+html[data-world=collage] .ag-price-plan:nth-child(n){margin:0 0 15px;padding:28px}
+html[data-world=collage] .cy-studio-copy h2{font-size:46px}
+html[data-world=swiss] .ag-header{padding:10px 5%;gap:10px}
+html[data-world=swiss] .wd-swiss-logo{grid-area:logo;padding:10px 0;font-size:22px}
+html[data-world=swiss] .ag-header nav{border:0;padding:12px 0}
+html[data-world=swiss] .cy-hero{display:grid;grid-template-columns:1fr;padding:22px 5% 0;min-height:0;gap:0}
+html[data-world=swiss] .cy-title-cell{grid-column:1;grid-row:1;padding:0 0 30px}
+html[data-world=swiss] .cy-title-cell .wd-alt-brand{font-size:17px}
+html[data-world=swiss] .cy-hero-lower{grid-column:1;grid-row:2;padding:0 0 25px}
+html[data-world=swiss] .agency .cy-manifesto .wd-swiss-tagline{font-size:13.7vw;letter-spacing:-.07em}
+html[data-world=swiss] .cy-manifesto>p{font-size:14px;margin:25px 0 15px}
+html[data-world=swiss] .wd-swiss-art{grid-column:1;grid-row:3;flex-direction:row;justify-content:space-between;align-items:end;width:100%;max-width:none;padding:0 0 25px}
+html[data-world=swiss] .wd-swiss-art>b{rotate:0deg;font-size:65px;margin:0}
+html[data-world=swiss] .wd-swiss-art>span{font-size:8px;text-align:right}
+html[data-world=swiss] .cy-bottom-grid{grid-column:1;grid-row:4;padding:18px 0;gap:15px}
+html[data-world=swiss] .cy-field-note{display:block}
+html[data-world=swiss] .cy-field-note p{font-size:13px;margin-top:6px}
+html[data-world=swiss] .ag-services{grid-template-columns:1fr;gap:35px;padding:55px 6%}
+html[data-world=swiss] .ag-service-tabs strong{font-size:32px}
+html[data-world=swiss] .cy-project{grid-template-columns:1fr;gap:20px;margin-bottom:45px}
+html[data-world=swiss] .cy-project:nth-child(n) .cy-project-image>img{aspect-ratio:1.3}
+html[data-world=swiss] .cy-project-caption h3{font-size:28px}
+html[data-world=swiss] .cy-studio-copy h2{font-size:46px}
+}
+
+/* Cybercore's outer canvas: a black and white technical drawing grid. */
+html[data-world=cybercore] body.agency{background-color:#080808;background-image:linear-gradient(#ffffff2e 1px,transparent 1px),linear-gradient(90deg,#ffffff2e 1px,transparent 1px),linear-gradient(#ffffff70 1px,transparent 1px),linear-gradient(90deg,#ffffff70 1px,transparent 1px),radial-gradient(circle,#ffffff80 1.5px,transparent 2px);background-position:0 0,0 0,0 0,0 0,0 0;background-size:16px 16px,16px 16px,80px 80px,80px 80px,80px 80px;background-attachment:fixed}

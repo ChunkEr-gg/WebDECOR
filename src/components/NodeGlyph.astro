@@ -1,0 +1,11 @@
+---
+const { kind='identity' } = Astro.props;
+---
+<svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{kind==='identity' && <><path d="M18 3v30M3 18h30M7.4 7.4l21.2 21.2M7.4 28.6 28.6 7.4"/><circle cx="18" cy="18" r="7"/><circle cx="18" cy="18" r="2" fill="currentColor"/></>}
+{kind==='web' && <><rect x="4" y="6" width="28" height="24" rx="4"/><path d="M4 13h28M14 13v17M8 9.5h1M12 9.5h1M19 19h8M19 24h5"/></>}
+{kind==='commerce' && <><path d="m8 12-2 19h24l-2-19ZM13 12V9a5 5 0 0 1 10 0v3"/><path d="M12 20h12M15 24h6"/><circle cx="12" cy="14" r="1"/><circle cx="24" cy="14" r="1"/></>}
+{kind==='development' && <><path d="m12 10-8 8 8 8M24 10l8 8-8 8M21 7l-6 22"/><circle cx="29" cy="7" r="2"/></>}
+{kind==='editorial' && <><path d="M4 7h10q4 0 4 4v20q0-4-4-4H4ZM32 7H22q-4 0-4 4v20q0-4 4-4h10Z"/><path d="M8 13h5M8 17h5M8 21h5M23 13h5M23 17h5M23 21h5"/></>}
+{kind==='culture' && <><rect x="5" y="5" width="26" height="26" rx="3"/><path d="M12 5v26M24 5v26M5 12h26M5 24h26M15 15l6 6M21 15l-6 6"/></>}
+</svg>

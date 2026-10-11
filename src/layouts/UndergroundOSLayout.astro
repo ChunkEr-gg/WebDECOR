@@ -1,0 +1,33 @@
+---
+import GroovyHeader from '../components/underground/GroovyHeader.astro';
+import '@fontsource/anton';
+import '@fontsource/vt323';
+import '@fontsource/caveat';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/concept-base.css';
+import '../styles/underground.css';
+import '../styles/underground-agency.css';
+import '../styles/artwork.css';
+import '../styles/retro-composition.css';
+import '../styles/underground-desktop.css';
+import '../styles/underground-xp.css';
+import '../styles/underground-os.css';
+import '../styles/underground-retro.css';
+const {title='WebDECOR XP — The weird internet',description='Websites with character. Explore WebDECOR’s work, studio and services on an interactive desktop.',active='home'}=Astro.props;
+const canonical=new URL(Astro.url.pathname,Astro.site);
+---
+<!doctype html><html lang="en" data-world="weird-internet"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>{title}</title><meta name="description" content={description}/><meta name="theme-color" content="#245edb"/><link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/><link rel="canonical" href={canonical}/><script is:inline>document.documentElement.dataset.osMode=new URLSearchParams(location.search).has('app')?'document':'desktop';</script></head><body class="underground"><a class="os-skip" href="#main">Skip to desktop</a><div id="os-root"><noscript><div class="os-noscript"><h1>WebDECOR XP</h1><p>Enable JavaScript to explore this interactive desktop.</p></div></noscript></div><template id="os-document"><GroovyHeader/><div class="u-world"><main id="main" data-u-page={active}><slot/></main></div></template><script is:inline>
+if(document.documentElement.dataset.osMode==='document'){
+ document.body.classList.add('wd-os-document');
+ document.body.dataset.app=new URLSearchParams(location.search).get('app');
+ const fragment=document.querySelector('#os-document').content.cloneNode(true);
+ const app=document.body.dataset.app;
+ const keep=app==='internet'?'.u-hero,.art-controls':app==='work'?'.u-work,dialog':app==='pricing'?'.u-pricing,.u-faq':null;
+ if(keep)fragment.querySelector('#main').querySelectorAll(':scope > *').forEach(node=>{if(!node.matches(keep))node.remove()});
+ document.querySelector('#os-root').replaceWith(fragment);
+ document.querySelector('#os-document').remove();
+}
+</script><script>
+if(document.documentElement.dataset.osMode==='desktop')import('../components/os/DesktopOS').then(({mountDesktop})=>mountDesktop(document.querySelector('#os-root')!));
+else import('../scripts/underground-app');
+</script></body></html>

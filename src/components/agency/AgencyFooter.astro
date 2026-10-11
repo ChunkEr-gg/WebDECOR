@@ -1,0 +1,27 @@
+---
+import Icon from '../Icon.astro';
+import CyberAsterisk from './CyberAsterisk.astro';
+import CyberWordmark from '../CyberWordmark.astro';
+import AgencySocialIcon from './AgencySocialIcon.astro';
+import {agency} from '../../data/agency';
+import '../../styles/agency-footer-socials.css';
+const socialProfiles = agency.socials.map(social => {
+  let url: string | undefined;
+  try {
+    const candidate = new URL(social.url.trim());
+    if (candidate.protocol === 'https:' || candidate.protocol === 'http:') url = candidate.href;
+  } catch { /* An empty profile remains a text entry until its URL is supplied. */ }
+  return {...social, url};
+});
+const profilesPending = socialProfiles.some(social => !social.url);
+---
+<footer class="cy-footer ag-footer">
+  <div class="ag-footer-top"><p>HUMAN IDEAS.<br/>DIGITAL EXPRESSION.</p><nav aria-label="Footer navigation"><a href="/cybercore/services/">Services <Icon name="arrow-up-right"/></a><a href="/cybercore/services/#pricing">Pricing <Icon name="arrow-up-right"/></a><a href="/explore/">Design studies <Icon name="arrow-up-right"/></a><a href="/cybercore/studio/">The studio <Icon name="arrow-up-right"/></a><a href="/cybercore/start/">Start a project <Icon name="arrow-up-right"/></a></nav><span class="ag-footer-mark" aria-hidden="true"><CyberAsterisk/></span></div>
+  <section class="ag-footer-socials" aria-label="Social profiles">
+    <div class="ag-social-heading"><span class="ag-social-kicker">SOCIAL / STUDIO SIGNALS</span><h2>Elsewhere.</h2>{profilesPending && <p class="ag-social-note">Profiles coming soon.</p>}</div>
+    <ul class="ag-social-list">
+      {socialProfiles.map(social => <li>{social.url ? <a class="ag-social-item" href={social.url} target="_blank" rel="noopener noreferrer"><AgencySocialIcon name={social.id}/><span class="ag-social-copy"><strong>{social.name}</strong><small>{social.purpose}</small></span><Icon name="arrow-up-right"/><span class="ag-social-new-tab">Opens in a new tab</span></a> : <div class="ag-social-item"><AgencySocialIcon name={social.id}/><span class="ag-social-copy"><strong>{social.name}</strong><small>{social.purpose}</small></span></div>}</li>)}
+    </ul>
+  </section>
+  <a href="/" class="cy-footer-wordmark" aria-label="WebDECOR home"><CyberWordmark instance="footer"/></a><div class="cy-footer-details"><span>WEBDECOR / INDEPENDENT WEB DESIGN<br/>© {new Date().getFullYear()}</span><a href="/explore/">DESIGN ARCHIVE <Icon name="arrow-up-right"/></a><a href="#top">RETURN TO TOP <Icon name="arrow-up"/></a></div>
+</footer>

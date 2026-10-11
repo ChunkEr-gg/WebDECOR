@@ -1,0 +1,10 @@
+---
+import AgencyHome from '../../cybercore.astro';
+import HackerlairExperience from '../../../components/HackerlairExperience.astro';
+import { designStudies } from '../../../data/design-studies';
+export function getStaticPaths(){return designStudies.filter(study=>['collage','swiss','hackerlair'].includes(study.world)).map(study=>({params:{slug:study.slug},props:{study}}));}
+const {study}=Astro.props;
+---
+{study.world==='hackerlair'
+  ? <HackerlairExperience/>
+  : <AgencyHome world={study.world} study={study} title={study.name+' — Live design experience — WebDECOR'}/>}

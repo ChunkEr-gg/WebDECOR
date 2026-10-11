@@ -1,0 +1,13 @@
+---
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/dm-sans';
+import '../styles/concept-base.css';
+import StudyReturn from '../components/StudyReturn.astro';
+import ProjectBrief from '../components/ProjectBrief.astro';
+const { title, description, theme, current } = Astro.props;
+const studies={collage:{slug:'collage',name:'Collage'}};
+const study=studies[current];
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en" data-world={current==='underground'?'weird-internet':undefined}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content={theme}/><title>{title}</title><link rel="icon" href={current==='underground'?'/agency-favicon.svg':'/favicon.svg'} type="image/svg+xml"/><link rel="canonical" href={canonical}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/></head><body class={current}><a class="concept-skip" href="#main">Skip to content</a>{study&&<StudyReturn {...study}/>}<slot/><ProjectBrief/></body></html>

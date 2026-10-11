@@ -1,0 +1,93 @@
+/* Cybercore's process is a drawing and an editorial sequence, not a card grid. */
+.agency .cy-process {
+  padding:0 calc(3.5% + 20px) 38px;
+  background:var(--cy-paper);
+  color:var(--cy-ink);
+  --process-signal:var(--cy-signal-on-paper,#bd211b);
+}
+.cy-process-rail,.cy-process-map-meta,.cy-process-method,.cy-process-index,.cy-process-output,.cy-process-end {
+  font-family:'JetBrains Mono Variable',monospace;
+  font-size:9px;
+  line-height:1.6;
+  letter-spacing:.025em;
+}
+.cy-process-rail {display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--cy-rule);color:var(--cy-muted)}
+.cy-process-rail .cy-label {color:var(--cy-ink)}
+.cy-process-rail>span:last-child {display:flex;align-items:center;gap:9px}
+.cy-process .ag-process-heading {display:grid;grid-template-columns:1.3fr 1fr;align-items:end;gap:8%;padding:46px 0 40px}
+.cy-process .ag-process-heading h2 {font:600 clamp(38px,4.8vw,70px)/1.02 'Space Grotesk Variable',sans-serif;letter-spacing:-.065em;margin:0}
+.cy-process .ag-process-heading h2 em {font-style:normal;color:var(--cy-muted)}
+.cy-process .ag-process-heading>div {max-width:47ch;padding-bottom:3px}
+.cy-process .ag-process-heading p {font-size:14px;line-height:1.8;margin:0 0 20px;color:var(--cy-muted)}
+.cy-process-method {color:var(--process-signal);font-size:8px}
+.cy-process-body {display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.3fr);gap:6%;align-items:start}
+.cy-process-map {margin:0;min-width:0;background:var(--cy-surface-light,#f4f4ef);border:1px solid var(--cy-rule);position:relative}
+.cy-process-map-meta {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 17px;border-bottom:1px solid var(--cy-rule);font-size:8px;color:var(--cy-muted)}
+.cy-process-schematic {display:block;width:100%;height:auto;max-height:570px;color:var(--cy-ink)}
+.cy-process-construction {opacity:.12}
+.cy-process-map-object {opacity:.8}
+.cy-process-map-accent {color:var(--process-signal)}
+.cy-process-map-type {font:9px 'JetBrains Mono Variable',monospace;letter-spacing:.07em}
+.cy-process-map-dimensions {opacity:.35}
+.cy-process-map-small {font:7px 'JetBrains Mono Variable',monospace;letter-spacing:.05em;opacity:.55}
+.cy-process-map figcaption {display:flex;justify-content:space-between;gap:15px;padding:16px 17px 18px;border-top:1px solid var(--cy-rule);font-size:12px;line-height:1.6;letter-spacing:-.01em}
+.cy-process-map figcaption>svg {font-size:27px;align-self:end;color:var(--process-signal)}
+.cy-process-sequence {list-style:none;margin:0;padding:0;min-width:0;border-top:1px solid var(--cy-rule)}
+.cy-process-sequence>li {display:grid;grid-template-columns:25px minmax(0,1fr) 94px;gap:19px;align-items:start;padding:27px 0 29px;border-bottom:1px solid var(--cy-rule);position:relative}
+.cy-process-index {padding-top:5px;color:var(--process-signal)}
+.cy-process-sequence h3 {font:600 clamp(26px,2.35vw,36px)/1.1 'Space Grotesk Variable',sans-serif;letter-spacing:-.045em;margin:0 0 12px}
+.cy-process-sequence p {font-size:12px;line-height:1.8;color:var(--cy-muted);max-width:46ch;margin:0 0 19px}
+.cy-process-output {display:flex;align-items:baseline;gap:13px;font-size:8px;letter-spacing:.01em;flex-wrap:wrap}
+.cy-process-output>span {color:var(--cy-muted)}
+.cy-process-output>strong {color:var(--cy-ink);font-weight:500}
+.cy-process-stage-art {padding-top:8px;color:var(--cy-ink)}
+.cy-process-stage-art svg {display:block;width:100%;height:auto}
+.cy-process-art-accent {color:var(--process-signal);stroke-width:1.5}
+.cy-process-art-guide {opacity:.23;stroke-dasharray:2 3;stroke-width:.8}
+.cy-process-end {display:flex;align-items:center;justify-content:space-between;gap:25px;padding:25px 0 0;margin-top:31px;border-top:1px solid var(--cy-rule);color:var(--cy-muted);font-size:8px}
+.cy-process-end a {display:flex;align-items:center;gap:22px;color:var(--cy-ink);font-size:10px;letter-spacing:0}
+.cy-process-end a>svg {font-size:20px;color:var(--process-signal)}
+.cy-process-end a:hover {color:var(--process-signal)}
+html[data-activated=true] .cy-process {--process-signal:var(--cy-neon,#ff8a63)}
+html[data-activated=true] .cy-process-map-accent,html[data-activated=true] .cy-process-art-accent {filter:drop-shadow(0 0 3px #ff8a6320)}
+@media(max-width:1050px) {
+  .cy-process-body {grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr);gap:4%}
+  .cy-process-sequence>li {grid-template-columns:20px minmax(0,1fr) 72px;gap:13px;padding:23px 0}
+  .cy-process .ag-process-heading {gap:5%}
+  .cy-process .ag-process-heading p {font-size:13px}
+  .cy-process-map-meta {font-size:7px;padding:12px}
+  .cy-process-map-meta>span:last-child {display:none}
+  .cy-process-map figcaption {padding:14px;font-size:11px}
+}
+@media(max-width:760px) {
+  .agency .cy-process {padding:0 calc(4% + 15px) 30px}
+  .cy-process .ag-process-heading {grid-template-columns:1fr;gap:24px;padding:34px 0 30px}
+  .cy-process .ag-process-heading h2 {font-size:clamp(38px,7.3vw,55px)}
+  .cy-process .ag-process-heading>div {max-width:60ch;padding:0}
+  .cy-process .ag-process-heading p {font-size:13px;margin-bottom:12px}
+  .cy-process-body {grid-template-columns:1fr;gap:29px}
+  .cy-process-map {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;align-items:center}
+  .cy-process-map-meta {grid-column:1/-1;padding:12px 15px}
+  .cy-process-map-meta>span:last-child {display:block}
+  .cy-process-schematic {max-height:270px;grid-column:1;grid-row:2}
+  .cy-process-map figcaption {grid-column:2;grid-row:2;flex-direction:column;align-items:start;gap:25px;padding:22px 20px 22px 10px;border:0;font-size:13px;line-height:1.65}
+  .cy-process-map figcaption>svg {align-self:start}
+  .cy-process-sequence>li {grid-template-columns:22px minmax(0,1fr) 80px;gap:15px;padding:25px 0}
+  .cy-process-sequence h3 {font-size:29px}
+  .cy-process-sequence p {font-size:13px}
+  .cy-process-end {align-items:start;flex-direction:column;gap:15px;padding-top:20px;margin-top:23px}
+}
+@media(max-width:430px) {
+  .cy-process-rail {font-size:8px;gap:12px}
+  .cy-process-rail .cy-label {font-size:8px}
+  .cy-process-map-meta {font-size:7px;padding:10px 12px}
+  .cy-process-map figcaption {font-size:11px;padding:15px 12px 15px 8px;gap:17px}
+  .cy-process-sequence>li {grid-template-columns:20px minmax(0,1fr) 55px;gap:10px}
+  .cy-process-sequence h3 {font-size:27px}
+  .cy-process-sequence p {font-size:12px}
+  .cy-process-stage-art {padding-top:3px}
+  .cy-process-output {gap:4px 10px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .cy-process,.cy-process * {transition:none!important;animation:none!important}
+}

@@ -1,0 +1,51 @@
+---
+import Icon from '../Icon.astro';
+const { slug, large = false } = Astro.props;
+---
+<div class:list={['wd-study-preview', 'wd-preview-'+slug, 'wd-preview-cybercore', { 'wd-preview-large':large }]} data-study-preview data-study-tone="cybercore" aria-hidden="true">
+  {slug==='collage'&&<><div class="wd-preview-top"><span>wd!</span><span>INDEPENDENT & IMAGINATIVE</span></div><div class="wd-preview-paper"></div><figure><div class="wd-preview-picture"><img src="/images/collage-playground.webp" alt="" width="1536" height="1024" loading="lazy"/></div><figcaption>a little weird. a lot of heart.</figcaption></figure><b>Serious ideas.<br/><em>Wild websites.</em></b><span class="wd-preview-tape"></span><span class="wd-preview-sticker">PLAY<br/>MORE!</span><span class="wd-preview-hand">less ordinary.</span></>}
+  {slug==='swiss'&&<><div class="wd-preview-top"><span>WebDECOR</span><span>DESIGN PRACTICE / 02</span></div><span class="wd-swiss-index">02—</span><b>Clarity.<br/>Character.<br/><em>Conviction.</em></b><div class="wd-preview-swiss-mark"><svg viewBox="0 0 100 100" fill="none"><path d="M0 50h100M50 0v100" stroke="currentColor" stroke-width="16"/></svg></div><span class="wd-preview-bottom">INDEPENDENT BY DESIGN.<span>W/D <Icon name="arrow-up-right"/></span></span></>}
+  {slug==='hackerlair'&&<>
+    <div class="wd-preview-tui-chrome"><span>[wd®] HACKERLAIR</span><span>workspace / UTF-8</span></div>
+    <div class="wd-preview-tui-workspace">
+      <div class="wd-preview-tui-explorer"><div class="wd-preview-tui-label">explorer</div><span class="wd-preview-tui-root">~/webdecor</span><span class="is-selected">README.md</span><span>services.md</span><span>studies/</span><span>pricing.cfg</span><span>studio.md</span><span>new-project.md</span><small>independent<br/>design practice</small></div>
+      <div class="wd-preview-tui-document"><div class="wd-preview-tui-label">README.md</div><div class="wd-preview-tui-copy"><span>name: WebDECOR<br/>intent: websites with character</span><b># Human input.<br/>Strange output_</b><p>We turn a point of view into a website people want to explore.</p><div class="wd-preview-tui-links"><span>## open a file</span><span>01 services.md <Icon name="arrow-right"/></span><span>02 studies/ <Icon name="arrow-right"/></span><span>03 new-project.md <Icon name="arrow-right"/></span></div></div><div class="wd-preview-tui-document-foot">read mode / human authored</div></div>
+      <div class="wd-preview-tui-inspector"><div class="wd-preview-tui-label">image → glyphs</div><pre class="wd-preview-tui-glyphs">{`
+          .  ,:,
+   ,fL+;;i*++fLL;;!tiitt:.:
+   i088G*!!;i;;f0CttCLfGCCGLLf;
+   *80*!;;;;;;;++;::i;;;i+t0CLGLi
+   t8G;;;;;;i;i;;;:;;i;;;::!!:!tfff!
+   f8L;i;i!+!++!+++!iii;;:::;i:::+8G;
+  .C8t;i!*tfLLfttttt**+i;;;::;;;;i08+
+  .G8+i++tfLLLLLLtt**+!ii;;::;;:;;f8*
+  ,GGi+**tLLLLttt*!i;;i;::::::;;ii+8*
+  !0Ct*tttffff*!ii+*tLLf*+;:::;++++0*
+  +8L**tfttt*+ii**fffCLfLft!::i*tff8*
+  t8f!**t*!!;;!*t**++t+*Lftt+:ittfC8*
+ :Lf*!*++!i;;+*ii;:::::;!!+tt!;+tLG8*
+ iCt*+*+!;;;i!i::::::ii;;i+**t++tLG0;
+ !GCt++!!iii;:::::::itii!C!i+t*!tLGG
+ i0Cf**+!!;::::!i:;:::i*+0G+;+fttfGG.
+ :GGft*++i::;;;**:!;:,it*88G+;fCLLGG.
+  LGLLt*+i;::itfL;!ii;t*f808G++LCLGG,
+  f0CLf*+i;:;;+LC*i++*+!08880f!t0CGG:
+  L0GCLf*!ii;;!!tLt*t*!C8880GL*+GGGG:
+  t0GLCLf**+iiii!!tfLCCGGCLfft*+LGGG:
+  !00CCCLLf*!ii+!!*+!t*LffLfCGCLLGCG:
+  :0GCCCCLff*!!!+*t++ttfLfCffLGCCLLL,
+  .GGCGCCCLLt++++*t+*LLfLfLLLLCfLttt
+   tGGGCCCCCLf*!!**!*ftttffffCLff!tf
+   +CGGGGCCCLCLt++!!++*ttffLCCLLf*ff
+   .:*+C000GG0CLLfft*tttfLLGGGCfftC*
+       .+LC880GCGG00GCLCGGG000G**+8t
+          .i;;*!C0CtLGG08G!+LGCG008+
+                 ::  ::ii,     iLti.
+                                      `}</pre><span class="wd-preview-tui-art-caption">Human eye / character field</span><div class="wd-preview-tui-pipeline">source → luminance → glyph</div><small>THE INTERFACE<br/>IS THE STUDY.</small></div>
+    </div>
+    <div class="wd-preview-tui-prompt"><span>visitor@webdecor:~ $</span><span>open studies_</span></div>
+    <div class="wd-preview-tui-keybar"><span>Alt 1–6 / open file</span><span>Ctrl K / command</span><span>? / help</span></div>
+  </>}
+  {slug==='weird-internet'&&<><img class="wd-preview-wallpaper" src="/images/xp-wallpaper.jpg" alt="" width="1920" height="1080" loading="lazy"/><div class="wd-preview-icons"><span><svg viewBox="0 0 40 32"><path d="M2 8V3h14l5 5h17v22H2z" fill="#ffdf75" stroke="#91632f"/><path d="M2 12h36l-4 18H2z" fill="#ffe99c" stroke="#91632f"/></svg>Design studies</span><span><svg viewBox="0 0 36 36" fill="none"><rect x="4" y="3" width="28" height="22" fill="#e7e7e7" stroke="#555"/><rect x="8" y="6" width="20" height="15" fill="#245edb"/><path d="M13 26h10v6H13zM8 33h20" stroke="#e7e7e7" stroke-width="3"/></svg>The internet</span></div><div class="wd-preview-os-window"><div class="wd-preview-os-title">Welcome to WebDECOR XP<span><Icon name="minus"/><Icon name="maximize"/><Icon name="close"/></span></div><div class="wd-preview-os-body"><span>wd.</span><b>The internet<br/>should be weirder.</b><img src="/images/crt-monitor.webp" alt="" width="1280" height="1280" loading="lazy"/><small>Independent minds. Unexpected websites.</small></div></div><div class="wd-preview-taskbar"><span>start</span><span>WebDECOR XP</span><span>09:41</span></div></>}
+  <svg class="wd-preview-register" viewBox="0 0 1000 840" preserveAspectRatio="none" fill="none"><path d="M30 3H3v27M970 3h27v27M3 810v27h27M997 810v27h-27M485 3h30M500 3v8M485 837h30M500 829v8" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg>
+</div>

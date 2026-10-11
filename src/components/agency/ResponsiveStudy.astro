@@ -1,0 +1,20 @@
+---
+import Icon from '../Icon.astro';
+const { variant = 'studio', id = 'layout-proof' } = Astro.props;
+const object = variant === 'object';
+const brand = variant === 'studio' ? 'WEBDECOR' : object ? 'OBJECT / ROOM' : 'FORME';
+const image = variant === 'studio' ? '/images/crt-foil.webp' : object ? '/images/cybercore-object-wireframe.webp' : '/images/cybercore-forme-scan.webp';
+const heading = variant === 'studio' ? 'Character.\nIn every detail.' : object ? 'An object.\nA new perspective.' : 'Engineered\nfor expression.';
+const caption = variant === 'studio' ? 'ART DIRECTION / WEBSITE DESIGN' : object ? '01 / SCULPTURAL SEATING' : '01 / TECHNICAL CARRY';
+---
+<figure class={`wd-proof wd-proof-${variant}`} data-layout-proof data-viewport="wide">
+<div class="wd-proof-rail"><span>INTERFACE / RESPONSIVE PROOF</span><span data-viewport-label>WIDE LAYOUT</span></div>
+<div class="wd-proof-controls" role="group" aria-label="Preview layout size" hidden><button type="button" data-viewport-choice="wide" aria-pressed="true" aria-controls={`${id}-screen`}><span aria-hidden="true">▭</span> WIDE</button><button type="button" data-viewport-choice="compact" aria-pressed="false" aria-controls={`${id}-screen`}><span aria-hidden="true">▯</span> COMPACT</button></div>
+<div class="wd-proof-stage"><div class="wd-proof-screen" id={`${id}-screen`}>
+<div class="wd-mini-header"><strong>{brand}</strong><span>{object ? 'COLLECTION / MATERIAL' : variant === 'forme' ? 'COLLECTION / OBJECTS' : 'DESIGN / BUILD'}</span><b aria-hidden="true"><Icon name="plus"/></b></div>
+<div class="wd-mini-content"><div class="wd-mini-copy"><span class="wd-micro">{object ? 'THE SPATIAL ARCHIVE' : 'AN INDEPENDENT POINT OF VIEW'}</span><p class="wd-mini-title">{heading.split('\n').map((line:string)=><span>{line}</span>)}</p><span class="wd-mini-index">{caption}</span></div><div class="wd-mini-art"><img src={image} width="600" height="600" alt={variant === 'studio' ? 'Folded metal catching monochrome light' : object ? 'Metal chair in an architectural setting' : 'A technical shoulder bag in a scan composition'} loading="lazy"/><span aria-hidden="true"><Icon name="plus"/></span></div></div>
+<div class="wd-mini-bottom"><span>IMAGE / FORM / FUNCTION</span><span aria-hidden="true"><Icon name="arrow-up-right"/></span></div>
+</div></div>
+<figcaption>Switch the viewport. Watch the same content adapt.<span class="wd-proof-status" role="status" data-proof-status></span></figcaption>
+</figure>
+<script>import '../../scripts/agency-proof';</script>

@@ -1,0 +1,259 @@
+/* One layout contract for the header, after the visual world styles.
+   Only real controls occupy slots; decorative fields remain absolute children. */
+html[data-world] .agency .ag-header {
+  display:grid;
+  grid-template-columns:minmax(100px,1fr) max-content minmax(max-content,1fr);
+  grid-template-areas:'logo nav cta';
+  align-items:stretch;
+  gap:0;
+  min-height:76px;
+}
+html[data-world] .ag-header>:is(.ag-header-brand,nav,.ag-header-cta) {
+  min-width:0;
+  height:auto;
+  margin:0;
+  box-sizing:border-box;
+}
+html[data-world] .ag-header .ag-header-brand {
+  grid-area:logo;
+  display:flex;
+  align-items:center;
+  padding:18px 24px;
+  border:0;
+}
+html[data-world] .ag-header .ag-header-brand>:is(.cy-logo,.wd-personality-logo) {
+  min-width:0;
+  max-width:100%;
+  height:auto;
+  padding:0;
+  margin:0;
+}
+html[data-world] .ag-header .cy-logo {
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:0;
+  font:700 36px/1 'Space Grotesk Variable',sans-serif;
+  letter-spacing:-5px;
+}
+html[data-world] .ag-header .cy-logo>span {
+  flex:none;
+  align-self:flex-start;
+  font:9px/1.5 'JetBrains Mono Variable',monospace;
+  letter-spacing:0;
+  margin:0 0 0 8px;
+}
+html[data-world] .ag-header nav {
+  grid-area:nav;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:nowrap;
+  min-height:0;
+  padding:18px 24px;
+  gap:clamp(16px,2.2vw,30px);
+  border-block:0;
+  border-inline:1px solid var(--cy-rule);
+}
+html[data-world] .ag-header nav a {
+  flex:none;
+  white-space:nowrap;
+  font-weight:600;
+}
+html[data-world] .ag-header .ag-header-cta {
+  grid-area:cta;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 24px;
+  white-space:nowrap;
+  border-left:0;
+}
+html[data-world] .ag-header .ag-header-cta>span {
+  display:block;
+  flex:none;
+  font-size:24px;
+  line-height:1;
+}
+html[data-world] .ag-header .cy-header-code {display:none}
+
+html:is([data-world=collage],[data-world=swiss]) .ag-header .cy-logo {display:none}
+
+/* Preserve each world's identity while bounding its ornaments. */
+html:is([data-world=collage],[data-world=swiss]) .agency .ag-header {
+  grid-template-columns:max-content minmax(0,1fr) max-content;
+  column-gap:22px;
+}
+html:is([data-world=collage],[data-world=swiss]) .ag-header .ag-header-brand,
+html:is([data-world=collage],[data-world=swiss]) .ag-header nav {
+  padding:12px 0;
+  border:0;
+}
+html[data-world=collage] .ag-header .wd-collage-logo {gap:12px}
+html[data-world=collage] .ag-header .wd-collage-logo>span {
+  flex:0 1 100px;
+  line-height:1.1;
+}
+html[data-world=collage] .ag-header nav {gap:12px;padding-block:16px}
+html[data-world=collage] .ag-header nav a {padding:10px 13px}
+html[data-world=collage] .ag-header .ag-header-cta {
+  align-self:center;
+  padding:15px 20px;
+}
+html[data-world=swiss] .ag-header .wd-swiss-logo {align-items:flex-start;line-height:1.1}
+html[data-world=swiss] .ag-header .wd-swiss-logo>span {line-height:1.4;white-space:normal}
+html[data-world=swiss] .ag-header .ag-header-cta {align-self:center;padding:12px 0}
+
+/* Switch all slots together, before their content can collide. */
+@media(max-width:1100px) {
+  html[data-world] .agency .ag-header {
+    grid-template-columns:minmax(0,1fr) max-content;
+    grid-template-areas:'logo cta' 'nav nav';
+    min-height:0;
+    column-gap:0;
+  }
+  html[data-world] .ag-header .ag-header-brand {padding:16px 20px}
+  html[data-world] .ag-header .ag-header-cta {padding:16px 20px;border-left:1px solid var(--cy-rule)}
+  html[data-world] .ag-header nav {
+    justify-content:space-between;
+    gap:12px;
+    padding:13px 20px;
+    border-inline:0;
+    border-top:1px solid var(--cy-rule);
+    font-size:10px;
+  }
+  html:is([data-world=collage],[data-world=swiss]) .ag-header .ag-header-brand {padding:12px 0}
+  html:is([data-world=collage],[data-world=swiss]) .ag-header nav {padding:14px 0;border:0}
+  html[data-world=collage] .ag-header .ag-header-cta {padding:13px 18px;border:0;font-size:12px}
+  html[data-world=collage] .ag-header nav a {padding:10px 13px;font-size:13px}
+  html[data-world=swiss] .ag-header .ag-header-cta {padding:12px 0;border-left:0}
+}
+@media(max-width:480px) {
+  html[data-world] .ag-header .ag-header-brand {padding:15px}
+  html[data-world] .ag-header .cy-logo {font-size:29px}
+  html[data-world] .ag-header .ag-header-cta {padding:15px;font-size:8px;gap:14px}
+  html[data-world] .ag-header .ag-header-cta>span {font-size:22px}
+  html[data-world] .ag-header nav {padding:13px 15px;gap:8px;font-size:9px}
+  html:is([data-world=collage],[data-world=swiss]) .ag-header .ag-header-brand {padding:10px 0}
+  html:is([data-world=collage],[data-world=swiss]) .ag-header nav {padding:12px 0}
+  html[data-world=collage] .ag-header .ag-header-cta {padding:12px 14px;font-size:11px}
+  html[data-world=collage] .ag-header nav a {padding:9px 10px;font-size:12px}
+  html[data-world=collage] .ag-header .wd-collage-logo {font-size:36px}
+  html[data-world=swiss] .ag-header .ag-header-cta {padding:12px 0;font-size:10px}
+}
+/* The legacy Hackerlair shell exposes its own terminal navigation. */
+html[data-world=hackerlair] .agency .ag-header {display:none}
+
+/* Five destinations keep readable targets on the narrowest layouts. */
+@media(max-width:540px) {
+  html[data-world] .ag-header nav {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px 10px;
+  }
+  html[data-world] .ag-header nav a {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    min-height:32px;
+    padding:5px 0;
+    text-align:center;
+  }
+  html[data-world=collage] .ag-header nav {gap:12px}
+  html[data-world=collage] .ag-header nav a {padding:9px 5px;font-size:12px}
+}
+
+/* Cybercore navigation stays in the top bar; the compact menu is temporary. */
+.ag-header-menu {display:none}
+html[data-world=cybercore] .agency .ag-header {
+  position:relative;
+  grid-template-columns:clamp(120px,13vw,168px) minmax(0,1fr) max-content;
+  grid-template-areas:'logo nav cta';
+  min-height:76px;
+}
+html[data-world=cybercore] .ag-header .ag-header-brand {justify-content:center}
+html[data-world=cybercore] .ag-header>nav {
+  display:flex;
+  justify-content:center;
+  border-block:0;
+  border-inline:1px solid var(--cy-rule);
+  grid-template-columns:none;
+}
+@media(min-width:601px) and (max-width:1100px) {
+  html[data-world=cybercore] .agency .ag-header {min-height:66px}
+  html[data-world=cybercore] .ag-header .ag-header-brand {padding:14px 18px}
+  html[data-world=cybercore] .ag-header>nav {padding:14px 18px;gap:18px;font-size:10px}
+  html[data-world=cybercore] .ag-header .ag-header-cta {padding:14px 18px;border-left:0;font-size:10px;gap:14px}
+}
+@media(min-width:601px) and (max-width:780px) {
+  html[data-world=cybercore] .agency .ag-header {grid-template-columns:100px minmax(0,1fr) max-content}
+  html[data-world=cybercore] .ag-header .ag-header-brand {padding:14px}
+  html[data-world=cybercore] .ag-header .cy-logo {font-size:29px}
+  html[data-world=cybercore] .ag-header>nav {padding:14px;gap:12px;font-size:9px}
+  html[data-world=cybercore] .ag-header .ag-header-cta {padding:14px;font-size:9px;gap:10px}
+  html[data-world=cybercore] .ag-header .ag-header-cta>span {font-size:20px}
+}
+@media(max-width:600px) {
+  html[data-world=cybercore] .agency .ag-header {
+    grid-template-columns:84px minmax(0,1fr) max-content;
+    grid-template-areas:'logo nav cta';
+    min-height:62px;
+  }
+  html[data-world=cybercore] .ag-header .ag-header-brand {padding:14px 12px}
+  html[data-world=cybercore] .ag-header .cy-logo {font-size:29px}
+  html[data-world=cybercore] .ag-header>nav {display:none}
+  html[data-world=cybercore] .ag-header .ag-header-cta {padding:14px 12px;font-size:9px;gap:10px;border-left:1px solid var(--cy-rule)}
+  html[data-world=cybercore] .ag-header .ag-header-cta>span {font-size:18px}
+  html[data-world=cybercore] .ag-header .ag-header-menu {
+    display:block;
+    grid-area:nav;
+    min-width:0;
+    height:auto;
+    padding:0;
+    margin:0;
+    border:0;
+  }
+  html[data-world=cybercore] .ag-header-menu summary {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    height:100%;
+    min-height:62px;
+    padding:12px;
+    font:600 9px/1.5 'JetBrains Mono Variable',monospace;
+    cursor:pointer;
+    list-style:none;
+  }
+  .ag-header-menu summary::-webkit-details-marker {display:none}
+  .ag-header-menu summary:focus-visible {outline:2px solid var(--cy-red);outline-offset:-5px}
+  .ag-header-menu summary>span:not(:first-child) {font-size:18px;line-height:1}
+  .ag-header-menu .ag-menu-close,.ag-header-menu[open] .ag-menu-open {display:none}
+  .ag-header-menu[open] .ag-menu-close {display:block}
+  html[data-world=cybercore] .ag-header .ag-header-menu nav {
+    position:absolute;
+    inset:calc(100% + 1px) 12px auto auto;
+    z-index:30;
+    width:min(290px,calc(100% - 24px));
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    padding:8px;
+    border:1px solid var(--cy-rule);
+    background:var(--cy-paper);
+    box-shadow:0 12px 24px #0003;
+  }
+  html[data-world=cybercore] .ag-header .ag-header-menu:not([open]) nav {display:none}
+  html[data-world=cybercore] .ag-header .ag-header-menu nav a {
+    display:flex;
+    justify-content:space-between;
+    min-height:44px;
+    padding:12px;
+    font:600 11px/1.5 'JetBrains Mono Variable',monospace;
+    border-bottom:1px solid var(--cy-rule);
+  }
+  html[data-world=cybercore] .ag-header .ag-header-menu nav a:last-child {border-bottom:0}
+  html[data-world=cybercore] .ag-header .ag-header-menu nav a:hover {background:var(--cy-surface,#d8d8d3)}
+}

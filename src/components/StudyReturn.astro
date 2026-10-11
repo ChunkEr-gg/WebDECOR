@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+const { slug, name } = Astro.props;
+---
+<div class="study-return"><a href={`/studies/${slug}/`}><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m5-5L3 8l5 5" stroke="currentColor" stroke-width="1.5"/></svg>BACK TO {name.toUpperCase()}</a><span>LIVE DESIGN STUDY / SELF-INITIATED</span><a href="/">WEBDECOR <Icon name="arrow-up-right"/></a></div>
+<style>
+.study-return{position:relative;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:13px 3%;background:#1e1e1e;color:#f2f2f0;border-bottom:1px solid #f2f2f030;font:500 9px/1.5 'Space Grotesk Variable',sans-serif;letter-spacing:.06em}.study-return a{display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none}.study-return svg{width:16px;height:16px}.study-return a:hover{color:#ff755f}.study-return a:focus-visible{outline:2px solid #ff755f;outline-offset:4px}.study-return>span{opacity:.6}@media(max-width:650px){.study-return>span{display:none}.study-return{font-size:8px;gap:10px;padding:12px 4%}}
+</style>

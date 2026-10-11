@@ -1,0 +1,23 @@
+---
+const { text = 'STUDIO', weight = 10 } = Astro.props;
+// A continuous outline keeps the leg from cutting a square-cap notch into the bowl.
+const rOutline='M7 85V12Q7 7 12 7H55C72 7 81 15 81 30C81 41 74 49 64 52L85 77L77 84L48 53H17V85Z M17 17V43H55C66 43 71 39 71 30C71 21 66 17 55 17Z';
+const glyphs: Record<string,string> = {
+A:'M8 80L30 12H58L80 80M19 50H69',
+H:'M12 12V80M76 12V80M12 46H76',
+S:'M76 12H30Q12 12 12 29T30 46H58Q76 46 76 63T58 80H12',
+E:'M76 12H12V80H76M12 46H64',
+V:'M10 12L36 80H52L78 12',
+I:'M12 12H76M44 12V80M12 80H76',
+C:'M76 12H34Q12 12 12 34V58Q12 80 34 80H76',
+T:'M8 12H80M44 12V80',
+U:'M12 12V58Q12 80 34 80H54Q76 80 76 58V12',
+D:'M12 80V12H48Q76 12 76 40V52Q76 80 48 80Z',
+O:'M34 12H54Q76 12 76 34V58Q76 80 54 80H34Q12 80 12 58V34Q12 12 34 12Z',
+B:'M12 80V12H54Q76 12 76 29T54 46H12M54 46Q76 46 76 63T54 80Z',
+F:'M12 80V12H76M12 46H64'
+};
+---
+<svg class="wd-section-wordmark" viewBox={`-4 -2 ${text.length * 96 + 8} 100`} fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width={weight} stroke-linejoin="round" stroke-linecap="square">{text.split('').map((letter:string,i:number)=>letter==='R'?<path d={rOutline} transform={`translate(${i*96} 0)`} fill="currentColor" fill-rule="evenodd" stroke={weight>10?'currentColor':'none'} stroke-width={Math.max(0,weight-10)}/>:<path d={glyphs[letter]} transform={`translate(${i*96} 0)`}/>)}</g></svg>
+
+<span class="wd-alt-wordmark wd-alt-section" aria-hidden="true">{text.toLowerCase()}<i>.</i></span>
