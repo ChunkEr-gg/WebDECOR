@@ -1,15 +1,12 @@
-# Sculptural: Greek sculpture and editorial handwriting
+# Archived art direction: Sculptural
 
-Generated with the built-in image generation tool. Both images are new sibling assets; earlier imagery is preserved.
+This is a historical concept note for a Greek-sculpture and editorial-handwriting direction. It is not part of the current site's active art direction. The generated image files mentioned in the original working notes were stored outside this repository and are not included here; no current page references them. The prompts below are retained as creative provenance only.
 
-| Asset | Saved path | Use |
-| --- | --- | --- |
-| Greek muse | `/workspace/scratch/ff79ff88d5f2/webdecor/public/images/sculptural-muse.webp` | Transparent hero sculpture and studio dossier |
-| Sculpture fragments | `/workspace/scratch/ff79ff88d5f2/webdecor/public/images/sculptural-fragments.webp` | Art-studio still life and service dossier |
+The original working files were named `sculptural-muse.webp` and `sculptural-fragments.webp`. They are not tracked in `public/images/`; restore or regenerate them before reusing this direction.
 
-The palette is chalk white `#f8f7f4`, ink black `#1c1b1b`, soft grey, and oxblood `#7c2333`. Bodoni Moda supplies editorial display type; Caveat supplies handwritten notes. The bust retains its transparent alpha channel. Movement is a subtle pointer response, disabled for reduced motion; the sculpture is a photographic asset.
+The archived palette was chalk white `#f8f7f4`, ink black `#1c1b1b`, soft grey, and oxblood `#7c2333`. The concept paired Bodoni Moda with Caveat. Those choices describe the archived proposal, not a guarantee about current site styling.
 
-## Final generation prompts
+## Preserved generation prompts
 
 ### greekBust
 
