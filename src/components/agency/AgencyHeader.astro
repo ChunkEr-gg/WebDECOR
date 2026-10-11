@@ -5,7 +5,7 @@ const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',hre
 ---
 <header class="cy-header ag-header" id="top">
   <div class="ag-header-brand">
-  <a class="cy-logo" href="/" aria-label="WebDECOR home">wd<span>®</span></a>
+  <a class="cy-logo" href="/" aria-label="WebDECOR home" data-logo-surge>wd<span>®</span></a>
   <a class="wd-personality-logo wd-collage-logo" href="/" aria-label="WebDECOR home">wd!<span>independent & imaginative</span></a>
   <a class="wd-personality-logo wd-swiss-logo" href="/" aria-label="WebDECOR home">WebDECOR<span>Design practice / 03</span></a>
   </div>
@@ -15,5 +15,6 @@ const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',hre
     <nav id="agency-mobile-nav" aria-label="Compact navigation">{links.map(link=><a href={link.href} aria-current={active===link.id?'page':undefined}>{link.label}<Icon name="arrow-right"/></a>)}</nav>
   </details>}
   <a class="ag-header-cta" href="/start/">START A PROJECT <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>
+  {world==='cybercore'&&<button class="ag-header-appearance" type="button" data-activation-toggle aria-pressed="false" aria-label="Switch to Cybercore"><Icon name="burst"/><span data-theme-label>ACTIVATE CYBERCORE</span></button>}
   {world!=='cybercore'&&<span class="cy-header-code">DESIGN / BUILD</span>}
 </header>

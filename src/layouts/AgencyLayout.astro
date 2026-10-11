@@ -21,6 +21,7 @@ import '../styles/design-studies.css';
 import '../styles/study-preview-cybercore.css';
 import '../styles/agency-energy.css';
 import '../styles/agency-header.css';
+import '../styles/agency-logo-surge.css';
 import AgencyHeader from '../components/agency/AgencyHeader.astro';
 import AgencyFooter from '../components/agency/AgencyFooter.astro';
 import { agency } from '../data/agency';
@@ -46,9 +47,9 @@ const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname,
     <div class="wd-terminal-bar"><a href="/" aria-label="WebDECOR terminal home">[WD] / TERMINAL</a><span>webdecor@studio: ~/{terminalFile}</span><span class="wd-terminal-version">UTF-8 / SHELL 04</span></div>
     <AgencyHeader active={active} world={world}/>
     <aside class="wd-terminal-sidebar" aria-label="Terminal files"><span class="wd-terminal-directory">~/webdecor</span><nav aria-label="Terminal navigation">{terminalFiles.map(file=><a href={file.href} aria-current={active===file.id?'page':undefined}><span aria-hidden="true">{file.id==='work'?'+':'·'}</span>{file.name}</a>)}</nav><div class="wd-terminal-readme"><span>README</span><p>Independent web design.<br/>Human ideas.<br/>Strange output.</p><span>EST. FOR THE<br/>LESS ORDINARY.</span></div></aside>
-    <main id="main" data-agency-page={active}><slot/></main><AgencyFooter world={world}/>
+    <main id="main" data-agency-page={active}><slot/></main><AgencyFooter/>
   </div>
   <span class="cy-sr-only" role="status" data-activation-status></span>
-  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/agency-activation';import '../scripts/design-studies';import '../scripts/agency-energy';</script>
+  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/agency-activation';import '../scripts/design-studies';import '../scripts/agency-energy';import '../scripts/agency-logo-surge';</script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Agency website review — October 2026
 
-**Current state:** the owner requested the original visual style after reviewing version 67. The editorial page layouts and light default have been restored, including the alternate Cybercore appearance. Public contact, Max’s identity, email-draft/download behavior, canonical routes, and mobile preview fixes remain. The logo links home, and an explicit footer control changes the appearance. The sections below document the version 67 redesign and its measurements; they are historical, not current performance claims.
+**Current state:** the owner requested the original visual style after reviewing version 67. The editorial page layouts and light default have been restored, including the alternate Cybercore appearance. Public contact, Max’s identity, email-draft/download behavior, canonical routes, and mobile preview fixes remain. The logo links home, and the header’s **Activate Cybercore** button changes the appearance. The control sits beside desktop navigation and below the compact navigation bar. The sections below document the version 67 redesign and its measurements; they are historical, not current performance claims.
 
 Claude’s assessment identified useful problems in the previous agency homepage. Source inspection supported the main contact, hierarchy, branding, accessibility, and asset-delivery criticism. Exact measurements from that assessment were not independently reproduced against the old build.
 
@@ -43,7 +43,9 @@ Version 67 kept richer layouts and interactions inside the Design Lab. Its perfo
 - Production build completed for 20 content pages and 14 compatibility redirects.
 - All 615 built internal links and fragments resolved.
 - Installed Chromium checked the seven main pages at 390px and 1920px: restored editorial layouts, no horizontal page overflow, no missing loaded images, and no JavaScript errors.
-- The footer appearance control switched to Cybercore and retained the selection after reload. The logo continued to navigate home.
+- The appearance control switched to Cybercore and retained the selection after reload. It was subsequently moved from the footer to the header at the owner’s request. The logo continued to navigate home.
+- A later owner request added a short energy surge to the home logos. The effect uses a temporary, non-interactive SVG overlay and clears after the animation. Reduced-motion and modified clicks use normal link behavior.
+- The top control was checked at 320px, 390px, 768px, 1100px, and 1920px. Activation, persistence, keyboard logo activation, surge cleanup, and home navigation passed without browser errors. Reduced-motion navigation skipped the effect; final button labels measured 12px with targets at least 44px high.
 - The restored inquiry form enabled correctly, preserved service/package presets, enforced required fields, downloaded the expected brief, and generated an email draft to `info@webdecor.ca` with the same content. No email was sent. Hackerlair’s action buttons fit at 320px and 390px after adding wrapping.
 
 ## Historical version 67 verification

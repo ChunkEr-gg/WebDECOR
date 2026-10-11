@@ -257,3 +257,47 @@ html[data-world=cybercore] .ag-header>nav {
   html[data-world=cybercore] .ag-header .ag-header-menu nav a:last-child {border-bottom:0}
   html[data-world=cybercore] .ag-header .ag-header-menu nav a:hover {background:var(--cy-surface,#d8d8d3)}
 }
+
+/* Keep the appearance switch visible beside the desktop navigation and below
+   the compact bar when its controls need more room. */
+html[data-world=cybercore] .agency .ag-header {
+  grid-template-columns:clamp(120px,13vw,168px) minmax(0,1fr) max-content max-content;
+  grid-template-areas:'logo nav cta appearance';
+}
+html[data-world=cybercore] .ag-header .ag-header-appearance {
+  grid-area:appearance;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:0;
+  min-height:44px;
+  margin:0;
+  padding:14px 20px;
+  border:0;
+  border-left:1px solid var(--cy-rule);
+  background:transparent;
+  color:var(--cy-ink);
+  font:600 12px/1.5 'JetBrains Mono Variable',monospace;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.ag-header-appearance svg {width:18px;height:18px}
+.ag-header-appearance>[data-theme-label] {font:inherit}
+html[data-world=cybercore] .ag-header .ag-header-appearance:hover {background:var(--cy-surface);color:var(--cy-signal-on-paper)}
+html[data-world=cybercore] .ag-header .ag-header-appearance[aria-pressed=true] {color:var(--cy-neon)}
+.ag-header-appearance:focus-visible {outline:2px solid var(--cy-red);outline-offset:-5px}
+@media(max-width:1100px) {
+  html[data-world=cybercore] .agency .ag-header {
+    grid-template-columns:clamp(100px,13vw,168px) minmax(0,1fr) max-content;
+    grid-template-areas:'logo nav cta' 'appearance appearance appearance';
+  }
+  html[data-world=cybercore] .ag-header .ag-header-appearance {
+    border-left:0;
+    border-top:1px solid var(--cy-rule);
+    padding:11px 20px;
+  }
+}
+@media(max-width:600px) {
+  html[data-world=cybercore] .agency .ag-header {grid-template-columns:84px minmax(0,1fr) max-content}
+}

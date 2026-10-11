@@ -80,7 +80,7 @@ if (root.dataset.world === 'cybercore' && toggle) {
     toggle!.setAttribute('aria-pressed',String(enabled));
     toggle!.setAttribute('aria-label',enabled?'Switch to the light appearance':'Switch to Cybercore');
     const label=toggle!.querySelector('[data-theme-label]');
-    if(label)label.textContent=enabled?'LIGHT APPEARANCE':'CYBERCORE APPEARANCE';
+    if(label)label.textContent=enabled?'LIGHT APPEARANCE':'ACTIVATE CYBERCORE';
     toggle!.title = enabled ? 'Switch to the light appearance' : 'Switch to Cybercore';
     if(theme)theme.content=enabled?'#1E1E1E':'#e6e6e2';
     fields.forEach(render);
