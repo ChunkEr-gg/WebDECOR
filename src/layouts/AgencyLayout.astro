@@ -25,17 +25,16 @@ import AgencyHeader from '../components/agency/AgencyHeader.astro';
 import AgencyFooter from '../components/agency/AgencyFooter.astro';
 import { agency } from '../data/agency';
 const { title = 'WebDECOR — Websites with character', description = agency.description, active = 'home', world = 'cybercore', study } = Astro.props;
-const theme = {cybercore:'#e6e6e2',collage:'#fff04f',swiss:'#ffffff',hackerlair:'#050907'}[world] || '#e6e6e2';
+const theme = {cybercore:'#1e1e1e',collage:'#fff04f',swiss:'#ffffff',hackerlair:'#050907'}[world] || '#1e1e1e';
 const terminalFiles=[{id:"home",name:"README.txt",href:"/"},{id:"services",name:"services.sh",href:"/services/"},{id:"pricing",name:"pricing.cfg",href:"/services/#pricing"},{id:"work",name:"studies/",href:"/explore/"},{id:"studio",name:"studio.md",href:"/studio/"},{id:"start",name:"new-project.sh",href:"/start/"}];
 const terminalFile=terminalFiles.find(file=>file.id===active)?.name||"study.txt";
 const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang="en" data-world={world}>
+<html lang="en" data-world={world} data-activated={world==='cybercore'?'true':undefined}>
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{title}</title><meta name="description" content={description}/><meta name="theme-color" content={theme}/>
-  <script is:inline>try{if(document.documentElement.dataset.world==='cybercore'&&localStorage.getItem('webdecor-activated')==='true'){document.documentElement.dataset.activated='true';document.querySelector('meta[name="theme-color"]').content='#1E1E1E'}}catch{}</script>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/><link rel="canonical" href={canonical}/>
   <meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/>
 </head>
@@ -49,6 +48,6 @@ const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname,
     <main id="main" data-agency-page={active}><slot/></main><AgencyFooter/>
   </div>
   <span class="cy-sr-only" role="status" data-activation-status></span>
-  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/agency-activation';import '../scripts/design-studies';import '../scripts/agency-energy';</script>
+  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/design-studies';import '../scripts/agency-energy';</script>
 </body>
 </html>

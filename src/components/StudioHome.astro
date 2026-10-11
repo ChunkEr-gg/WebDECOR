@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import foil from '../../public/images/crt-foil.webp';
+import StudioLayout from '../layouts/StudioLayout.astro';
+import CyberWordmark from './CyberWordmark.astro';
+import ConceptInterface from './ConceptInterface.astro';
+import Icon from './Icon.astro';
+import { agency, studies } from '../data/agency';
+---
+<StudioLayout>
+  <section class="site-wrap home-hero" aria-labelledby="home-title">
+    <div class="home-brand" aria-hidden="true"><CyberWordmark instance="site-hero" /></div>
+    <div class="home-hero-grid">
+      <div class="home-pitch">
+        <p class="site-kicker">Independent web design / Art direction / Development</p>
+        <h1 id="home-title">Websites for brands with a <em>point of view.</em></h1>
+        <p class="site-lede">Make your business easier to understand and harder to forget. Max brings your content, visual identity, and website together in one practice.</p>
+        <div class="home-actions"><a class="site-button" href="/start/">Tell Max about your project <Icon name="arrow-up-right" /></a><a class="site-text-link" href="#work">See the concepts <Icon name="arrow-down" /></a></div>
+      </div>
+      <figure class="home-material">
+        <Image src={foil} alt="Folded chrome foil forming a sculptural reflective surface" widths={[400, 640, 900]} sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 900px) 40vw, 480px" loading="eager" fetchpriority="high" />
+        <figcaption>Cybercore / The WebDECOR house style</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="site-wrap site-section home-work" id="work" aria-labelledby="work-title">
+    <div class="home-section-top"><div><p class="site-kicker">01 / Concept work</p><h2 id="work-title">From visual idea<br />to website interface.</h2></div><p>Two self-initiated concepts exploring fashion and interiors. Open each one to see the page layouts and the decisions behind them.</p></div>
+    <div class="home-work-grid">
+      {studies.map(study => <a class="home-work-card" href={`/work/${study.slug}/`}>
+        <div class="home-work-preview"><ConceptInterface variant={study.slug} compact /></div>
+        <div class="home-work-caption"><div><p class="site-kicker">{study.category}</p><h3>{study.name}</h3></div><span class="home-work-arrow" aria-hidden="true"><Icon name="arrow-up-right" /></span></div>
+        <p class="home-work-summary">{study.slug === 'forme' ? 'A collection landing page and product detail for a technical accessories concept.' : 'A showroom index and object detail built around space, materials, and drawings.'}</p>
+      </a>)}
+    </div>
+    <a class="site-text-link home-lab-link" href="/explore/">Explore the other directions in the Design Lab <Icon name="arrow-up-right" /></a>
+  </section>
+
+  <section class="site-wrap site-section" id="services" aria-labelledby="services-title">
+    <div class="home-section-top"><div><p class="site-kicker">02 / What I do</p><h2 id="services-title">Plan, design, build.</h2></div><p>One connected process, whether you’re starting a new website or rethinking an existing one.</p></div>
+    <div class="home-services">
+      <article><span class="site-kicker">Direction</span><h3>Make the message clear.</h3><p>Organise the content, define the audience, and give every page a purpose.</p></article>
+      <article><span class="site-kicker">Design</span><h3>Give it a visual identity.</h3><p>Combine typography, imagery, and responsive layouts around your brand.</p></article>
+      <article><span class="site-kicker">Build</span><h3>Bring it to the browser.</h3><p>Develop the pages, check navigation and device layouts, then launch and hand over.</p></article>
+    </div>
+    <a class="site-text-link" href="/services/">See services and deliverables <Icon name="arrow-up-right" /></a>
+  </section>
+
+  <section class="site-wrap site-section home-budget" aria-labelledby="budget-title">
+    <div><p class="site-kicker">03 / Project budgets</p><h2 id="budget-title">Choose a starting scope.</h2><p class="home-budget-note">These are the current package budgets. Page count, features, currency, and schedule are confirmed in your written proposal.</p><a class="site-text-link" href="/services/#pricing">Compare what’s included <Icon name="arrow-up-right" /></a></div>
+    <div class="home-budget-list">{agency.pricing.map(plan => <a href={`/start/?plan=${plan.id}`}><span><strong>{plan.name}</strong><small>{plan.description}</small></span><b>{plan.price}</b><Icon name="arrow-up-right" /></a>)}</div>
+  </section>
+
+  <section class="site-wrap site-section home-about" aria-labelledby="about-title">
+    <p class="site-kicker">04 / The studio</p>
+    <div><h2 id="about-title">A small practice,<br />led by {agency.founder}.</h2><p class="site-lede">WebDECOR combines art direction, website design, and development. The goal is a website that reflects your business and gives people a clear way through it.</p><a class="site-text-link" href="/studio/">Meet the practice <Icon name="arrow-up-right" /></a></div>
+  </section>
+
+  <section class="site-wrap site-section home-contact" id="contact" aria-labelledby="contact-title">
+    <p class="site-kicker">05 / Let’s talk</p>
+    <h2 id="contact-title">What should your<br />next website do?</h2>
+    <p>Tell Max about your business, what you need, and your timing. A few lines is enough to start.</p>
+    <a class="home-email" href={`mailto:${agency.email}`}>{agency.email} <Icon name="arrow-up-right" /></a>
+    <a class="site-text-link" href="/start/">Prefer a guide? Prepare an inquiry <Icon name="arrow-right" /></a>
+  </section>
+</StudioLayout>
+<style>
+.home-hero{padding-top:32px;padding-bottom:64px}.home-brand{margin-bottom:38px;color:var(--site-accent)}.home-brand :global(svg){width:100%;height:auto}.home-hero-grid{display:grid;grid-template-columns:1.25fr 1fr;align-items:center;gap:64px}.home-pitch h1{font-size:clamp(40px,4.6vw,66px);margin:20px 0 24px;max-width:670px}.home-pitch em{font-style:normal;color:var(--site-accent)}.home-pitch .site-lede{font-size:19px;max-width:580px}.home-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:32px}.home-material{margin:0;position:relative;border:1px solid var(--site-line);background:#141414}.home-material :global(img){width:100%;aspect-ratio:1.15;object-fit:cover}.home-material figcaption{font:400 12px/1.5 var(--site-mono);color:var(--site-muted);padding:12px 16px;border-top:1px solid var(--site-line)}.home-section-top{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:60px;margin-bottom:36px}.home-section-top .site-kicker{margin-bottom:18px}.home-section-top>p{max-width:490px;margin:0;color:var(--site-muted)}.home-work-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}.home-work-card{display:flex;flex-direction:column;min-width:0}.home-work-preview{overflow:hidden;border:1px solid var(--site-line);background:var(--site-panel)}.home-work-caption{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:22px}.home-work-caption h3{font-size:clamp(26px,3vw,38px);min-height:1.1em}.home-work-caption .site-kicker{margin-bottom:9px}.home-work-arrow{display:grid;place-items:center;border:1px solid var(--site-line);width:48px;height:48px;flex-shrink:0}.home-work-arrow svg{width:22px;height:22px}.home-work-card:hover .home-work-arrow{background:var(--site-accent);color:var(--site-bg);border-color:var(--site-accent)}.home-work-summary{margin-top:18px;color:var(--site-muted);font-size:16px;max-width:510px}.home-lab-link{margin-top:24px}.home-services{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--site-line);margin-bottom:22px}.home-services article{padding:28px 28px 28px 0}.home-services article+article{padding-left:28px;border-left:1px solid var(--site-line)}.home-services h3{margin:20px 0 16px;font-size:25px}.home-services p:last-child{color:var(--site-muted);font-size:16px;margin:0}.home-budget{display:grid;grid-template-columns:1fr 1.2fr;gap:64px}.home-budget h2{margin-bottom:24px}.home-budget-note{color:var(--site-muted);font-size:16px;max-width:440px}.home-budget-list{border-top:1px solid var(--site-line)}.home-budget-list a{display:flex;align-items:center;gap:20px;min-height:104px;padding:22px 0;border-bottom:1px solid var(--site-line)}.home-budget-list a>span{flex:1;min-width:0}.home-budget-list strong{font:500 23px/1.2 var(--site-heading-font)}.home-budget-list small{display:block;font-size:14px;color:var(--site-muted);margin-top:8px;max-width:330px}.home-budget-list b{font:500 24px/1 var(--site-heading-font);white-space:nowrap}.home-budget-list svg{width:22px;height:22px;flex-shrink:0;color:var(--site-accent)}.home-budget-list a:hover strong{color:var(--site-accent)}.home-about{display:grid;grid-template-columns:.6fr 1.4fr;gap:64px}.home-about h2{margin-bottom:24px}.home-about .site-lede{max-width:690px}.home-contact{text-align:center;padding-block:72px 88px}.home-contact h2{font-size:clamp(38px,5.5vw,76px);margin:20px 0 24px}.home-contact>p:not(.site-kicker){max-width:590px;color:var(--site-muted);margin:0 auto 24px}.home-email{display:flex;align-items:center;justify-content:center;gap:24px;font:500 clamp(26px,4vw,50px)/1.25 var(--site-heading-font);color:var(--site-accent)!important;min-height:56px;margin-bottom:16px}.home-email svg{width:30px;height:30px;flex-shrink:0}.home-contact>.site-text-link{font-size:15px}
+@media(max-width:1000px){.home-hero-grid{gap:32px}.home-actions{gap:10px}.home-section-top{gap:36px}.home-budget{gap:36px}.home-services h3{font-size:23px}}
+@media(max-width:680px){.home-hero{padding-top:22px;padding-bottom:44px}.home-brand{margin-bottom:26px}.home-hero-grid,.home-section-top,.home-work-grid,.home-budget,.home-about{grid-template-columns:1fr;gap:28px}.home-pitch h1{font-size:43px;margin-top:16px}.home-pitch .site-lede{font-size:18px}.home-actions{margin-top:24px}.home-material :global(img){aspect-ratio:1.75}.home-section-top{gap:18px;margin-bottom:28px}.home-work-grid{gap:34px}.home-work-caption h3{font-size:30px}.home-services{grid-template-columns:1fr}.home-services article,.home-services article+article{padding:24px 0;border-left:0}.home-services article+article{border-top:1px solid var(--site-line)}.home-services h3{margin-top:12px}.home-services .site-kicker{margin:0}.home-budget-list a{gap:12px}.home-budget-list b{font-size:22px}.home-budget-list small{font-size:14px}.home-about{gap:12px}.home-contact{padding-block:44px 56px}.home-email{gap:12px;font-size:clamp(23px,7.2vw,34px)}.home-email svg{width:22px;height:22px}.home-contact>.site-text-link{gap:8px}}
+</style>

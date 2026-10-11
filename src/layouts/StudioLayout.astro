@@ -1,0 +1,71 @@
+---
+import '../styles/studio-site.css';
+import Icon from '../components/Icon.astro';
+import CyberWordmark from '../components/CyberWordmark.astro';
+import { agency } from '../data/agency';
+const { title = 'WebDECOR — Websites with character', description = agency.description, active = 'home' } = Astro.props;
+const links = [
+  { id: 'work', label: 'Work', href: '/#work' },
+  { id: 'services', label: 'Services', href: '/services/' },
+  { id: 'studio', label: 'Studio', href: '/studio/' },
+  { id: 'lab', label: 'Design Lab', href: '/explore/' },
+];
+const current = { services: 'Services', studio: 'Studio', start: 'Project inquiry', work: 'Concept work', lab: 'Design Lab' }[active];
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socials = agency.socials.filter(profile => /^https:\/\//.test(profile.url));
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1e1e1e" />
+    <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body class="studio-site">
+    <a class="site-skip" href="#main">Skip to content</a>
+    <header class="site-header" id="top">
+      <div class="site-wrap site-header-row">
+        <a class="site-logo" href="/" aria-label="WebDECOR home">wd<span aria-hidden="true">.</span></a>
+        <nav class="site-desktop-nav" aria-label="Main navigation">
+          {links.map(link => <a href={link.href} aria-current={active === link.id ? 'page' : undefined}>{link.label}</a>)}
+        </nav>
+        <a class="site-button site-header-contact" href="/start/">Let’s talk <Icon name="arrow-up-right" /></a>
+        <details class="site-menu">
+          <summary>Menu <Icon name="menu" /></summary>
+          <nav aria-label="Mobile navigation">
+            {links.map(link => <a href={link.href} aria-current={active === link.id ? 'page' : undefined}>{link.label}<Icon name="arrow-up-right" /></a>)}
+            <a href="/start/">Project inquiry<Icon name="arrow-up-right" /></a>
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main">
+      {current && <nav class="site-wrap site-breadcrumb" aria-label="Breadcrumb"><a href="/">WebDECOR</a><span aria-hidden="true">/</span><span aria-current="page">{current}</span></nav>}
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="site-wrap">
+        <div class="site-footer-top">
+          <div><p class="site-kicker">Independent web design / Max</p><a class="site-footer-email" href={`mailto:${agency.email}`}>{agency.email}<Icon name="arrow-up-right" /></a></div>
+          <nav aria-label="Footer navigation"><a href="/services/">Services</a><a href="/services/#pricing">Pricing</a><a href="/studio/">Studio</a><a href="/explore/">Design Lab</a>{socials.map(profile => <a href={profile.url} target="_blank" rel="noopener noreferrer">{profile.name}</a>)}</nav>
+        </div>
+        <a class="site-footer-wordmark" href="/" aria-label="WebDECOR home"><CyberWordmark instance="site-footer" /></a>
+        <div class="site-footer-bottom"><span>© {new Date().getFullYear()} WebDECOR</span><span>Websites with character.</span><a href="#top">Back to top <Icon name="arrow-up" /></a></div>
+      </div>
+    </footer>
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>('.site-menu');
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu?.open) { menu.open = false; menu.querySelector('summary')?.focus(); } });
+      document.addEventListener('click', event => { if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false; });
+      menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+    </script>
+  </body>
+</html>

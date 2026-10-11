@@ -2,10 +2,12 @@
 
 Generated with the built-in image-generation tool and checked in as WebP. The project identities and interface labels are rendered in SVG/HTML rather than baked into the artwork.
 
-- FORME: `public/images/cybercore-forme-scan.webp` (1402 × 1122), used on the homepage and the FORME study at `/work/forme/`.
-- OBJECT / ROOM: `public/images/cybercore-object-wireframe.webp` (1254 × 1254), used on the homepage and the OBJECT / ROOM study at `/work/object/`.
+- FORME: `public/images/cybercore-forme-scan.webp` (1402 × 1122), used in the product-detail interface at `/work/forme/` and retained in experimental layouts.
+- OBJECT / ROOM: `public/images/cybercore-object-wireframe.webp` (1254 × 1254), used in the object-detail interface at `/work/object/` and retained in experimental layouts.
 
-Paths are relative to the repository root. The source artwork is served directly from `public/images/`.
+Paths are relative to the repository root. `src/components/ConceptInterface.astro` imports these originals through Astro’s `Image` component to generate responsive image assets. The concept landing-page previews and homepage cards use `public/images/forme.webp` and `public/images/object.webp`; the prompts below describe the detail artwork listed above. Existing experimental experiences also use originals served from `public/images/`.
+
+These are self-initiated interface concepts, not client commissions or live stores. The composed HTML previews place the artwork inside collection, showroom, product, and object layouts; their display controls and product descriptions are illustrative.
 
 ## FORME — final prompt
 

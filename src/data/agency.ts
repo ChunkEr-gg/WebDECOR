@@ -2,7 +2,8 @@
 export const agency = {
  name: 'WebDECOR',
  tagline: 'Websites with character.',
- email: '', // Add a real public email to enable the email-draft contact route.
+ founder: 'Max',
+ email: 'info@webdecor.ca',
  bookingUrl: '',
  // Add the full public profile URLs when ready; empty entries stay noninteractive.
  socials: [
@@ -10,11 +11,11 @@ export const agency = {
   {id:'linkedin',name:'LinkedIn',purpose:'Studio & connections',url:''},
   {id:'behance',name:'Behance',purpose:'Selected projects',url:''}
  ] satisfies Array<{id:'instagram'|'linkedin'|'behance';name:string;purpose:string;url:string}>,
- description: 'An independent web design agency connecting strategy, art direction, and development. Distinctive websites, made to work beautifully.',
+ description: 'WebDECOR is Max’s independent web design practice. Art direction, website design, and development for brands with a point of view. Contact info@webdecor.ca.',
  pricing: [
-  {id:'essential',number:'01',name:'Essential',price:'$1,200',description:'A focused website with a clear visual direction.',features:['Core website experience','Responsive design','Launch essentials'],label:'CHOOSE ESSENTIAL'},
-  {id:'expanded',number:'02',name:'Expanded',price:'$2,400',description:'A more complete presence with room for richer content.',features:['Expanded page structure','A cohesive visual system','More detailed interactions'],label:'CHOOSE EXPANDED'},
-  {id:'custom',number:'03',name:'Custom',price:'Custom',description:'A tailored scope for a website with different requirements.',features:['Project-specific scope','Special features & integrations','A tailored proposal'],label:'DEFINE YOUR SCOPE'}
+  {id:'essential',number:'01',name:'Essential',price:'$1,200',description:'A focused site for one business, offer, or portfolio.',features:['Content hierarchy & creative direction','Custom responsive page design','Website build, launch & handover'],label:'DISCUSS ESSENTIAL'},
+  {id:'expanded',number:'02',name:'Expanded',price:'$2,400',description:'A broader website with more content and distinct page layouts.',features:['Essential design, build & handover','Multi-page content architecture','Page-specific layouts & interactions'],label:'DISCUSS EXPANDED'},
+  {id:'custom',number:'03',name:'Custom',price:'Custom',description:'A quoted project for features beyond a standard website.',features:['Requirements & integration planning','Individually agreed features','A written scope & proposal'],label:'DISCUSS YOUR SCOPE'}
  ],
  services: [
   {id:'direction',number:'01',name:'Strategy & direction',line:'A clear idea before a single pixel.',description:'Define what your website needs to say, who it needs to reach, and what it needs to do. We turn that thinking into a structure and a visual direction.',deliverables:['Discovery & website audit','Audience & content priorities','Site architecture','Creative direction'],outcome:'A shared direction and a useful plan.'},
@@ -34,7 +35,7 @@ export const agency = {
   {question:'What should I prepare before a project?',answer:'Your goals, intended audience, existing website, brand assets, and any available copy or imagery are useful starting points. A desired launch date and budget range help define the scope.'},
   {question:'How are timing and cost decided?',answer:'Essential is $1,200 and Expanded is $2,400. Custom projects are quoted around the scope. Timing depends on the content, pages, and features; deliverables and milestones are confirmed before work begins.'},
   {question:'Are FORME and OBJECT / ROOM client projects?',answer:'They are self-initiated design studies. They demonstrate visual direction and interface ideas, and are clearly labelled as concepts rather than client commissions.'},
-  {question:'What happens when I create a project brief?',answer:'The brief is downloaded to your device. It is not submitted or sent to anyone. You can keep it, revise it, or share it when you are ready.'}
+  {question:'How do I contact WebDECOR?',answer:'Email info@webdecor.ca directly, or use the project brief tool to open a draft in your email app. Review and send it there. Downloading a brief saves it to your device and does not send it to the studio.'}
  ]
 };
 export const studies = [
