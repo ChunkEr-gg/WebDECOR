@@ -1,7 +1,7 @@
 ---
 import Icon from '../Icon.astro';
 const { active = 'home', world = 'cybercore' } = Astro.props;
-const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',href:'/cybercore/services/#pricing'},{id:'services',label:'SERVICES',href:'/cybercore/services/'},{id:'work',label:'STUDIES',href:'/explore/'},{id:'studio',label:'STUDIO',href:'/cybercore/studio/'}];
+const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',href:'/services/#pricing'},{id:'services',label:'SERVICES',href:'/services/'},{id:'work',label:'STUDIES',href:'/explore/'},{id:'studio',label:'STUDIO',href:'/studio/'}];
 ---
 <header class="cy-header ag-header" id="top">
   <div class="ag-header-brand">
@@ -14,6 +14,6 @@ const links=[{id:'home',label:'HOME',href:'/'},{id:'pricing',label:'PRICING',hre
     <summary aria-label="Open navigation" aria-controls="agency-mobile-nav"><span>MENU</span><span class="ag-menu-open" aria-hidden="true"><Icon name="menu"/></span><span class="ag-menu-close" aria-hidden="true"><Icon name="close"/></span></summary>
     <nav id="agency-mobile-nav" aria-label="Compact navigation">{links.map(link=><a href={link.href} aria-current={active===link.id?'page':undefined}>{link.label}<Icon name="arrow-right"/></a>)}</nav>
   </details>}
-  <a class="ag-header-cta" href="/cybercore/start/">START A PROJECT <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>
+  <a class="ag-header-cta" href="/start/">START A PROJECT <span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>
   {world!=='cybercore'&&<span class="cy-header-code">DESIGN / BUILD</span>}
 </header>

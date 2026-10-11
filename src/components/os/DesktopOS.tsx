@@ -6,14 +6,14 @@ type AppId='welcome'|'internet'|'work'|'services'|'studio'|'pricing'|'brief'|'fo
 type App={id:AppId;name:string;icon:string;route?:string;fragment?:string;width?:number;height?:number};
 const APPS:App[]=[
  {id:'welcome',name:'Welcome to WebDECOR',icon:'computer',width:620,height:505},
- {id:'internet',name:'The Weird Internet',icon:'browser',route:'/underground/'},
- {id:'work',name:'My Work',icon:'folder',route:'/underground/',fragment:'u-work'},
- {id:'services',name:'Services',icon:'tools',route:'/underground/services/'},
- {id:'studio',name:'The Studio',icon:'computer',route:'/underground/studio/'},
- {id:'pricing',name:'Pricing',icon:'folder',route:'/underground/services/',fragment:'pricing'},
- {id:'brief',name:'New Project Brief',icon:'document',route:'/underground/start/'},
- {id:'forme',name:'FORME — Design study',icon:'picture',route:'/underground/work/forme/'},
- {id:'object',name:'OBJECT / ROOM — Design study',icon:'picture',route:'/underground/work/object/'},
+ {id:'internet',name:'The Weird Internet',icon:'browser',route:'/weird-internet/'},
+ {id:'work',name:'My Work',icon:'folder',route:'/weird-internet/',fragment:'u-work'},
+ {id:'services',name:'Services',icon:'tools',route:'/weird-internet/services/'},
+ {id:'studio',name:'The Studio',icon:'computer',route:'/weird-internet/studio/'},
+ {id:'pricing',name:'Pricing',icon:'folder',route:'/weird-internet/services/',fragment:'pricing'},
+ {id:'brief',name:'New Project Brief',icon:'document',route:'/weird-internet/start/'},
+ {id:'forme',name:'FORME — Design study',icon:'picture',route:'/weird-internet/work/forme/'},
+ {id:'object',name:'OBJECT / ROOM — Design study',icon:'picture',route:'/weird-internet/work/object/'},
  {id:'notepad',name:'Notepad',icon:'notepad',width:580,height:440},
  {id:'appearance',name:'Display Properties',icon:'display',width:520,height:435},
 ];
@@ -58,12 +58,12 @@ export default function DesktopOS(){
  function menuAction(action:string,id:AppId){setMenu(null);if(action==='close')close(id);else if(action==='minimize')minimize(id);else if(action==='size')maximize(id);else if(action==='desktop')showDesktop();else if(action==='save')downloadNotes();else if(action==='open')setStart(true);else open(action as AppId)}
  function downloadNotes(){const u=URL.createObjectURL(new Blob([notes],{type:'text/plain'})),a=document.createElement('a');a.href=u;a.download='webdecor-notes.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);setNotice('Notes downloaded.')}
  function showDesktop(){setMenu(null);setWins(old=>old.map(w=>({...w,min:true})));setActive(null);setStart(false)}
- function resetDesktop(){setWins([]);setActive(null);history.pushState({},'','/underground/');open('welcome',undefined,false)}
+ function resetDesktop(){setWins([]);setActive(null);history.pushState({},'','/weird-internet/');open('welcome',undefined,false)}
  useEffect(()=>{
   const original=new URL(location.href);open(resolveApp(original),original.pathname==='/'?undefined:original.pathname+original.search+original.hash,false);
   const timer=setInterval(()=>setClock(new Date()),1000);
   const msg=(event:MessageEvent)=>{if(event.origin!==location.origin||!event.data)return;const frame=Array.from(document.querySelectorAll<HTMLIFrameElement>('.os-app-frame')).find(f=>f.contentWindow===event.source);if(!frame)return;
-   if(event.data.type==='webdecor:open'&&typeof event.data.path==='string'){const u=new URL(event.data.path,location.origin);if(u.origin===location.origin&&u.pathname.startsWith('/underground'))open(resolveApp(u)==='welcome'?'internet':resolveApp(u),u.pathname+u.search+u.hash)}
+   if(event.data.type==='webdecor:open'&&typeof event.data.path==='string'){const u=new URL(event.data.path,location.origin);if(u.origin===location.origin&&u.pathname.startsWith('/weird-internet'))open(resolveApp(u)==='welcome'?'internet':resolveApp(u),u.pathname+u.search+u.hash)}
    if(event.data.type==='webdecor:focus'){const title=frame.getAttribute('title');const app=APPS.find(app=>app.name===title);if(app)focus(app.id)}
    if(event.data.type==='webdecor:escape'){setStart(false);setMenu(null);const app=APPS.find(app=>app.name===frame.getAttribute('title'));if(app)setWins(old=>old.map(w=>w.id===app.id&&w.max?{...w,max:false}:w))}
   };

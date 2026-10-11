@@ -53,7 +53,7 @@ export const designStudies = [
     applications: ['Artist portfolios', 'Interactive campaigns', 'Digital exhibitions'],
     palette: [['Desktop','#245edb'],['Paper','#f2efe6'],['Vermilion','#ed3523'],['Ink','#171717']],
     specimen: 'Less ordinary.\nMore you.', typeLabel: 'SYSTEM LETTERING + EXPRESSIVE EDITORIAL TYPE',
-    live: '/underground/', world: 'weird-internet',
+    live: '/weird-internet/', world: 'weird-internet',
   },
 ] as const;
 

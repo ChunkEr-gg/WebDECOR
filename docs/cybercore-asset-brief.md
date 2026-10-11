@@ -2,8 +2,8 @@
 
 Generated with the built-in image-generation tool and checked in as WebP. The project identities and interface labels are rendered in SVG/HTML rather than baked into the artwork.
 
-- FORME: `public/images/cybercore-forme-scan.webp` (1402 × 1122), used on the Cybercore homepage and FORME study.
-- OBJECT / ROOM: `public/images/cybercore-object-wireframe.webp` (1254 × 1254), used on the Cybercore homepage and OBJECT / ROOM study.
+- FORME: `public/images/cybercore-forme-scan.webp` (1402 × 1122), used on the homepage and the FORME study at `/work/forme/`.
+- OBJECT / ROOM: `public/images/cybercore-object-wireframe.webp` (1254 × 1254), used on the homepage and the OBJECT / ROOM study at `/work/object/`.
 
 Paths are relative to the repository root. The source artwork is served directly from `public/images/`.
 

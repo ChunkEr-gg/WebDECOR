@@ -67,7 +67,7 @@ const files = [
           <div class="ht-editor-heading"><span class="ht-line-marker" aria-hidden="true">01</span><span class="ht-syntax">#</span><h2 id="ht-studies-title">Design studies</h2></div>
           <p class="ht-lede">Self-initiated concepts. Different worlds, built with intention.</p>
           <div class="ht-section-rule"><span>./concepts</span><span>02 entries</span></div>
-          <div class="ht-concepts">{studies.map(study=><article><div class="ht-project-art"><img src={study.image} alt={study.alt} width={study.width} height={study.height} loading="lazy"/></div><div class="ht-concept-copy"><span class="ht-muted">{study.category.toLowerCase()}</span><h3>{study.name}</h3><p>{study.summary}</p><a href={'/cybercore/work/'+study.slug+'/'}>[ read the study <Icon name="arrow-up-right"/> ]</a></div></article>)}</div>
+          <div class="ht-concepts">{studies.map(study=><article><div class="ht-project-art"><img src={study.image} alt={study.alt} width={study.width} height={study.height} loading="lazy"/></div><div class="ht-concept-copy"><span class="ht-muted">{study.category.toLowerCase()}</span><h3>{study.name}</h3><p>{study.summary}</p><a href={'/work/'+study.slug+'/'}>[ read the study <Icon name="arrow-up-right"/> ]</a></div></article>)}</div>
           <div class="ht-section-rule"><span>./visual-worlds</span><span>04 entries</span></div>
           <div class="ht-world-files">{designStudies.map(study=><a href={study.live}><span aria-hidden="true"><Icon name="branch-right"/></span><strong>{study.slug}/</strong><span>{study.name}</span><span aria-hidden="true"><Icon name="arrow-up-right"/></span></a>)}</div>
         </section>

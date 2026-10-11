@@ -26,9 +26,9 @@ import AgencyFooter from '../components/agency/AgencyFooter.astro';
 import { agency } from '../data/agency';
 const { title = 'WebDECOR — Websites with character', description = agency.description, active = 'home', world = 'cybercore', study } = Astro.props;
 const theme = {cybercore:'#e6e6e2',collage:'#fff04f',swiss:'#ffffff',hackerlair:'#050907'}[world] || '#e6e6e2';
-const terminalFiles=[{id:"home",name:"README.txt",href:"/"},{id:"services",name:"services.sh",href:"/cybercore/services/"},{id:"pricing",name:"pricing.cfg",href:"/cybercore/services/#pricing"},{id:"work",name:"studies/",href:"/explore/"},{id:"studio",name:"studio.md",href:"/cybercore/studio/"},{id:"start",name:"new-project.sh",href:"/cybercore/start/"}];
+const terminalFiles=[{id:"home",name:"README.txt",href:"/"},{id:"services",name:"services.sh",href:"/services/"},{id:"pricing",name:"pricing.cfg",href:"/services/#pricing"},{id:"work",name:"studies/",href:"/explore/"},{id:"studio",name:"studio.md",href:"/studio/"},{id:"start",name:"new-project.sh",href:"/start/"}];
 const terminalFile=terminalFiles.find(file=>file.id===active)?.name||"study.txt";
-const canonical = new URL(Astro.url.pathname === '/cybercore/' ? '/' : Astro.url.pathname, Astro.site);
+const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang="en" data-world={world}>

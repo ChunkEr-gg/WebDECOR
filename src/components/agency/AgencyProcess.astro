@@ -62,5 +62,5 @@ const { world = 'cybercore' } = Astro.props;
       </li>)}
     </ol>
   </div>
-  <div class="cy-process-end"><span>FROM THE FIRST QUESTION TO THE FINAL HANDOVER.</span><a href="/cybercore/start/">Tell us where you’re starting <Icon name="arrow-up-right"/></a></div>
+  <div class="cy-process-end"><span>FROM THE FIRST QUESTION TO THE FINAL HANDOVER.</span><a href="/start/">Tell us where you’re starting <Icon name="arrow-up-right"/></a></div>
 </section> : <section data-layout-key="process" id="process" class="ag-process" aria-labelledby="process-title"><div class="ag-process-heading"><span class="cy-label">04 / HOW IT COMES TOGETHER</span><h2 id="process-title">A clear path.<br/><em>Room to explore.</em></h2><p>Creative work moves forward when the decisions are shared. Each stage gives the next one a stronger foundation.</p></div><ol class="ag-process-grid">{agency.process.map(step=><li><div class="ag-step-number" aria-hidden="true">{step.number}<span><Icon name="plus"/></span></div><h3>{step.name}</h3><p>{step.text}</p><span class="ag-step-output"><Icon name="branch-right"/> {step.output}</span></li>)}</ol></section>}
