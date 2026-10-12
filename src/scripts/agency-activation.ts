@@ -1,9 +1,9 @@
 const root = document.documentElement;
-const toggle = document.querySelector<HTMLButtonElement>('[data-activation-toggle]');
+const toggles = document.querySelectorAll<HTMLButtonElement>('[data-activation-toggle]');
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const storageKey = 'webdecor-activated';
 
-if (root.dataset.world === 'cybercore' && toggle) {
+if (root.dataset.world === 'cybercore' && toggles.length) {
   const status = document.querySelector<HTMLElement>('[data-activation-status]');
   const theme = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
   let cleanup: ReturnType<typeof setTimeout> | undefined;
@@ -77,11 +77,14 @@ if (root.dataset.world === 'cybercore' && toggle) {
 
   function sync() {
     const enabled = active();
-    toggle!.setAttribute('aria-pressed',String(enabled));
-    toggle!.setAttribute('aria-label',enabled?'Switch to the light appearance':'Switch to Cybercore');
-    const label=toggle!.querySelector('[data-theme-label]');
-    if(label)label.textContent=enabled?'LIGHT APPEARANCE':'ACTIVATE CYBERCORE';
-    toggle!.title = enabled ? 'Switch to the light appearance' : 'Switch to Cybercore';
+    const action=enabled?'Switch to the light appearance':'Switch to Cybercore';
+    toggles.forEach(toggle=>{
+      toggle.setAttribute('aria-pressed',String(enabled));
+      toggle.setAttribute('aria-label',toggle.hasAttribute('data-activation-logo')?`WebDECOR — ${action.toLowerCase()}`:action);
+      const label=toggle.querySelector('[data-theme-label]');
+      if(label)label.textContent=enabled?'LIGHT APPEARANCE':'ACTIVATE CYBERCORE';
+      toggle.title=action;
+    });
     if(theme)theme.content=enabled?'#1E1E1E':'#e6e6e2';
     fields.forEach(render);
   }
@@ -106,7 +109,7 @@ if (root.dataset.world === 'cybercore' && toggle) {
     window.dispatchEvent(new CustomEvent('webdecor:activationchange',{detail:{active:enabled}}));
   }
 
-  toggle.addEventListener('click',()=>change(!active()));
+  toggles.forEach(toggle=>toggle.addEventListener('click',()=>change(!active())));
   window.addEventListener('storage',event=>{
     if(event.key===storageKey||event.key===null)change(event.key===storageKey&&event.newValue==='true',false,false);
   });

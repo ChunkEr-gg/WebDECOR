@@ -2,7 +2,7 @@
 
 WebDECOR is an Astro 5 static website for an independent web design practice. The main site lives at the root URL, with short, descriptive paths for its pages and a separate route for The Weird Internet experience.
 
-The original editorial style is restored: a light grid-based appearance by default, with the chrome-and-orange Cybercore appearance available through the header’s **Activate Cybercore** button. Clicking a home logo plays a brief energy surge before navigating; reduced-motion preferences and modified link clicks retain normal navigation. Max leads the practice; public inquiries go to **info@webdecor.ca**.
+The original editorial style is restored: a light grid-based appearance by default, with the chrome-and-orange Cybercore appearance available through the header’s **Activate Cybercore** button or the large homepage **WebDECOR** logo. Both controls switch between the same modes and remember the visitor’s selection. The small header logo and footer logo link home. Max leads the practice; public inquiries go to **info@webdecor.ca**.
 
 ## Main site
 

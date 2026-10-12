@@ -24,7 +24,7 @@ const profilesPending = socialProfiles.some(social => !social.url);
       {socialProfiles.map(social => <li>{social.url ? <a class="ag-social-item" href={social.url} target="_blank" rel="noopener noreferrer"><AgencySocialIcon name={social.id}/><span class="ag-social-copy"><strong>{social.name}</strong><small>{social.purpose}</small></span><Icon name="arrow-up-right"/><span class="ag-social-new-tab">Opens in a new tab</span></a> : <div class="ag-social-item"><AgencySocialIcon name={social.id}/><span class="ag-social-copy"><strong>{social.name}</strong><small>{social.purpose}</small></span></div>}</li>)}
     </ul>
   </section>
-  <a href="/" class="cy-footer-wordmark" aria-label="WebDECOR home" data-logo-surge><CyberWordmark instance="footer"/></a><div class="cy-footer-details"><span>WEBDECOR / INDEPENDENT WEB DESIGN<br/>© {new Date().getFullYear()}</span><a href="/explore/">DESIGN ARCHIVE <Icon name="arrow-up-right"/></a><a href="#top">RETURN TO TOP <Icon name="arrow-up"/></a></div>
+  <a href="/" class="cy-footer-wordmark" aria-label="WebDECOR home"><CyberWordmark instance="footer"/></a><div class="cy-footer-details"><span>WEBDECOR / INDEPENDENT WEB DESIGN<br/>© {new Date().getFullYear()}</span><a href="/explore/">DESIGN ARCHIVE <Icon name="arrow-up-right"/></a><a href="#top">RETURN TO TOP <Icon name="arrow-up"/></a></div>
 </footer>
 <style>
 .ag-footer-contact{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:20px;border-inline:1px solid #ffffff30;border-block:1px solid #ffffff30;font:12px/1.6 'JetBrains Mono Variable',monospace}.ag-footer-contact a{display:flex;align-items:center;gap:16px;min-height:44px;overflow-wrap:anywhere}.ag-footer-contact svg{width:18px;height:18px}

@@ -1,4 +1,6 @@
 /* Warm white, charcoal, and vermilion: Cybercore with the lights on. */
+.wd-hero-logo{display:block;width:100%;min-height:44px;padding:0;margin:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.wd-hero-logo:focus-visible{outline:2px solid var(--cy-red);outline-offset:6px}
 .ag-header .wd-activation-logo{font:700 36px/.8 'Space Grotesk Variable',sans-serif;letter-spacing:-5px;justify-content:flex-start;gap:0;background:none;border:0;text-align:left;cursor:pointer}
 .ag-header .wd-activation-logo>span{font:9px/1.5 'JetBrains Mono Variable',monospace;letter-spacing:0;margin-left:8px;align-self:start}
 .ag-header .wd-activation-logo:focus-visible{outline:2px solid var(--cy-red);outline-offset:-5px}

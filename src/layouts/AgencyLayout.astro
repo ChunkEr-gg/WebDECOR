@@ -21,7 +21,6 @@ import '../styles/design-studies.css';
 import '../styles/study-preview-cybercore.css';
 import '../styles/agency-energy.css';
 import '../styles/agency-header.css';
-import '../styles/agency-logo-surge.css';
 import AgencyHeader from '../components/agency/AgencyHeader.astro';
 import AgencyFooter from '../components/agency/AgencyFooter.astro';
 import { agency } from '../data/agency';
@@ -50,6 +49,6 @@ const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname,
     <main id="main" data-agency-page={active}><slot/></main><AgencyFooter/>
   </div>
   <span class="cy-sr-only" role="status" data-activation-status></span>
-  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/agency-activation';import '../scripts/design-studies';import '../scripts/agency-energy';import '../scripts/agency-logo-surge';</script>
+  <script>import '../scripts/agency-header';import '../scripts/agency-world';import '../scripts/agency-motion';import '../scripts/agency-ascii';import '../scripts/agency-activation';import '../scripts/design-studies';import '../scripts/agency-energy';</script>
 </body>
 </html>
