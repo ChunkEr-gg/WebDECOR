@@ -2,7 +2,7 @@
 
 WebDECOR is an Astro 5 static website for an independent web design practice. The main site lives at the root URL, with short, descriptive paths for its pages and a separate route for The Weird Internet experience.
 
-The original editorial style is restored: a light grid-based appearance by default, with the chrome-and-orange Cybercore appearance available through the header’s **Activate Cybercore** button or the large homepage **WebDECOR** logo. Both controls switch between the same modes and remember the visitor’s selection. The small header logo and footer logo link home. Max leads the practice; public inquiries go to **info@webdecor.ca**.
+The original editorial style is restored: a light grid-based appearance by default, with the chrome-and-orange Cybercore appearance available through the header’s **Activate Cybercore** button or the large homepage **WebDECOR** logo. Both controls switch between the same modes and remember the visitor’s selection. The small header logo and footer logo link home. WebDECOR is a two-person studio led by Max; public inquiries go to **info@webdecor.ca**.
 
 ## Main site
 
@@ -39,6 +39,8 @@ Astro serves the development site at `http://localhost:4321`. The static build i
 The homepage is kept to hero, services, design studies, studio, questions, and the closing invitation. Pricing and the process live on `/services/`; the full design archive lives on `/explore/`.
 
 Main-site labels and controls have a 12px minimum, set in `src/styles/agency-clarity.css`; the miniature website mock-ups keep their scale. Smaller homepage image copies are generated with `node scripts/make-image-variants.mjs` and must be regenerated when a source image changes. `public/og-image.jpg` is the social sharing image. `/sitemap.xml` and `/robots.txt` are generated from the `site` setting in `astro.config.mjs`, so update that setting if the site moves to its own domain.
+
+Brand rules for the main site live in `src/styles/agency-brand.css`: one signal colour (Cybercore red-orange `#ff3616`, with `#b8320c` for text on the light appearance), Space Grotesk for headings and body text, and JetBrains Mono for labels. The written name is “WebDECOR”; the lowercase “webdecor.” is the logo only. The ® symbol is not used; add it back only once the mark is registered. The favicon is the “wd.” monogram drawn from the wordmark’s strokes. The single tagline is “Websites with character.”
 
 Agency copy and contact configuration live in `src/data/agency.ts`. Social profiles without a URL are hidden. Design-study content lives in `src/data/design-studies.ts`. Page templates and components are in `src/pages/` and `src/components/`; images and icons are in `public/`. Motion and visual effects respect reduced-motion preferences, and the interactive workstation supports keyboard and pointer controls.
 

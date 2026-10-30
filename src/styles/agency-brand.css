@@ -1,0 +1,10 @@
+/* WebDECOR brand system for the main site (the cybercore world), in both appearances.
+   One signal colour: Cybercore red-orange. The light appearance uses the same hue, with a darker shade for text so it stays readable.
+   Two type families: Space Grotesk for headings and body text, JetBrains Mono for labels. */
+html[data-world="cybercore"]:not([data-activated="true"]) body.agency{--cy-red:#ff3616;--cy-signal-on-paper:#b8320c}
+
+html[data-world="cybercore"]{font-family:'Space Grotesk Variable',sans-serif}
+html[data-world="cybercore"] body :is(.cy-manifesto h2,.cy-field-note p,.cy-studio-copy .cy-lede,.ag-inquiry-form input,.ag-inquiry-form select,.ag-inquiry-form textarea,.wd-map-root span,.wd-map-branches span){font-family:'Space Grotesk Variable',sans-serif}
+
+/* The wordmark's full stop carries the signal colour in the light appearance, matching the favicon. */
+html[data-world="cybercore"]:not([data-activated="true"]) .cy-wordmark .wd-logo-dot{fill:var(--cy-red)}
