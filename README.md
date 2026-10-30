@@ -17,7 +17,7 @@ The original editorial style is restored: a light grid-based appearance by defau
 - `/studies/collage/experience/`, `/studies/swiss/experience/`, and `/studies/hackerlair/experience/` — interactive versions of those studies.
 - `/weird-internet/` — The Weird Internet, an alternate studio experience built around a movable desktop and CRT workstation. Its services, studio, project brief, and concept pages live below that route.
 
-The study pages describe self-initiated concepts, not client commissions. The optional project brief runs in the visitor’s browser. Its primary action opens an email draft to WebDECOR for the visitor to review and send; a separate action downloads a text copy. Nothing is submitted through the website or emailed automatically. Direct email is available without completing the form.
+The study pages describe self-initiated concepts, not client commissions. The optional project brief runs in the visitor’s browser. By default its primary action opens an email draft to WebDECOR for the visitor to review and send; a separate action downloads a text copy. To send briefs directly from the website, set `formEndpoint` in `src/data/agency.ts` to a form-service URL such as Formspree (`https://formspree.io/f/<id>`); if that request fails, the brief falls back to an email draft. Direct email and a copy-address button are available without completing the form.
 
 ## Compatibility redirects
 
@@ -36,7 +36,11 @@ npm run preview
 
 Astro serves the development site at `http://localhost:4321`. The static build is written to `dist/`.
 
-Agency copy and contact configuration live in `src/data/agency.ts`. Design-study content lives in `src/data/design-studies.ts`. Page templates and components are in `src/pages/` and `src/components/`; images and icons are in `public/`. Motion and visual effects respect reduced-motion preferences, and the interactive workstation supports keyboard and pointer controls.
+The homepage is kept to hero, services, design studies, studio, questions, and the closing invitation. Pricing and the process live on `/services/`; the full design archive lives on `/explore/`.
+
+Main-site labels and controls have a 12px minimum, set in `src/styles/agency-clarity.css`; the miniature website mock-ups keep their scale. Smaller homepage image copies are generated with `node scripts/make-image-variants.mjs` and must be regenerated when a source image changes. `public/og-image.jpg` is the social sharing image. `/sitemap.xml` and `/robots.txt` are generated from the `site` setting in `astro.config.mjs`, so update that setting if the site moves to its own domain.
+
+Agency copy and contact configuration live in `src/data/agency.ts`. Social profiles without a URL are hidden. Design-study content lives in `src/data/design-studies.ts`. Page templates and components are in `src/pages/` and `src/components/`; images and icons are in `public/`. Motion and visual effects respect reduced-motion preferences, and the interactive workstation supports keyboard and pointer controls.
 
 `AgencyLayout.astro` and `AgencyHome.astro` provide the restored visual composition. Mobile study-preview fixes and the functional inquiry improvements remain. [The October review](docs/site-review.md) records the previous redesign and its subsequent visual restoration; its performance figures describe that previous version.
 

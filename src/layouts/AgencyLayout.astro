@@ -21,6 +21,7 @@ import '../styles/design-studies.css';
 import '../styles/study-preview-cybercore.css';
 import '../styles/agency-energy.css';
 import '../styles/agency-header.css';
+import '../styles/agency-clarity.css';
 import AgencyHeader from '../components/agency/AgencyHeader.astro';
 import AgencyFooter from '../components/agency/AgencyFooter.astro';
 import { agency } from '../data/agency';
@@ -29,6 +30,7 @@ const theme = {cybercore:'#e6e6e2',collage:'#fff04f',swiss:'#ffffff',hackerlair:
 const terminalFiles=[{id:"home",name:"README.txt",href:"/"},{id:"services",name:"services.sh",href:"/services/"},{id:"pricing",name:"pricing.cfg",href:"/services/#pricing"},{id:"work",name:"studies/",href:"/explore/"},{id:"studio",name:"studio.md",href:"/studio/"},{id:"start",name:"new-project.sh",href:"/start/"}];
 const terminalFile=terminalFiles.find(file=>file.id===active)?.name||"study.txt";
 const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
 ---
 <!doctype html>
 <html lang="en" data-world={world}>
@@ -37,7 +39,7 @@ const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname,
   <title>{title}</title><meta name="description" content={description}/><meta name="theme-color" content={theme}/>
   <script is:inline>try{if(document.documentElement.dataset.world==='cybercore'&&localStorage.getItem('webdecor-activated')==='true'){document.documentElement.dataset.activated='true';document.querySelector('meta[name="theme-color"]').content='#1E1E1E'}}catch{}</script>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/><link rel="canonical" href={canonical}/>
-  <meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/>
+  <meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:site_name" content="WebDECOR"/><meta property="og:image" content={ogImage}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="The WebDECOR wordmark — websites with character"/><meta name="twitter:card" content="summary_large_image"/>
 </head>
 <body class="cybercore agency">
   <a class="concept-skip" href="#main">Skip to content</a>

@@ -5,7 +5,10 @@ export const agency = {
  founder: 'Max',
  email: 'info@webdecor.ca',
  bookingUrl: '',
- // Add the full public profile URLs when ready; empty entries stay noninteractive.
+ // Optional form-service endpoint (e.g. https://formspree.io/f/<id>). When set, the project brief is
+ // sent directly from the website; when empty, the brief opens an email draft instead.
+ formEndpoint: '',
+ // Add the full public profile URLs when ready; profiles without a URL are hidden.
  socials: [
   {id:'instagram',name:'Instagram',purpose:'Images & process',url:''},
   {id:'linkedin',name:'LinkedIn',purpose:'Studio & connections',url:''},
