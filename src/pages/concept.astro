@@ -29,6 +29,12 @@ const steps = [
   { name: 'Design and build', text: 'We design every page for phones and desktops, then build the site ourselves.' },
   { name: 'Launch', text: 'We put the site live on your domain and show you how to keep it up to date.' },
 ];
+const stats = [
+  { value: '2', label: 'People, from first call to launch' },
+  { value: agency.pricing[0].price, label: 'Starting price' },
+  { value: '0', label: 'Templates used' },
+  { value: String(designStudies.length), label: 'Live lab sites' },
+];
 const planNotes: Record<string, string> = { essential: 'Best for new businesses', expanded: 'For more pages and stories', custom: 'For shops, bookings and more' };
 // The FORME and OBJECT / ROOM studies are not shown on this page, so their FAQ entry is left out.
 const faqs = agency.faqs.filter(f => !f.question.includes('FORME'));
@@ -39,7 +45,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
-  <meta name="theme-color" content="#0d5fd6"/>
+  <meta name="theme-color" content="#0c1838"/>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
   <link rel="preload" href="/fonts/webdecor-display.woff2" as="font" type="font/woff2" crossorigin/>
   <script is:inline>document.documentElement.classList.add('js');try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
@@ -49,7 +55,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <header class="cx-header" data-header>
     <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top">
-      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff6fae"/></svg>
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path class="cx-brand-dot" d="M258.5 188h27v27h-27z" fill="#ff5fa8"/></svg>
       <span>WebDECOR</span>
     </a>
     <nav class="cx-nav" aria-label="Page sections"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
@@ -61,32 +67,36 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <main id="main">
     <section class="cx-hero" id="top" aria-labelledby="cx-hero-title">
-      <div class="cx-shader" data-shader="glass" aria-hidden="true"></div>
-      <p class="cx-pill" data-reveal><span class="cx-dot" aria-hidden="true"></span>A two-person web design studio</p>
-      <h1 id="cx-hero-title" data-reveal>Websites with<br/><em>character.</em></h1>
-      <p class="cx-hero-sub" data-reveal>We design and build websites for small local and creative businesses. Each one gets a look of its own.</p>
-      <div class="cx-actions" data-reveal>
-        <a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a>
-        <a class="cx-btn cx-btn-glass" href="#pricing">See pricing</a>
+      <div class="cx-shader" data-shader="glass" data-figure aria-hidden="true"></div>
+      <div class="cx-hero-copy" data-hero-parallax>
+        <p class="cx-pill" data-hero-step><span class="cx-dot" aria-hidden="true"></span>A two-person web design studio</p>
+        <h1 id="cx-hero-title"><span class="cx-line" data-hero-step>Websites with</span> <span class="cx-line" data-hero-step><span class="cx-end">character<span class="cx-stop">.</span></span></span></h1>
+        <p class="cx-hero-sub" data-hero-step>We design and build websites for small local and creative businesses. Each one gets a look of its own.</p>
+        <div class="cx-actions" data-hero-step>
+          <a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a>
+          <a class="cx-btn cx-btn-glass" href="#pricing">See pricing</a>
+        </div>
       </div>
-      <div class="cx-stats cx-stats-left"><p><b>2</b><span>People, from first call to launch</span></p><p><b>{agency.pricing[0].price}</b><span>Starting price</span></p></div>
-      <div class="cx-stats cx-stats-right"><p><b>0</b><span>Templates used</span></p><p><b>4</b><span>Live lab sites</span></p></div>
-      <ul class="cx-strip" aria-label="What every project includes">
-        {features.map(f => <li><span class="cx-strip-icon" set:html={icon(f.icon)}/><span><strong>{f.name}</strong>{f.text}</span></li>)}
+      <aside class="cx-card" aria-label="The studio in numbers" data-hero-step>
+        <p class="cx-card-head"><span class="cx-dot" aria-hidden="true"></span>The studio</p>
+        <dl>{stats.map(s => <div><dt>{s.label}</dt><dd data-count>{s.value}</dd></div>)}</dl>
+      </aside>
+      <ul class="cx-strip" aria-label="What every project includes" data-hero-step>
+        {features.map(f => <li data-hero-step><span class="cx-strip-icon" set:html={icon(f.icon)}/><span><strong>{f.name}</strong>{f.text}</span></li>)}
       </ul>
     </section>
 
     <section class="cx-section cx-features" id="features" aria-labelledby="cx-features-title">
       <div class="cx-wrap">
-        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be <span class="cx-mark">yours.</span></h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be <span class="cx-end"><span class="cx-mark">yours</span><span class="cx-stop">.</span></span></h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
         <div class="cx-demo-card" data-reveal><CharacterDemo/></div>
       </div>
     </section>
 
     <section class="cx-section cx-lab" id="lab" aria-labelledby="cx-lab-title">
       <div class="cx-wrap">
-        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">Lab</p><h2 class="cx-h2" id="cx-lab-title">Where we test ideas.</h2></div><p class="cx-lead">Four experimental websites we designed and built ourselves. Each one is live: open it and try it.</p></div>
-        <ul class="cx-lab-list">
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">Lab</p><h2 class="cx-h2" id="cx-lab-title">Where we test <span class="cx-end">ideas<span class="cx-stop">.</span></span></h2></div><p class="cx-lead">Four experimental websites we designed and built ourselves. Each one is live: open it and try it.</p></div>
+        <ul class="cx-lab-list" data-stagger>
           {designStudies.map(study => <li data-reveal><a href={study.live}><span class="cx-lab-name"><strong>{study.name}</strong><span>{study.label}</span></span><span class="cx-lab-summary">{study.summary}</span><span class="cx-lab-open">Open <Fragment set:html={icon(ArrowUpRight)}/></span></a></li>)}
         </ul>
       </div>
@@ -94,15 +104,15 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
     <section class="cx-section cx-process" id="process" aria-labelledby="cx-process-title">
       <div class="cx-wrap">
-        <div class="cx-head" data-reveal><p class="cx-kicker">Process</p><h2 class="cx-h2" id="cx-process-title">How a project runs.</h2></div>
-        <ol class="cx-steps">{steps.map((s, i) => <li data-reveal><span>0{i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
+        <div class="cx-head" data-reveal><p class="cx-kicker">Process</p><h2 class="cx-h2" id="cx-process-title">How a project <span class="cx-end">runs<span class="cx-stop">.</span></span></h2></div>
+        <ol class="cx-steps" data-stagger>{steps.map((s, i) => <li data-reveal style={`--i:${i}`}><span>0{i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
       </div>
     </section>
 
     <section class="cx-section cx-pricing" id="pricing" aria-labelledby="cx-pricing-title">
       <div class="cx-wrap">
-        <div class="cx-head cx-head-center" data-reveal><p class="cx-kicker">Pricing</p><h2 class="cx-h2" id="cx-pricing-title">Straightforward pricing.</h2><p class="cx-lead">Fixed prices for most projects. Anything bigger is quoted up front.</p></div>
-        <div class="cx-plans">
+        <div class="cx-head cx-head-center" data-reveal><p class="cx-kicker">Pricing</p><h2 class="cx-h2" id="cx-pricing-title">Straightforward <span class="cx-end">pricing<span class="cx-stop">.</span></span></h2><p class="cx-lead">Fixed prices for most projects. Anything bigger is quoted up front.</p></div>
+        <div class="cx-plans" data-stagger>
           {agency.pricing.map(plan => (
             <article class:list={['cx-plan', { 'cx-plan-featured': plan.id === 'essential' }]} data-reveal>
               <p class="cx-plan-note">{planNotes[plan.id]}</p>
@@ -119,7 +129,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
     <section class="cx-section cx-faq" id="faq" aria-labelledby="cx-faq-title">
       <div class="cx-wrap cx-faq-grid">
-        <div data-reveal><p class="cx-kicker">FAQ</p><h2 class="cx-h2" id="cx-faq-title">Questions.</h2><p class="cx-lead">Something else? Email <a href={`mailto:${agency.email}`}>{agency.email}</a>.</p></div>
+        <div data-reveal><p class="cx-kicker">FAQ</p><h2 class="cx-h2" id="cx-faq-title"><span class="cx-end">Questions<span class="cx-stop">.</span></span></h2><p class="cx-lead">Something else? Email <a href={`mailto:${agency.email}`}>{agency.email}</a>.</p></div>
         <div class="cx-faq-list" data-reveal>{faqs.map(f => <details><summary>{f.question}<span class="cx-plus" aria-hidden="true"></span></summary><p>{f.answer}</p></details>)}</div>
       </div>
     </section>
@@ -127,7 +137,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
     <section class="cx-final" aria-labelledby="cx-final-title">
       <div class="cx-final-box" data-reveal>
         <div class="cx-shader" data-shader="glass" aria-hidden="true"></div>
-        <h2 id="cx-final-title">Tell us about your <em>business.</em></h2>
+        <h2 id="cx-final-title">Tell us about your <span class="cx-end">business<span class="cx-stop">.</span></span></h2>
         <p>Send a few lines about what you do. We'll reply with questions and next steps.</p>
         <div class="cx-actions"><a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a><a class="cx-btn cx-btn-glass" href={`mailto:${agency.email}`}>{agency.email}</a></div>
       </div>
@@ -136,11 +146,11 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <footer class="cx-footer">
     <div class="cx-wrap cx-footer-row">
-      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff6fae"/></svg><span>WebDECOR</span></a>
+      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path class="cx-brand-dot" d="M258.5 188h27v27h-27z" fill="#ff5fa8"/></svg><span>WebDECOR</span></a>
       <nav aria-label="Footer"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="/explore/">Design archive</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
     </div>
     <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR · Websites with character</span><span>Concept preview · <a href="/">Current site</a></span></p>
-    <p class="cx-footer-mark" aria-hidden="true">WebDECOR<i>.</i></p>
+    <p class="cx-footer-mark" aria-hidden="true">{[...'WebDECOR'].map(letter => <span>{letter}</span>)}<span class="cx-stop">.</span></p>
   </footer>
 
   <script>import '../scripts/concept-character';</script>

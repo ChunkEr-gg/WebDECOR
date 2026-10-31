@@ -1,10 +1,7 @@
 // Concept page: header state, Cybercore switch, Paper Shaders backgrounds, Motion reveals and the comparison demo.
 import 'img-comparison-slider';
-import { animate, inView } from 'motion';
-import {
-  ShaderMount, ShaderFitOptions, defaultObjectSizing, getShaderColorFromString,
-  flutedGlassFragmentShader, GlassDistortionShapes, GlassGridShapes, staticMeshGradientFragmentShader,
-} from '@paper-design/shaders';
+import { mountGlass } from './concept-glass';
+import { playMotion } from './concept-motion';
 
 const root = document.documentElement;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -35,57 +32,12 @@ if (header && hero) {
   update();
 }
 
-// Shader backgrounds (Paper Shaders). Without WebGL the CSS gradient behind each one stays visible.
-const sizing = (fit: keyof typeof ShaderFitOptions, scale = 1) => ({
-  u_fit: ShaderFitOptions[fit], u_scale: scale, u_rotation: defaultObjectSizing.rotation,
-  u_offsetX: 0, u_offsetY: 0, u_originX: .5, u_originY: .5, u_worldWidth: 0, u_worldHeight: 0,
-});
-
-// The colour field behind the glass: a static mesh gradient in sky blue with a little pink, rendered once to an image.
-const renderColourField = async () => {
-  const host = document.createElement('div');
-  host.style.cssText = 'position:fixed;left:0;top:0;width:960px;height:640px;opacity:0;pointer-events:none;z-index:-10';
-  document.body.append(host);
-  const colors = ['#1f7fe8', '#4db4f7', '#a8dcff', '#ff74b4', '#2a92ee'];
-  const field = new ShaderMount(host, staticMeshGradientFragmentShader, {
-    u_colors: colors.map(getShaderColorFromString), u_colorsCount: colors.length,
-    u_positions: 7, u_waveX: .6, u_waveXShift: 0, u_waveY: .7, u_waveYShift: .2,
-    u_mixing: .6, u_grainMixer: 0, u_grainOverlay: 0,
-    ...sizing('cover'),
-  }, { preserveDrawingBuffer: true }, 0, 0, 1);
-  await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-  const image = new Image();
-  image.src = field.canvasElement.toDataURL('image/png');
-  field.dispose();
-  host.remove();
-  await image.decode();
-  return image;
-};
-
-// Fluted glass over that colour field, for the hero and the closing call to action.
-const glass = (element: HTMLElement, image: HTMLImageElement) => {
-  new ShaderMount(element, flutedGlassFragmentShader, {
-    u_image: image,
-    u_colorBack: getShaderColorFromString('#00000000'), u_colorShadow: getShaderColorFromString('#0a2a66'), u_colorHighlight: getShaderColorFromString('#ffffff'),
-    u_shadows: .4, u_size: .6, u_angle: 0, u_distortion: 1, u_shift: 0, u_blur: .2, u_edges: .35, u_stretch: 0,
-    u_distortionShape: GlassDistortionShapes.prism, u_highlights: .3, u_shape: GlassGridShapes.lines,
-    u_marginLeft: 0, u_marginRight: 0, u_marginTop: 0, u_marginBottom: 0, u_grainMixer: 0, u_grainOverlay: .06,
-    ...sizing('cover'),
-  });
-  element.dataset.ready = '';
-};
+// Live fluted glass on the hero and the closing call to action. Without WebGL the CSS gradient behind each one stays visible.
 const glassSurfaces = Array.from(document.querySelectorAll<HTMLElement>('[data-shader="glass"]'));
-if (glassSurfaces.length) {
-  renderColourField().then(image => glassSurfaces.forEach(element => glass(element, image))).catch(() => { /* WebGL unavailable: the CSS gradient stays. */ });
-}
+if (glassSurfaces.length) mountGlass(glassSurfaces, !reducedMotion).catch(() => { /* WebGL unavailable: the CSS gradient stays. */ });
 
-// Gentle reveals on scroll (Motion). Content stays visible when motion is reduced or scripts fail.
-if (!reducedMotion) {
-  document.querySelectorAll<HTMLElement>('[data-reveal]').forEach(element => {
-    element.style.opacity = '0';
-    inView(element, () => { animate(element, { opacity: [0, 1], y: [18, 0] }, { duration: .7, ease: [.2, .7, .2, 1] }); }, { amount: .2 });
-  });
-}
+// Entrance, scroll and reveal animations. Content stays visible when motion is reduced or scripts fail.
+if (!reducedMotion) playMotion();
 
 // Template-versus-character demo: business tabs drive which art direction the slider shows.
 document.querySelectorAll<HTMLElement>('[data-character-demo]').forEach(demo => {
