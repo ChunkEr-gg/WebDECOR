@@ -1,5 +1,5 @@
 ---
-// Concept for the next WebDECOR site: a clean product-style page with an immersive hero.
+// Concept for the next WebDECOR site: a clean product-style page; the hero and closing sections are rendered with Paper Shaders.
 // It stands apart from the current site: own layout, own styles, not in the sitemap, and not indexed.
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
@@ -9,9 +9,8 @@ import '@fontsource-variable/fredoka';
 import '@fontsource/anton';
 import '@fontsource/caveat';
 import '../styles/concept-character.css';
-import Icon from '../components/Icon.astro';
+import { ArrowUpRight, Check, Gauge, MessagesSquare, Palette, Rocket, Smartphone } from 'lucide-static';
 import CharacterDemo from '../components/concept/CharacterDemo.astro';
-import ConceptGlass from '../components/concept/ConceptGlass.astro';
 import { agency } from '../data/agency';
 
 const title = 'WebDECOR — Websites with character (concept)';
@@ -21,6 +20,12 @@ const showcase = [
   { href: '/studies/collage/', label: 'Collage', kind: 'Lab world', image: '/images/collage-playground-640.webp', alt: 'Cut-paper shapes, a googly-eyed figure and a smiling hand on yellow' },
   { href: '/work/object/', label: 'Object / Room', kind: 'Showroom study', image: '/images/object-800.webp', alt: 'A chrome chair and a mushroom lamp in a sunlit yellow room' },
 ];
+const features = [
+  { icon: Palette, name: 'Your own look', text: 'Type, colour and imagery chosen for your business, not for everyone’s.' },
+  { icon: Smartphone, name: 'Phone first', text: 'Most visitors arrive on a phone, so every page is designed for it first.' },
+  { icon: Gauge, name: 'Fast and accessible', text: 'Light pages, readable text and full keyboard support.' },
+  { icon: MessagesSquare, name: 'A direct line', text: 'You talk to the two people who design and build your site.' },
+];
 const steps = [
   { name: 'Say hello', text: 'Email us or send a short brief. We reply with questions, not a sales pitch.' },
   { name: 'Find the direction', text: 'We explore type, colour, imagery and tone, and show you the direction on real pages.' },
@@ -28,16 +33,16 @@ const steps = [
   { name: 'Launch', text: 'We put the site live on your domain and show you how to keep it up to date.' },
 ];
 const planNotes: Record<string, string> = { essential: 'Best for new businesses', expanded: 'For more pages and stories', custom: 'For shops, bookings and more' };
-const check = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focusable="false"');
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
-  <meta name="theme-color" content="#04050d"/>
+  <meta name="theme-color" content="#05060f"/>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
-  <script is:inline>try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
+  <script is:inline>document.documentElement.classList.add('js');try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
 </head>
 <body class="cx">
   <a class="cx-skip" href="#main">Skip to content</a>
@@ -47,7 +52,7 @@ const check = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3
       <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff3616"/></svg>
       <span>WebDECOR</span>
     </a>
-    <nav class="cx-nav" aria-label="Page sections"><a href="#features">Features</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#process">Process</a><a href="#faq">FAQ</a></nav>
+    <nav class="cx-nav" aria-label="Page sections"><a href="#features">Features</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
     <div class="cx-header-end">
       <button class="cx-switch" type="button" role="switch" aria-checked="false" data-concept-switch><span class="cx-switch-track" aria-hidden="true"><span></span></span><span class="cx-switch-label">Cybercore</span></button>
       <a class="cx-btn cx-btn-light cx-btn-small" href="/start/">Start a project</a>
@@ -56,75 +61,59 @@ const check = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3
 
   <main id="main">
     <section class="cx-hero" id="top" aria-labelledby="cx-hero-title">
-      <ConceptGlass/>
-      <div class="cx-grain" aria-hidden="true"></div>
-      <p class="cx-pill"><span class="cx-dot" aria-hidden="true"></span>A two-person web design studio</p>
-      <h1 id="cx-hero-title">Websites with<br/><em>character.</em></h1>
-      <p class="cx-hero-sub">We design and build websites for small local and creative businesses: cafés, makers, artists and shops. Each one gets a look of its own.</p>
-      <div class="cx-actions">
-        <a class="cx-btn cx-btn-light" href="/start/">Start a project <Icon name="arrow-up-right"/></a>
+      <div class="cx-shader" data-shader="hero" aria-hidden="true"></div>
+      <p class="cx-pill" data-reveal>A two-person web design studio</p>
+      <h1 id="cx-hero-title" data-reveal>Websites with<br/><em>character.</em></h1>
+      <p class="cx-hero-sub" data-reveal>We design and build websites for small local and creative businesses. Each one gets a look of its own.</p>
+      <div class="cx-actions" data-reveal>
+        <a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a>
         <a class="cx-btn cx-btn-glass" href="#pricing">See pricing</a>
       </div>
-      <div class="cx-stats cx-stats-left"><p><b>2</b><span>People, from first call to launch</span></p><p><b>{agency.pricing[0].price}</b><span>Starting price</span></p></div>
-      <div class="cx-stats cx-stats-right"><p><b>0</b><span>Templates used</span></p><p><b>4</b><span>Experimental lab worlds</span></p></div>
       <div class="cx-hero-cards">
-        {showcase.map(item => <a class="cx-hcard" href={item.href}><span class="cx-hcard-label"><span><i class="cx-dot" aria-hidden="true"></i>{item.label}</span><span>{item.kind}</span></span><img src={item.image} alt={item.alt} width="800" height="600" fetchpriority="high"/></a>)}
+        {showcase.map(item => <a class="cx-hcard" href={item.href}><span class="cx-hcard-label"><span>{item.label}</span><span>{item.kind}</span></span><img src={item.image} alt={item.alt} width="800" height="600" fetchpriority="high"/></a>)}
       </div>
-    </section>
-
-    <section class="cx-section cx-intro" aria-label="About the studio">
-      <p class="cx-wrap">Most small business websites start from the same template. <span>Ours start from your business: what you make, how it feels to walk in, and who it's for.</span> We design every page around that, then build it ourselves.</p>
     </section>
 
     <section class="cx-section cx-features" id="features" aria-labelledby="cx-features-title">
       <div class="cx-wrap">
-        <div class="cx-head"><div><p class="cx-kicker">Features</p><h2 class="cx-h2" id="cx-features-title">A complete website, designed around you.</h2></div><p class="cx-lead">Every project includes art direction, page design for phones and desktops, the build and the launch.</p></div>
-        <div class="cx-bento">
-          <article class="cx-tile cx-tile-demo"><h3>A look that's yours</h3><p>Same content in a template, then art directed. Pick a business and drag to compare.</p><div class="cx-tile-visual"><CharacterDemo/></div></article>
-          <article class="cx-tile"><h3>Type and colour, chosen</h3><p>Fonts, colours and imagery picked for your business, not for everyone's.</p><div class="cx-tile-visual cx-spec" aria-hidden="true"><span class="cx-spec-type">Aa</span><span class="cx-swatches"><i style="--c:#ff3616"></i><i style="--c:#f6d26b"></i><i style="--c:#b5532f"></i><i style="--c:#1c1c1b"></i></span></div></article>
-          <article class="cx-tile"><h3>Designed for phones first</h3><p>Most of your visitors arrive on a phone, so we design for it first.</p><div class="cx-tile-visual cx-phone-wrap" aria-hidden="true"><span class="cx-phone"><img src="/images/collage-playground-640.webp" alt="" width="640" height="427" loading="lazy"/><b></b><b></b><b></b></span></div></article>
-          <article class="cx-tile"><h3>Fast and accessible</h3><p>Built to load quickly and work for everyone.</p><ul class="cx-tile-visual cx-checks"><li>Text sizes you can read<span set:html={check}/></li><li>Works with a keyboard<span set:html={check}/></li><li>Light, quick pages<span set:html={check}/></li></ul></article>
-          <article class="cx-tile"><h3>A direct line</h3><p>You talk to the two people who design and build your site.</p><div class="cx-tile-visual cx-chat" aria-hidden="true"><p class="cx-msg-in">Can the menu be easier to find on phones?</p><p class="cx-msg-out">Done. It's at the top now, have a look.</p></div></article>
-          <article class="cx-tile"><h3>Launched and handed over</h3><p>We put it live and show you how to update it.</p><ul class="cx-tile-visual cx-launch"><li>Design approved<span set:html={check}/></li><li>Site built<span set:html={check}/></li><li>On your domain<em><i></i>Live</em></li></ul></article>
-        </div>
+        <div class="cx-head" data-reveal><p class="cx-kicker">Features</p><h2 class="cx-h2" id="cx-features-title">A website that could only be yours.</h2><p class="cx-lead">Most small business sites start from the same template. Ours start from your business, then we design every page and build it ourselves.</p></div>
+        <div class="cx-demo-card" data-reveal><CharacterDemo/></div>
+        <ul class="cx-features-list">
+          {features.map(f => <li data-reveal><span class="cx-icon" set:html={icon(f.icon)}/><h3>{f.name}</h3><p>{f.text}</p></li>)}
+        </ul>
       </div>
     </section>
 
     <section class="cx-section cx-work" id="work" aria-labelledby="cx-work-title">
       <div class="cx-wrap">
-        <div class="cx-head"><div><p class="cx-kicker">Work</p><h2 class="cx-h2" id="cx-work-title">Studies and experiments.</h2></div><p class="cx-lead">We're a new studio, so this is what we make when nobody is briefing us: concept projects and lab worlds that show our range.</p></div>
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">Work</p><h2 class="cx-h2" id="cx-work-title">Studies and experiments.</h2></div><p class="cx-lead">Concept projects and lab worlds that show the range of what we make.</p></div>
         <div class="cx-work-grid">
-          <a class="cx-work-card" href="/work/forme/"><span class="cx-work-image"><img src="/images/forme-800.webp" alt="A chrome handbag on red satin and checkerboard paper" width="800" height="600" loading="lazy"/></span><span class="cx-work-meta"><strong>FORME</strong><span>Fashion storefront</span><em>Design study</em></span></a>
-          <a class="cx-work-card" href="/work/object/"><span class="cx-work-image"><img src="/images/object-800.webp" alt="A chrome chair and a mushroom lamp in a sunlit yellow room" width="800" height="600" loading="lazy"/></span><span class="cx-work-meta"><strong>Object / Room</strong><span>Furniture showroom</span><em>Design study</em></span></a>
+          <a class="cx-work-card" href="/work/forme/" data-reveal><span class="cx-work-image"><img src="/images/forme-800.webp" alt="A chrome handbag on red satin and checkerboard paper" width="800" height="600" loading="lazy"/></span><span class="cx-work-meta"><strong>FORME</strong><span>Fashion storefront · Design study</span></span></a>
+          <a class="cx-work-card" href="/work/object/" data-reveal><span class="cx-work-image"><img src="/images/object-800.webp" alt="A chrome chair and a mushroom lamp in a sunlit yellow room" width="800" height="600" loading="lazy"/></span><span class="cx-work-meta"><strong>Object / Room</strong><span>Furniture showroom · Design study</span></span></a>
         </div>
-        <a class="cx-lab" href="/explore/">
-          <span class="cx-lab-thumbs" aria-hidden="true"><img src="/images/collage-playground-640.webp" alt="" width="640" height="427" loading="lazy"/><img src="/images/crt-eye-480.webp" alt="" width="480" height="320" loading="lazy"/><img src="/images/crt-moon-640.webp" alt="" width="640" height="600" loading="lazy"/></span>
-          <span class="cx-lab-text"><strong>The lab</strong><span>Collage, Swiss, Hackerlair and The Weird Internet: four experimental site worlds.</span></span>
-          <span class="cx-lab-arrow"><Icon name="arrow-up-right"/></span>
-        </a>
+        <a class="cx-lab" href="/explore/" data-reveal><span><strong>The lab</strong> Collage, Swiss, Hackerlair and The Weird Internet: four experimental site worlds.</span><Fragment set:html={icon(ArrowUpRight)}/></a>
       </div>
     </section>
 
     <section class="cx-section cx-process" id="process" aria-labelledby="cx-process-title">
       <div class="cx-wrap">
-        <div class="cx-head"><div><p class="cx-kicker">Process</p><h2 class="cx-h2" id="cx-process-title">How a project runs.</h2></div><p class="cx-lead">Plain steps, and the same two people from start to finish.</p></div>
-        <ol class="cx-steps">{steps.map((s, i) => <li><span>Step {i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
+        <div class="cx-head" data-reveal><p class="cx-kicker">Process</p><h2 class="cx-h2" id="cx-process-title">How a project runs.</h2></div>
+        <ol class="cx-steps">{steps.map((s, i) => <li data-reveal><span>0{i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
       </div>
     </section>
 
     <section class="cx-section cx-pricing" id="pricing" aria-labelledby="cx-pricing-title">
       <div class="cx-wrap">
-        <div class="cx-head cx-head-center"><p class="cx-kicker">Pricing</p><h2 class="cx-h2" id="cx-pricing-title">Straightforward pricing.</h2><p class="cx-lead">Fixed prices for most projects. Anything bigger is quoted up front.</p></div>
+        <div class="cx-head cx-head-center" data-reveal><p class="cx-kicker">Pricing</p><h2 class="cx-h2" id="cx-pricing-title">Straightforward pricing.</h2><p class="cx-lead">Fixed prices for most projects. Anything bigger is quoted up front.</p></div>
         <div class="cx-plans">
           {agency.pricing.map(plan => (
-            <article class:list={['cx-plan', { 'cx-plan-featured': plan.id === 'essential' }]}>
-              {plan.id === 'essential' && <ConceptGlass ribs={12} mobileRibs={8}/>}
+            <article class:list={['cx-plan', { 'cx-plan-featured': plan.id === 'essential' }]} data-reveal>
               <p class="cx-plan-note">{planNotes[plan.id]}</p>
               <h3>{plan.name}</h3>
               <p class="cx-plan-price">{plan.id === 'custom' ? 'Quoted' : plan.price}</p>
               <p class="cx-plan-text">{plan.description}</p>
-              <ul>{plan.features.map(f => <li><span set:html={check}/>{f}</li>)}</ul>
-              <a class:list={['cx-btn', plan.id === 'essential' ? 'cx-btn-light' : 'cx-btn-line']} href={`/start/?plan=${plan.id}`}>{plan.id === 'custom' ? 'Ask for a quote' : `Choose ${plan.name}`}</a>
+              <ul>{plan.features.map(f => <li><Fragment set:html={icon(Check)}/>{f}</li>)}</ul>
+              <a class:list={['cx-btn', plan.id === 'essential' ? 'cx-btn-accent' : 'cx-btn-line']} href={`/start/?plan=${plan.id}`}>{plan.id === 'custom' ? 'Ask for a quote' : `Choose ${plan.name}`}</a>
             </article>
           ))}
         </div>
@@ -133,32 +122,29 @@ const check = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3
 
     <section class="cx-section cx-faq" id="faq" aria-labelledby="cx-faq-title">
       <div class="cx-wrap cx-faq-grid">
-        <div><p class="cx-kicker">FAQ</p><h2 class="cx-h2" id="cx-faq-title">Questions.</h2><p class="cx-lead">Something else? Email <a href={`mailto:${agency.email}`}>{agency.email}</a>.</p></div>
-        <div class="cx-faq-list">{agency.faqs.map(f => <details><summary>{f.question}<span class="cx-plus" aria-hidden="true"></span></summary><p>{f.answer}</p></details>)}</div>
+        <div data-reveal><p class="cx-kicker">FAQ</p><h2 class="cx-h2" id="cx-faq-title">Questions.</h2><p class="cx-lead">Something else? Email <a href={`mailto:${agency.email}`}>{agency.email}</a>.</p></div>
+        <div class="cx-faq-list" data-reveal>{agency.faqs.map(f => <details><summary>{f.question}<span class="cx-plus" aria-hidden="true"></span></summary><p>{f.answer}</p></details>)}</div>
       </div>
     </section>
 
     <section class="cx-final" aria-labelledby="cx-final-title">
-      <div class="cx-final-box">
-        <ConceptGlass ribs={32} mobileRibs={12}/>
-        <div class="cx-grain" aria-hidden="true"></div>
+      <div class="cx-final-box" data-reveal>
+        <div class="cx-shader" data-shader="final" aria-hidden="true"></div>
         <h2 id="cx-final-title">Tell us about your <em>business.</em></h2>
         <p>Send a few lines about what you do. We'll reply with questions and next steps.</p>
-        <div class="cx-actions"><a class="cx-btn cx-btn-light" href="/start/">Start a project <Icon name="arrow-up-right"/></a><a class="cx-btn cx-btn-glass" href={`mailto:${agency.email}`}>{agency.email}</a></div>
+        <div class="cx-actions"><a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a><a class="cx-btn cx-btn-glass" href={`mailto:${agency.email}`}>{agency.email}</a></div>
       </div>
     </section>
   </main>
 
   <footer class="cx-footer">
-    <div class="cx-wrap cx-footer-grid">
-      <div><a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff3616"/></svg><span>WebDECOR</span></a><p>Websites with character. A two-person studio.</p></div>
-      <nav aria-label="Footer: studio"><p>Studio</p><a href="#features">Features</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="/explore/">The lab</a></nav>
-      <nav aria-label="Footer: contact"><p>Contact</p><a href={`mailto:${agency.email}`}>{agency.email}</a><a href="/start/">Start a project</a></nav>
+    <div class="cx-wrap cx-footer-row">
+      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff3616"/></svg><span>WebDECOR</span></a>
+      <nav aria-label="Footer"><a href="#features">Features</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="/explore/">The lab</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
     </div>
-    <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR</span><span>Concept preview</span></p>
+    <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR · Websites with character</span><span>Concept preview · <a href="/">Current site</a></span></p>
   </footer>
 
-  <p class="cx-preview">Concept preview <a href="/">Current site <Icon name="arrow-up-right"/></a></p>
   <script>import '../scripts/concept-character';</script>
 </body>
 </html>
