@@ -3,7 +3,7 @@ import 'img-comparison-slider';
 import { animate, inView } from 'motion';
 import {
   ShaderMount, ShaderFitOptions, defaultObjectSizing, getShaderColorFromString,
-  godRaysFragmentShader, getShaderNoiseTexture, meshGradientFragmentShader,
+  flutedGlassFragmentShader, GlassDistortionShapes, GlassGridShapes, staticMeshGradientFragmentShader,
 } from '@paper-design/shaders';
 
 const root = document.documentElement;
@@ -22,13 +22,13 @@ switchButton?.addEventListener('click', () => {
 });
 setPower(root.dataset.on === 'true');
 
-// The header is light-on-dark over the hero, then turns solid once the demo card that overlaps the hero reaches it.
+// The header is clear over the top of the hero, frosted once the page scrolls, and solid after the hero.
 const header = document.querySelector<HTMLElement>('[data-header]');
-const showcase = document.querySelector<HTMLElement>('.cx-showcase');
-if (header && showcase) {
+const hero = document.querySelector<HTMLElement>('.cx-hero');
+if (header && hero) {
   const update = () => {
     header.toggleAttribute('data-scrolled', scrollY > 8);
-    header.toggleAttribute('data-solid', showcase.getBoundingClientRect().top < header.offsetHeight);
+    header.toggleAttribute('data-solid', hero.getBoundingClientRect().bottom < header.offsetHeight);
   };
   addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);
@@ -40,32 +40,44 @@ const sizing = (fit: keyof typeof ShaderFitOptions, scale = 1) => ({
   u_fit: ShaderFitOptions[fit], u_scale: scale, u_rotation: defaultObjectSizing.rotation,
   u_offsetX: 0, u_offsetY: 0, u_originX: .5, u_originY: .5, u_worldWidth: 0, u_worldHeight: 0,
 });
-const mount = (element: Element | null, create: (element: HTMLElement) => void) => {
-  if (!(element instanceof HTMLElement)) return;
-  try { create(element); element.dataset.ready = ''; } catch { /* WebGL unavailable. */ }
+
+// The colour field behind the glass: a static mesh gradient in sky blue with a little pink, rendered once to an image.
+const renderColourField = async () => {
+  const host = document.createElement('div');
+  host.style.cssText = 'position:fixed;left:0;top:0;width:960px;height:640px;opacity:0;pointer-events:none;z-index:-10';
+  document.body.append(host);
+  const colors = ['#1f7fe8', '#4db4f7', '#a8dcff', '#ff74b4', '#2a92ee'];
+  const field = new ShaderMount(host, staticMeshGradientFragmentShader, {
+    u_colors: colors.map(getShaderColorFromString), u_colorsCount: colors.length,
+    u_positions: 7, u_waveX: .6, u_waveXShift: 0, u_waveY: .7, u_waveYShift: .2,
+    u_mixing: .6, u_grainMixer: 0, u_grainOverlay: 0,
+    ...sizing('cover'),
+  }, { preserveDrawingBuffer: true }, 0, 0, 1);
+  await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  const image = new Image();
+  image.src = field.canvasElement.toDataURL('image/png');
+  field.dispose();
+  host.remove();
+  await image.decode();
+  return image;
 };
 
-// Hero: soft god rays in the brand colours, blue from above and warm light rising from below.
-mount(document.querySelector('[data-shader="hero"]'), element => {
-  const colors = ['#1b2fd1cc', '#ff3616aa', '#ffffff', '#ffb08a'];
-  new ShaderMount(element, godRaysFragmentShader, {
-    u_colorBack: getShaderColorFromString('#05060f'), u_colorBloom: getShaderColorFromString('#1b2fd1'),
-    u_colors: colors.map(getShaderColorFromString), u_colorsCount: colors.length,
-    u_density: .3, u_spotty: .3, u_midIntensity: .4, u_midSize: .2, u_intensity: .8, u_bloom: .4,
-    u_noiseTexture: getShaderNoiseTexture(),
-    ...sizing('cover'), u_offsetY: -.55,
-  }, undefined, reducedMotion ? 0 : .5);
-});
-
-// Closing call to action: a slow mesh gradient in the brand colours.
-mount(document.querySelector('[data-shader="final"]'), element => {
-  const colors = ['#05060f', '#1b2fd1', '#ff3616', '#ffb08a'];
-  new ShaderMount(element, meshGradientFragmentShader, {
-    u_colors: colors.map(getShaderColorFromString), u_colorsCount: colors.length,
-    u_distortion: .8, u_swirl: .15, u_grainMixer: 0, u_grainOverlay: .1,
+// Fluted glass over that colour field, for the hero and the closing call to action.
+const glass = (element: HTMLElement, image: HTMLImageElement) => {
+  new ShaderMount(element, flutedGlassFragmentShader, {
+    u_image: image,
+    u_colorBack: getShaderColorFromString('#00000000'), u_colorShadow: getShaderColorFromString('#0a2a66'), u_colorHighlight: getShaderColorFromString('#ffffff'),
+    u_shadows: .4, u_size: .6, u_angle: 0, u_distortion: 1, u_shift: 0, u_blur: .2, u_edges: .35, u_stretch: 0,
+    u_distortionShape: GlassDistortionShapes.prism, u_highlights: .3, u_shape: GlassGridShapes.lines,
+    u_marginLeft: 0, u_marginRight: 0, u_marginTop: 0, u_marginBottom: 0, u_grainMixer: 0, u_grainOverlay: .06,
     ...sizing('cover'),
-  }, undefined, reducedMotion ? 0 : .25);
-});
+  });
+  element.dataset.ready = '';
+};
+const glassSurfaces = Array.from(document.querySelectorAll<HTMLElement>('[data-shader="glass"]'));
+if (glassSurfaces.length) {
+  renderColourField().then(image => glassSurfaces.forEach(element => glass(element, image))).catch(() => { /* WebGL unavailable: the CSS gradient stays. */ });
+}
 
 // Gentle reveals on scroll (Motion). Content stays visible when motion is reduced or scripts fail.
 if (!reducedMotion) {

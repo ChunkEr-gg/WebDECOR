@@ -13,7 +13,7 @@ The original editorial style is restored: a light grid-based appearance by defau
 ## Concept: next site direction
 
 - `/concept/` — a proposed redesign built on the brand definition (bold and warm, for small local and creative businesses). It is self-contained (`src/pages/concept.astro`, `src/components/concept/`, `src/styles/concept-character.css`, `src/scripts/concept-character.ts`), is not linked from the current site, is excluded from the sitemap, and is marked `noindex`. Its Cybercore switch is stored separately from the main site's appearance setting.
-- The concept uses libraries for its visual parts rather than hand-built effects: [Paper Shaders](https://github.com/paper-design/shaders) (`@paper-design/shaders`) renders the hero (god rays) and the closing call to action (mesh gradient), `img-comparison-slider` powers the template-versus-character comparison, `lucide-static` supplies the icons, and `motion` handles the scroll reveals. Without WebGL, a CSS gradient stands in for each shader.
+- The concept uses libraries for its visual parts rather than hand-built effects: [Paper Shaders](https://github.com/paper-design/shaders) (`@paper-design/shaders`) renders the fluted glass on the hero and the closing call to action, over a sky blue and pink colour field drawn by its static mesh gradient (no image files), `img-comparison-slider` powers the template-versus-character comparison, `lucide-static` supplies the icons, and `motion` handles the scroll reveals. Without WebGL, a CSS gradient stands in for each shader.
 
 ## Design archive
 

@@ -1,5 +1,5 @@
 ---
-// Concept for the next WebDECOR site: a clean product-style page; the hero and closing sections are rendered with Paper Shaders.
+// Concept for the next WebDECOR site: a clean product-style page; the hero and closing sections use Paper Shaders' fluted glass.
 // It stands apart from the current site: own layout, own styles, not in the sitemap, and not indexed.
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
@@ -17,10 +17,10 @@ import { designStudies } from '../data/design-studies';
 const title = 'WebDECOR — Websites with character (concept)';
 const description = 'A two-person studio designing and building websites for small local and creative businesses.';
 const features = [
-  { icon: Palette, name: 'Your own look', text: 'Type, colour and imagery chosen for your business, not for everyone’s.' },
-  { icon: Smartphone, name: 'Phone first', text: 'Most visitors arrive on a phone, so every page is designed for it first.' },
-  { icon: Gauge, name: 'Fast and accessible', text: 'Light pages, readable text and full keyboard support.' },
-  { icon: MessagesSquare, name: 'A direct line', text: 'You talk to the two people who design and build your site.' },
+  { icon: Palette, name: 'Your own look', text: 'Type, colour and imagery chosen for your business.' },
+  { icon: Smartphone, name: 'Phone first', text: 'Every page is designed for phones first.' },
+  { icon: Gauge, name: 'Fast and accessible', text: 'Light pages, readable text, keyboard friendly.' },
+  { icon: MessagesSquare, name: 'A direct line', text: 'You talk to the two people building your site.' },
 ];
 const steps = [
   { name: 'Say hello', text: 'Email us or send a short brief. We reply with questions, not a sales pitch.' },
@@ -38,7 +38,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
-  <meta name="theme-color" content="#05060f"/>
+  <meta name="theme-color" content="#0d5fd6"/>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
   <script is:inline>document.documentElement.classList.add('js');try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
 </head>
@@ -47,10 +47,10 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <header class="cx-header" data-header>
     <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top">
-      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff3616"/></svg>
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff6fae"/></svg>
       <span>WebDECOR</span>
     </a>
-    <nav class="cx-nav" aria-label="Page sections"><a href="#features">Features</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <nav class="cx-nav" aria-label="Page sections"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
     <div class="cx-header-end">
       <button class="cx-switch" type="button" role="switch" aria-checked="false" data-concept-switch><span class="cx-switch-track" aria-hidden="true"><span></span></span><span class="cx-switch-label">Cybercore</span></button>
       <a class="cx-btn cx-btn-light cx-btn-small" href="/start/">Start a project</a>
@@ -59,26 +59,25 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <main id="main">
     <section class="cx-hero" id="top" aria-labelledby="cx-hero-title">
-      <div class="cx-shader" data-shader="hero" aria-hidden="true"></div>
-      <p class="cx-pill" data-reveal>A two-person web design studio</p>
+      <div class="cx-shader" data-shader="glass" aria-hidden="true"></div>
+      <p class="cx-pill" data-reveal><span class="cx-dot" aria-hidden="true"></span>A two-person web design studio</p>
       <h1 id="cx-hero-title" data-reveal>Websites with<br/><em>character.</em></h1>
       <p class="cx-hero-sub" data-reveal>We design and build websites for small local and creative businesses. Each one gets a look of its own.</p>
       <div class="cx-actions" data-reveal>
         <a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a>
         <a class="cx-btn cx-btn-glass" href="#pricing">See pricing</a>
       </div>
-    </section>
-
-    <section class="cx-showcase" aria-label="Template versus art direction">
-      <div class="cx-demo-card"><CharacterDemo/></div>
+      <div class="cx-stats cx-stats-left"><p><b>2</b><span>People, from first call to launch</span></p><p><b>{agency.pricing[0].price}</b><span>Starting price</span></p></div>
+      <div class="cx-stats cx-stats-right"><p><b>0</b><span>Templates used</span></p><p><b>4</b><span>Live lab sites</span></p></div>
+      <ul class="cx-strip" aria-label="What every project includes">
+        {features.map(f => <li><span class="cx-strip-icon" set:html={icon(f.icon)}/><span><strong>{f.name}</strong>{f.text}</span></li>)}
+      </ul>
     </section>
 
     <section class="cx-section cx-features" id="features" aria-labelledby="cx-features-title">
       <div class="cx-wrap">
-        <div class="cx-head" data-reveal><p class="cx-kicker">Features</p><h2 class="cx-h2" id="cx-features-title">A website that could only be yours.</h2><p class="cx-lead">Most small business sites start from the same template. Ours start from your business, then we design every page and build it ourselves.</p></div>
-        <ul class="cx-features-list">
-          {features.map(f => <li data-reveal><span class="cx-icon" set:html={icon(f.icon)}/><h3>{f.name}</h3><p>{f.text}</p></li>)}
-        </ul>
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be yours.</h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
+        <div class="cx-demo-card" data-reveal><CharacterDemo/></div>
       </div>
     </section>
 
@@ -125,7 +124,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
     <section class="cx-final" aria-labelledby="cx-final-title">
       <div class="cx-final-box" data-reveal>
-        <div class="cx-shader" data-shader="final" aria-hidden="true"></div>
+        <div class="cx-shader" data-shader="glass" aria-hidden="true"></div>
         <h2 id="cx-final-title">Tell us about your <em>business.</em></h2>
         <p>Send a few lines about what you do. We'll reply with questions and next steps.</p>
         <div class="cx-actions"><a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a><a class="cx-btn cx-btn-glass" href={`mailto:${agency.email}`}>{agency.email}</a></div>
@@ -135,8 +134,8 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
   <footer class="cx-footer">
     <div class="cx-wrap cx-footer-row">
-      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff3616"/></svg><span>WebDECOR</span></a>
-      <nav aria-label="Footer"><a href="#features">Features</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="/explore/">Design archive</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
+      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" fill="#ff6fae"/></svg><span>WebDECOR</span></a>
+      <nav aria-label="Footer"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="/explore/">Design archive</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
     </div>
     <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR · Websites with character</span><span>Concept preview · <a href="/">Current site</a></span></p>
   </footer>
