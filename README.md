@@ -25,7 +25,7 @@ Older bookmarks remain usable. `/chrome/` and `/cybercore/` redirect to `/`; the
 
 ## Development
 
-Requires Node.js 20 or newer.
+Requires Node.js 20 or newer (`.nvmrc` pins 22 for `nvm use`).
 
 ```sh
 npm ci
@@ -35,6 +35,18 @@ npm run preview
 ```
 
 Astro serves the development site at `http://localhost:4321`. The static build is written to `dist/`.
+
+### Checks
+
+The scripts in `scripts/` bundle the real client modules with esbuild and exercise them against small DOM fakes in Node, so they need no browser or server.
+
+```sh
+npm test            # all checks (alias for npm run check)
+npm run verify      # all checks, then the production build
+npm run check:ascii       # ASCII image renderer
+npm run check:energy      # Cybercore energy network geometry and lifecycle
+npm run check:hackerlair  # Hackerlair terminal commands and navigation
+```
 
 Agency copy and contact configuration live in `src/data/agency.ts`. Design-study content lives in `src/data/design-studies.ts`. Page templates and components are in `src/pages/` and `src/components/`; images and icons are in `public/`. Motion and visual effects respect reduced-motion preferences, and the interactive workstation supports keyboard and pointer controls.
 

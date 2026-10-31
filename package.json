@@ -3,10 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
-    "preview": "astro preview --host 0.0.0.0"
+    "preview": "astro preview --host 0.0.0.0",
+    "check:ascii": "node scripts/check-ascii.mjs",
+    "check:energy": "node scripts/check-energy.mjs",
+    "check:hackerlair": "node scripts/check-hackerlair.mjs",
+    "check": "npm run check:ascii && npm run check:energy && npm run check:hackerlair",
+    "test": "npm run check",
+    "verify": "npm run check && npm run build"
   },
   "dependencies": {
     "@fontsource-variable/bodoni-moda": "^5.3.0",
@@ -25,5 +34,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.7"
   }
 }
