@@ -4,10 +4,17 @@ Each glyph is drawn as a centreline on a shared grid, then stroked with square e
 merged into one outline and compiled into a font. The letterforms grow out of the WebDECOR section
 wordmark: monoline strokes, softened corners, a flat-topped A and V, and a slab I.
 
+There are two weights drawn from the same centrelines: Regular (webdecor-display.woff2) and Light
+(webdecor-display-light.woff2), which only changes the stroke. The vertical metrics stay the same, so
+the weights line up.
+
 Requires: pip install fonttools skia-pathops brotli
-Run from the repository root: python3 scripts/build-font.py
+Run from the repository root: python3 scripts/build-font.py           (both weights)
+                          or: python3 scripts/build-font.py light     (one weight)
 """
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 import pathops
@@ -17,7 +24,11 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 
 UPM = 1000
-STROKE = 112                      # stroke weight in font units
+# weight name: (stroke in font units, OS/2 weight class, style name, file name)
+WEIGHTS = {'regular': (112, 700, 'Regular', 'webdecor-display.woff2'),
+           'light': (52, 300, 'Light', 'webdecor-display-light.woff2')}
+WEIGHT = sys.argv[1] if len(sys.argv) > 1 else None
+STROKE, WEIGHT_CLASS, STYLE, FILE = WEIGHTS[WEIGHT or 'regular']
 BIG, SMALL = 230, 56              # leaf corners: top-left and bottom-right curves, then the other two
 HALF = STROKE // 2
 CAP, XH, ASC, DESC = 700, 520, 740, -200
@@ -303,18 +314,24 @@ def build(out_dir: Path):
     fb.setupGlyf(glyphs)
     fb.setupHorizontalMetrics(metrics)
     fb.setupHorizontalHeader(ascent=ASC + 60, descent=DESC - 40)
-    fb.setupNameTable({'familyName': 'WebDECOR Display', 'styleName': 'Regular', 'uniqueFontIdentifier': 'WebDECOR Display Regular 1.0',
-                       'fullName': 'WebDECOR Display', 'psName': 'WebDECORDisplay-Regular', 'version': 'Version 1.000',
+    full_name = 'WebDECOR Display' + ('' if STYLE == 'Regular' else f' {STYLE}')
+    fb.setupNameTable({'familyName': 'WebDECOR Display', 'styleName': STYLE, 'uniqueFontIdentifier': f'WebDECOR Display {STYLE} 1.0',
+                       'fullName': full_name, 'psName': f'WebDECORDisplay-{STYLE}', 'version': 'Version 1.000',
                        'copyright': 'Copyright 2026 WebDECOR'})
     fb.setupOS2(sTypoAscender=ASC + 60, sTypoDescender=DESC - 40, sTypoLineGap=0, usWinAscent=ASC + 80, usWinDescent=-(DESC - 60),
-                sxHeight=XH, sCapHeight=CAP, achVendID='WDEC', usWeightClass=700, fsSelection=0x40)
+                sxHeight=XH, sCapHeight=CAP, achVendID='WDEC', usWeightClass=WEIGHT_CLASS, fsSelection=0x40)
     fb.setupPost()
     fb.font.flavor = 'woff2'
     out_dir.mkdir(parents=True, exist_ok=True)
-    target = out_dir / 'webdecor-display.woff2'
+    target = out_dir / FILE
     fb.save(target)
     print(f'{target} ({target.stat().st_size} bytes, {len(order)} glyphs)')
 
 
 if __name__ == '__main__':
-    build(Path(__file__).resolve().parent.parent / 'public' / 'fonts')
+    if WEIGHT is None:
+        # The glyph table is built from module-level constants, so each weight runs in its own process.
+        for name in WEIGHTS:
+            subprocess.run([sys.executable, __file__, name], check=True)
+    else:
+        build(Path(__file__).resolve().parent.parent / 'public' / 'fonts')

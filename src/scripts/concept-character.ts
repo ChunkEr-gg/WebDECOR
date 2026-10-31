@@ -23,9 +23,17 @@ setPower(root.dataset.on === 'true');
 const header = document.querySelector<HTMLElement>('[data-header]');
 const hero = document.querySelector<HTMLElement>('.cx-hero');
 if (header && hero) {
+  // The nav pill lights the section being read: the last one whose top has passed the upper third of the screen.
+  const links = Array.from(header.querySelectorAll<HTMLAnchorElement>('.cx-nav a[href^="#"]'));
+  const targets = links.map(link => document.querySelector<HTMLElement>(link.hash)).filter((t): t is HTMLElement => !!t);
   const update = () => {
     header.toggleAttribute('data-scrolled', scrollY > 8);
     header.toggleAttribute('data-solid', hero.getBoundingClientRect().bottom < header.offsetHeight);
+    const line = innerHeight / 3;
+    const current = targets.reduce<HTMLElement | undefined>((found, target) => target.getBoundingClientRect().top <= line ? target : found, undefined) ?? targets[0];
+    links.forEach(link => {
+      if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current');
+    });
   };
   addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);

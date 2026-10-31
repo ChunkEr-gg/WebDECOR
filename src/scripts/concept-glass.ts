@@ -1,6 +1,6 @@
 // Live fluted glass for /concept/ (Paper Shaders).
-// Behind the glass sits a scene drawn on a 2D canvas: a moving mesh gradient in the page's sky blues, night falling from the top,
-// a pink flare, and on the hero a black figure in profile with pink light flaring off its edge.
+// Behind the glass sits a scene drawn on a 2D canvas: a slowly moving mesh gradient of saturated sky blues, a pale mist
+// down the right, and on the hero a blurred navy figure walking out of a long trail of peach, pink, magenta and violet light.
 // The scene is uploaded as the fluted glass shader's image on every frame. Colours come from CSS custom properties,
 // so the glass follows the palette and the Cybercore switch. Without WebGL the CSS gradient behind each surface stays.
 import {
@@ -16,28 +16,67 @@ type MountInternals = {
   uniformLocations: Record<string, WebGLUniformLocation | null>;
 };
 
-type Palette = { field: string[]; night: string; pink: string; blush: string; shadow: string; highlight: string };
+type Palette = {
+  field: string[]; mist: string; figure: string; rim: string;
+  peach: string; pink: string; violet: string; magenta: string; shadow: string; highlight: string;
+};
 
-// A person in profile facing left, in a 1000-unit box. The shoulders run off the bottom edge.
-const FIGURE = new Path2D('M610 470C650 420 690 330 680 250C670 150 590 95 500 100C440 103 400 140 392 200C388 230 385 250 378 265C370 290 345 320 340 335C345 345 362 350 370 352C365 365 362 375 368 382C360 390 362 400 370 405C368 425 372 445 395 455C430 462 455 460 468 470C470 500 465 530 455 560C380 600 250 640 200 720C170 780 150 880 140 1000L900 1000C890 860 850 700 760 620C700 570 640 540 610 470Z');
-// Where the light sits, just in front of the face (figure units).
-const LIGHT = { x: 330, y: 300 };
-const SPRITE = { left: -60, top: -40, width: 1080, height: 1040 };
+// A person in three-quarter view, leaning forward into the light on the left, in a 1000-unit box: head, neck, body and two arms.
+// The body runs off the bottom edge. The glass and the blur make it a presence rather than a portrait.
+const FIGURE = (() => {
+  const path = new Path2D();
+  path.ellipse(565, 200, 52, 64, .12, 0, Math.PI * 2);
+  for (const d of [
+    'M530 250L595 250L610 310L535 310Z',
+    'M495 300C460 310 440 340 435 390C428 460 440 540 460 620C472 680 480 760 485 1000L705 1000C708 860 712 760 720 680C735 580 752 480 745 400C740 340 720 308 680 298C630 288 540 290 495 300Z',
+    'M450 340C420 400 400 480 392 560C388 610 390 650 396 680C410 690 428 688 436 676C440 620 450 540 470 470Z',
+    'M730 340C760 390 782 450 792 520C800 570 804 610 800 640C788 652 770 650 764 640C760 590 752 530 736 470Z',
+  ]) path.addPath(new Path2D(d));
+  return path;
+})();
+const SPRITE = { left: 240, top: 0, width: 760, height: 1080 };
+const FIGURE_BLUR = 48;
+// The light around the figure, in figure units: [x, y, radius x, radius y, colour, strength].
+type Glow = [number, number, number, number, keyof Palette, number];
+const FIGURE_LIGHT: Glow[] = [
+  [180, 560, 230, 250, 'pink', .65],
+  [250, 640, 170, 160, 'peach', .7],
+  [60, 840, 360, 100, 'pink', .85],
+  [250, 790, 170, 110, 'violet', .7],
+  [340, 300, 210, 280, 'peach', 1],
+  [370, 540, 160, 230, 'pink', 1],
+  [450, 500, 110, 300, 'magenta', .85],
+  [400, 760, 140, 220, 'magenta', 1],
+  [380, 720, 90, 140, 'magenta', .8],
+  [640, 960, 200, 110, 'violet', .5],
+];
+// The closing call to action has no figure: the same light, rising from the bottom of the box (box fractions, radii in heights).
+const BOX_LIGHT: Glow[] = [
+  [.2, .6, .45, .35, 'peach', .55],
+  [.36, .82, .6, .38, 'pink', .75],
+  [.55, 1.02, .7, .45, 'magenta', .9],
+  [.82, .9, .45, .3, 'pink', .45],
+];
+// Ghosts of the figure trail behind it to the left: [offset in figure units, colour, opacity, blur].
+const TRAIL: [number, keyof Palette, number, number][] = [
+  [270, 'peach', .3, 70], [180, 'pink', .35, 64], [90, 'magenta', .4, 56],
+];
 
 const GLASS = {
-  u_shadows: .5, u_angle: 0, u_distortion: .35, u_shift: 0, u_blur: .25, u_edges: .4, u_stretch: 0,
-  u_distortionShape: GlassDistortionShapes.lens, u_highlights: .45, u_shape: GlassGridShapes.lines,
+  u_shadows: .2, u_angle: 0, u_distortion: .55, u_shift: 0, u_blur: .3, u_edges: .25, u_stretch: 0,
+  u_distortionShape: GlassDistortionShapes.lens, u_highlights: .15, u_shape: GlassGridShapes.lines,
 };
 // The shader fits a set number of ribs across the surface (u_size 0 is 200 ribs, 1 is 5).
-// Ribs are about 24px wide on a desktop and never fewer than 24 across, so a figure still reads on a phone.
-const ribs = (width: number) => ({ u_size: (200 - Math.max(24, width / (14 + width * .007))) / 195 });
+// Fine ribs about 11px wide, and never fewer than 24 across.
+const ribs = (width: number) => ({ u_size: (200 - Math.min(200, Math.max(24, width / 11))) / 195 });
 
 const readPalette = (): Palette => {
   const style = getComputedStyle(document.documentElement);
   const token = (name: string) => style.getPropertyValue(name).trim();
   return {
     field: [1, 2, 3, 4].map(i => token(`--field-${i}`)),
-    night: token('--night'), pink: token('--pink'), blush: token('--blush'),
+    mist: token('--scene-mist'), figure: token('--scene-figure'), rim: token('--sky-soft'),
+    peach: token('--scene-peach'), pink: token('--scene-pink'), violet: token('--scene-violet'), magenta: token('--scene-magenta'),
     shadow: token('--midnight'), highlight: token('--cloud'),
   };
 };
@@ -67,55 +106,68 @@ const createField = (palette: Palette) => {
   host.style.cssText = 'position:fixed;left:0;top:0;width:320px;height:200px;opacity:0;pointer-events:none;z-index:-10';
   document.body.append(host);
   return new ShaderMount(host, meshGradientFragmentShader, {
-    ...fieldColours(palette), u_distortion: 1, u_swirl: .8, u_grainMixer: 0, u_grainOverlay: 0, ...sizing('cover'),
+    ...fieldColours(palette), u_distortion: .7, u_swirl: .5, u_grainMixer: 0, u_grainOverlay: 0, ...sizing('cover'),
   }, { preserveDrawingBuffer: true }, 0, 0, 1, 320 * 200);
+};
+
+// A soft elliptical light.
+const glow = (ctx: CanvasRenderingContext2D, x: number, y: number, rx: number, ry: number, colour: string, alpha: number) => {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(1, ry / rx);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+  g.addColorStop(0, rgba(colour, alpha));
+  g.addColorStop(.5, rgba(colour, alpha * .7));
+  g.addColorStop(1, rgba(colour, 0));
+  ctx.fillStyle = g;
+  ctx.fillRect(-rx, -rx, rx * 2, rx * 2);
+  ctx.restore();
 };
 
 const createScene = (element: HTMLElement, field: ShaderMount, withFigure: boolean) => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d')!;
-  const halo = document.createElement('canvas');
   const figure = document.createElement('canvas');
-  const echoPink = document.createElement('canvas');
-  const echoSky = document.createElement('canvas');
+  const rim = document.createElement('canvas');
+  const ghosts = TRAIL.map(() => document.createElement('canvas'));
   let palette = readPalette();
   let place = { scale: 1, x: 0, y: 0 };
 
   // Shadows ignore the transform, so the shape is drawn far off the canvas and only its blurred shadow lands on it.
-  const blurred = (sprite: HTMLCanvasElement, layers: [string, number][]) => {
+  const blurred = (sprite: HTMLCanvasElement, colour: string, blur: number) => {
     const c = sprite.getContext('2d')!;
     const off = 10000;
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.globalCompositeOperation = 'source-over';
     c.clearRect(0, 0, sprite.width, sprite.height);
-    for (const [colour, blur] of layers) {
-      c.setTransform(place.scale, 0, 0, place.scale, -SPRITE.left * place.scale - off, -SPRITE.top * place.scale);
-      c.shadowOffsetX = off;
-      c.shadowColor = colour;
-      c.shadowBlur = blur * place.scale;
-      c.fill(FIGURE);
-    }
+    c.setTransform(place.scale, 0, 0, place.scale, -SPRITE.left * place.scale - off, -SPRITE.top * place.scale);
+    c.shadowOffsetX = off;
+    c.shadowColor = colour;
+    c.shadowBlur = blur * place.scale;
+    c.fill(FIGURE);
+    c.shadowColor = 'transparent';
+    return c;
   };
 
-  // The figure, its pink halo and two coloured echoes are drawn once per size, then moved around each frame.
+  // The figure, its pale rim and its warm ghosts are drawn once per size and palette, then moved each frame.
   const paintSprites = () => {
-    const { scale } = place;
-    for (const sprite of [halo, figure, echoPink, echoSky]) {
-      sprite.width = Math.ceil(SPRITE.width * scale);
-      sprite.height = Math.ceil(SPRITE.height * scale);
+    for (const sprite of [figure, rim, ...ghosts]) {
+      sprite.width = Math.ceil(SPRITE.width * place.scale);
+      sprite.height = Math.ceil(SPRITE.height * place.scale);
     }
-    blurred(halo, [[palette.pink, 90], [palette.blush, 26]]);
-    blurred(echoPink, [[palette.pink, 10]]);
-    blurred(echoSky, [[palette.field[3], 10]]);
-    const f = figure.getContext('2d')!;
-    f.setTransform(scale, 0, 0, scale, -SPRITE.left * scale, -SPRITE.top * scale);
-    f.save();
-    f.clip(FIGURE);
-    f.fillStyle = palette.pink;
-    f.fill(FIGURE);
-    // The black body is shifted away from the light, which leaves a pink rim along the face.
-    f.translate(14, 4);
-    f.fillStyle = palette.night;
-    f.fill(FIGURE);
-    f.restore();
+    // Navy at the head and shoulders, turning violet and magenta towards the bottom.
+    const c = blurred(figure, palette.figure, FIGURE_BLUR);
+    c.setTransform(place.scale, 0, 0, place.scale, -SPRITE.left * place.scale, -SPRITE.top * place.scale);
+    c.globalCompositeOperation = 'source-atop';
+    const tint = c.createLinearGradient(0, 480, 0, 1000);
+    tint.addColorStop(0, rgba(palette.violet, 0));
+    tint.addColorStop(.5, rgba(palette.violet, .55));
+    tint.addColorStop(1, rgba(palette.magenta, .8));
+    c.fillStyle = tint;
+    c.fillRect(SPRITE.left, 480, SPRITE.width, 600);
+    c.globalCompositeOperation = 'source-over';
+    blurred(rim, palette.rim, FIGURE_BLUR);
+    TRAIL.forEach(([, colour, , blur], i) => blurred(ghosts[i], palette[colour] as string, blur));
   };
 
   const resize = () => {
@@ -124,71 +176,50 @@ const createScene = (element: HTMLElement, field: ShaderMount, withFigure: boole
     canvas.width = Math.max(2, Math.round(width * k));
     canvas.height = Math.max(2, Math.round(height * k));
     const W = canvas.width, H = canvas.height;
-    const wide = W / H > 1.1;
-    const scale = wide ? H * .86 / 1000 : Math.min(H * .9 / 1000, W * 1.7 / 760);
-    place = { scale, x: (wide ? .63 : .64) * W - 530 * scale, y: (wide ? .1 : .06) * H };
+    // The figure stands right of centre with its head a fifth of the way down, and runs off the bottom.
+    const scale = Math.min(H / 1000, W * .9 / 424);
+    place = { scale, x: (W / H > 1.1 ? .59 : .6) * W - 565 * scale, y: H - 1000 * scale };
     if (withFigure) paintSprites();
   };
 
   const draw = (t: number) => {
     const W = canvas.width, H = canvas.height;
     const { scale } = place;
-    const sway = { x: Math.sin(t * .23) * .012 * W, y: Math.sin(t * .37 + 1) * .008 * H };
-    const pulse = .82 + .18 * Math.sin(t * .9);
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
     ctx.drawImage(field.canvasElement, 0, 0, W, H);
 
-    // Night falls from the top, as in the reference heroes.
-    const night = ctx.createLinearGradient(0, 0, 0, H);
-    night.addColorStop(0, rgba(palette.night, .78));
-    night.addColorStop(.5, rgba(palette.night, 0));
-    ctx.fillStyle = night;
-    ctx.fillRect(0, 0, W, H);
+    // A pale mist down the right-hand side, warming at the bottom corner.
+    glow(ctx, .9 * W, .34 * H, .3 * W, .62 * H, palette.mist, .9);
+    glow(ctx, .7 * W, .02 * H, .2 * W, .2 * H, palette.mist, .4);
+    glow(ctx, .9 * W, H, .24 * W, .2 * H, palette.peach, .25);
 
-    // The pink flare: a wide glow, a hot core and a horizontal streak that the ribs break into dashes.
-    const light = withFigure
-      ? { x: place.x + LIGHT.x * scale + sway.x + Math.sin(t * .41) * .012 * W, y: place.y + LIGHT.y * scale + sway.y, r: .62 * H }
-      : { x: .5 * W + Math.sin(t * .31) * .1 * W, y: .8 * H, r: 1.05 * H };
-    const glow = ctx.createRadialGradient(light.x, light.y, 0, light.x, light.y, light.r * (1 + .05 * Math.sin(t * .7)));
-    glow.addColorStop(0, rgba(palette.pink, pulse));
-    glow.addColorStop(.4, rgba(palette.pink, .58 * pulse));
-    glow.addColorStop(1, rgba(palette.pink, 0));
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, W, H);
-    ctx.globalCompositeOperation = 'screen';
-    const core = ctx.createRadialGradient(light.x, light.y, 0, light.x, light.y, .1 * H);
-    core.addColorStop(0, rgba(palette.highlight, .8 * pulse));
-    core.addColorStop(.4, rgba(palette.blush, .45 * pulse));
-    core.addColorStop(1, rgba(palette.blush, 0));
-    ctx.fillStyle = core;
-    ctx.fillRect(0, 0, W, H);
-    ctx.save();
-    ctx.translate(light.x, light.y);
-    ctx.scale(1, .05);
-    const streak = ctx.createRadialGradient(0, 0, 0, 0, 0, .55 * W);
-    streak.addColorStop(0, rgba(palette.highlight, .6 * pulse));
-    streak.addColorStop(.3, rgba(palette.pink, .5 * pulse));
-    streak.addColorStop(1, rgba(palette.pink, 0));
-    ctx.fillStyle = streak;
-    ctx.fillRect(-W, -H * 20, W * 2, H * 40);
-    ctx.restore();
-
-    if (withFigure) {
-      const x = place.x + SPRITE.left * scale + sway.x, y = place.y + SPRITE.top * scale + sway.y;
-      ctx.globalAlpha = .75 + .25 * pulse;
-      ctx.drawImage(halo, x, y);
-      // Chromatic echoes drift apart and back behind the figure.
-      const split = (.025 + .02 * Math.sin(t * .53)) * W;
-      ctx.globalAlpha = .8;
-      ctx.drawImage(echoPink, x - split, y - split * .15);
-      ctx.drawImage(echoSky, x + split * .8, y + split * .1);
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = 1;
-      ctx.drawImage(figure, x, y);
+    const breathe = .9 + .1 * Math.sin(t * .8);
+    if (!withFigure) {
+      BOX_LIGHT.forEach(([x, y, rx, ry, colour, a], i) => {
+        const drift = Math.sin(t * (.25 + i * .07) + i) * .06 * W;
+        glow(ctx, x * W + drift, y * H, rx * H * 1.6, ry * H, palette[colour] as string, a * breathe);
+      });
+      return;
     }
-    ctx.globalCompositeOperation = 'source-over';
+
+    // The figure drifts and its trail stretches and gathers, as if it were walking out of its own light.
+    const sway = { x: Math.sin(t * .23) * .015 * W, y: Math.sin(t * .37 + 1) * .006 * H };
+    const stretch = 1 + .35 * Math.sin(t * .45);
+    const ox = place.x + sway.x, oy = place.y + sway.y;
+    FIGURE_LIGHT.forEach(([x, y, rx, ry, colour, a], i) => {
+      const lag = (500 - x) * (stretch - 1) * .25;
+      glow(ctx, ox + (x - lag) * scale, oy + y * scale, rx * scale, ry * scale, palette[colour] as string, a * (i > 3 ? breathe : 1));
+    });
+    const sx = ox + SPRITE.left * scale, sy = oy + SPRITE.top * scale;
+    TRAIL.forEach(([offset, , alpha], i) => {
+      ctx.globalAlpha = alpha * breathe;
+      ctx.drawImage(ghosts[i], sx - offset * stretch * scale, sy + Math.sin(t * .6 + i) * 6 * scale);
+    });
+    ctx.globalAlpha = .4;
+    ctx.drawImage(rim, sx + 24 * scale, sy - 4 * scale);
     ctx.globalAlpha = 1;
+    ctx.drawImage(figure, sx, sy);
   };
 
   const repaint = (next: Palette) => { palette = next; if (withFigure) paintSprites(); };

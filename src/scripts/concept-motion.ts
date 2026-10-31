@@ -21,7 +21,7 @@ export const playMotion = () => {
   const heroStop = document.querySelector<HTMLElement>('.cx-hero .cx-stop');
   if (heroStop) pop(heroStop, .75);
 
-  // The studio's numbers count up from zero.
+  // The prices count up from zero.
   all<HTMLElement>('[data-count]').forEach(element => {
     const [, prefix, digits, suffix] = element.textContent?.match(/^(\D*)([\d,]+)(.*)$/) ?? [];
     const target = Number(digits?.replace(/,/g, ''));
