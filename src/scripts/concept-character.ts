@@ -22,11 +22,14 @@ switchButton?.addEventListener('click', () => {
 });
 setPower(root.dataset.on === 'true');
 
-// The header is light-on-dark over the hero, then turns solid once the hero has scrolled past.
+// The header is light-on-dark over the hero, then turns solid once the demo card that overlaps the hero reaches it.
 const header = document.querySelector<HTMLElement>('[data-header]');
-const hero = document.querySelector<HTMLElement>('.cx-hero');
-if (header && hero) {
-  const update = () => header.toggleAttribute('data-solid', hero.getBoundingClientRect().bottom < header.offsetHeight);
+const showcase = document.querySelector<HTMLElement>('.cx-showcase');
+if (header && showcase) {
+  const update = () => {
+    header.toggleAttribute('data-scrolled', scrollY > 8);
+    header.toggleAttribute('data-solid', showcase.getBoundingClientRect().top < header.offsetHeight);
+  };
   addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);
   update();
