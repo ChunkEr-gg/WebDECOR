@@ -1,5 +1,6 @@
 ---
-// Concept for the next WebDECOR site: a clean product-style page; the hero and closing sections use Paper Shaders' fluted glass.
+// Concept for the next WebDECOR site: a clean product-style page set in WebDECOR Display, the studio's own typeface (scripts/build-font.py).
+// The hero and closing sections use Paper Shaders' fluted glass.
 // It stands apart from the current site: own layout, own styles, not in the sitemap, and not indexed.
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
@@ -40,6 +41,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
   <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
   <meta name="theme-color" content="#0d5fd6"/>
   <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
+  <link rel="preload" href="/fonts/webdecor-display.woff2" as="font" type="font/woff2" crossorigin/>
   <script is:inline>document.documentElement.classList.add('js');try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
 </head>
 <body class="cx">
@@ -76,7 +78,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
 
     <section class="cx-section cx-features" id="features" aria-labelledby="cx-features-title">
       <div class="cx-wrap">
-        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be yours.</h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be <span class="cx-mark">yours.</span></h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
         <div class="cx-demo-card" data-reveal><CharacterDemo/></div>
       </div>
     </section>
@@ -138,6 +140,7 @@ const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focus
       <nav aria-label="Footer"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="/explore/">Design archive</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
     </div>
     <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR · Websites with character</span><span>Concept preview · <a href="/">Current site</a></span></p>
+    <p class="cx-footer-mark" aria-hidden="true">WebDECOR<i>.</i></p>
   </footer>
 
   <script>import '../scripts/concept-character';</script>
