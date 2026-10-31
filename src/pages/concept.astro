@@ -1,0 +1,124 @@
+---
+// Concept for the next WebDECOR site, built on the brand definition: bold and warm, for small local and creative businesses.
+// It stands apart from the current site: own layout, own styles, not in the sitemap, and not indexed.
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/fredoka';
+import '@fontsource-variable/bodoni-moda';
+import '@fontsource-variable/bodoni-moda/wght-italic.css';
+import '@fontsource/anton';
+import '@fontsource/caveat';
+import '../styles/concept-character.css';
+import Icon from '../components/Icon.astro';
+import CyberWordmark from '../components/CyberWordmark.astro';
+import CyberSectionWordmark from '../components/agency/CyberSectionWordmark.astro';
+import CharacterDemo from '../components/concept/CharacterDemo.astro';
+import { agency } from '../data/agency';
+
+const title = 'WebDECOR — Websites with character (concept)';
+const description = 'A two-person studio giving small local and creative businesses a website with real art direction.';
+const audiences = [
+  { name: 'Cafés & bakeries', line: 'A site that feels like walking in the door.' },
+  { name: 'Makers & studios', line: 'Work shown with the same care it was made with.' },
+  { name: 'Artists & musicians', line: 'A home online as distinct as the work.' },
+  { name: 'Shops & practitioners', line: 'Clear, welcoming, and unmistakably yours.' },
+];
+const steps = [
+  { name: 'Say hello', text: 'Email us or fill in a short brief. We reply with questions, not a sales pitch.' },
+  { name: 'Find your character', text: 'We explore type, colour, imagery and tone, then show you the direction in context.' },
+  { name: 'Design & build', text: 'We design each page for phones and desktops, then build it ourselves.' },
+  { name: 'Launch', text: 'We publish the site and show you how to keep it up to date.' },
+];
+const planNotes: Record<string, string> = { essential: 'Best for new businesses', expanded: 'For more pages and stories', custom: 'For shops, bookings and more' };
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
+  <meta name="theme-color" content="#e6e6e2"/>
+  <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
+  <script is:inline>try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
+</head>
+<body class="cc">
+  <a class="cc-skip" href="#main">Skip to content</a>
+  <p class="cc-preview">Concept preview: a proposed direction for WebDECOR. <a href="/">Back to the current site <Icon name="arrow-up-right"/></a></p>
+
+  <header class="cc-header">
+    <a class="cc-brand" href="#top" aria-label="WebDECOR, back to top">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path d="M258.5 188h27v27h-27z" class="cc-dot"/></svg>
+      <span>WebDECOR</span>
+    </a>
+    <nav class="cc-nav" aria-label="Concept page sections"><a href="#difference">The difference</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#studio">Studio</a><a href="#lab">Lab</a></nav>
+    <button class="cc-switch" type="button" role="switch" aria-checked="false" data-concept-switch><span class="cc-switch-track" aria-hidden="true"><span></span></span><span class="cc-switch-label">Cybercore</span></button>
+    <a class="cc-button cc-button-small" href="/start/">Start a project</a>
+  </header>
+
+  <main id="main">
+    <section class="cc-hero" id="top" aria-labelledby="cc-hero-title">
+      <p class="cc-label"><span class="cc-spark" aria-hidden="true">✶</span> A two-person web design studio</p>
+      <h1 id="cc-hero-title"><span class="cc-hero-line">Websites with</span><span class="cc-hero-mark"><CyberSectionWordmark text="CHARACTER" weight={12}/></span><span class="cc-sr-only">character.</span></h1>
+      <div class="cc-hero-foot">
+        <p class="cc-hero-lede">Your business has a personality. <strong>Your website should too.</strong> We give small local and creative businesses a look that is truly theirs, not a template with their logo on it.</p>
+        <div class="cc-hero-actions">
+          <a class="cc-button" href="/start/">Start a project <Icon name="arrow-up-right"/></a>
+          <a class="cc-button cc-button-ghost" href="#difference">See the difference <Icon name="arrow-down"/></a>
+        </div>
+        <ul class="cc-facts" aria-label="At a glance"><li><b>From {agency.pricing[0].price}</b>Priced for new businesses</li><li><b>Design + build</b>By the same two people</li><li><b>No jargon</b>Plain words, clear steps</li></ul>
+      </div>
+      <span class="cc-sticker" aria-hidden="true">hi! we<br/>make websites<br/>with character</span>
+    </section>
+
+    <section class="cc-section cc-difference" id="difference" aria-labelledby="cc-difference-title">
+      <div class="cc-heading"><p class="cc-label">01 / The difference</p><h2 id="cc-difference-title">Three businesses.<br/>One template.<br/><em>Three characters.</em></h2><p>Templates make every business look the same. Art direction starts from what makes yours different. Drag the divider to compare.</p></div>
+      <CharacterDemo/>
+    </section>
+
+    <section class="cc-section cc-for" aria-labelledby="cc-for-title">
+      <div class="cc-heading cc-heading-row"><p class="cc-label">02 / Who it’s for</p><h2 id="cc-for-title">Made for the places<br/>people love.</h2></div>
+      <ul class="cc-cards">{audiences.map((a, i) => <li><span class="cc-card-index">0{i + 1}</span><h3>{a.name}</h3><p>{a.line}</p></li>)}</ul>
+    </section>
+
+    <section class="cc-section cc-what" aria-labelledby="cc-what-title">
+      <div class="cc-heading"><p class="cc-label">03 / What you get</p><h2 id="cc-what-title">Real art direction.<br/><em>Not a reskin.</em></h2></div>
+      <div class="cc-what-grid">
+        <article><span class="cc-what-art cc-what-look" aria-hidden="true"><i>Aa</i><b></b><b></b><b></b></span><h3>A look of your own</h3><p>Type, colour, imagery and tone chosen for your business, so the site feels like you before anyone reads a word.</p></article>
+        <article><span class="cc-what-art cc-what-pages" aria-hidden="true"><b></b><b></b></span><h3>Every page, designed</h3><p>Custom layouts for phones and desktops, with clear paths to what visitors came for: the menu, the shop, the booking.</p></article>
+        <article><span class="cc-what-art cc-what-launch" aria-hidden="true"><Icon name="arrow-up-right"/></span><h3>Built and launched</h3><p>Fast, accessible and handed over properly. We build what we design, so nothing gets lost along the way.</p></article>
+      </div>
+    </section>
+
+    <section class="cc-belief" aria-label="What we believe"><p>A website should feel like <em>someone made a choice.</em></p><span>Every font, colour and photo on your site should be there for a reason. That’s what art direction means.</span></section>
+
+    <section class="cc-section cc-how" id="how" aria-labelledby="cc-how-title">
+      <div class="cc-heading cc-heading-row"><p class="cc-label">04 / How it works</p><h2 id="cc-how-title">Four steps.<br/>No surprises.</h2></div>
+      <ol class="cc-steps">{steps.map((s, i) => <li><span class="cc-step-number">{i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
+    </section>
+
+    <section class="cc-section cc-pricing" id="pricing" aria-labelledby="cc-pricing-title">
+      <div class="cc-heading cc-heading-row"><p class="cc-label">05 / Pricing</p><h2 id="cc-pricing-title">Clear prices.<br/><em>Character included.</em></h2></div>
+      <div class="cc-plans">{agency.pricing.map(plan => <article class:list={['cc-plan', { 'cc-plan-featured': plan.id === 'essential' }]}><p class="cc-plan-note">{planNotes[plan.id]}</p><h3>{plan.name}</h3><p class="cc-plan-price">{plan.price}</p><p>{plan.description}</p><ul>{plan.features.map(f => <li>{f}</li>)}</ul><a class="cc-button cc-button-ghost" href={`/start/?plan=${plan.id}`}>{plan.id === 'custom' ? 'Ask for a quote' : `Choose ${plan.name}`} <Icon name="arrow-up-right"/></a></article>)}</div>
+    </section>
+
+    <section class="cc-section cc-studio" id="studio" aria-labelledby="cc-studio-title">
+      <div class="cc-studio-art" aria-hidden="true"><span>Design</span><span>Build</span><b>WebDECOR</b></div>
+      <div><p class="cc-label">06 / The studio</p><h2 id="cc-studio-title">Two people.<br/>Every detail.</h2><p>WebDECOR is a two-person studio. The people you talk to are the people who design and build your website. No account managers, no hand-offs, no lost messages.</p><a class="cc-link" href="/studio/">Meet the studio <Icon name="arrow-up-right"/></a></div>
+    </section>
+
+    <section class="cc-lab" id="lab" aria-labelledby="cc-lab-title">
+      <p class="cc-label">From the lab</p><h2 id="cc-lab-title">Where we test ideas.</h2><p>Collage, Swiss, Hackerlair and The Weird Internet: experiments that keep our work sharp. Fun to explore, kept apart from client work.</p><a class="cc-link" href="/explore/">Visit the lab <Icon name="arrow-up-right"/></a>
+    </section>
+
+    <section class="cc-final" aria-labelledby="cc-final-title">
+      <h2 id="cc-final-title">Ready for a website<br/>that looks like you?</h2>
+      <div class="cc-hero-actions"><a class="cc-button" href="/start/">Start a project <Icon name="arrow-up-right"/></a><a class="cc-button cc-button-ghost" href={`mailto:${agency.email}`}>{agency.email}</a></div>
+    </section>
+  </main>
+
+  <footer class="cc-footer">
+    <a href="#top" class="cc-footer-mark" aria-label="WebDECOR, back to top"><CyberWordmark instance="concept"/></a>
+    <p><span>WebDECOR · Websites with character</span><a href={`mailto:${agency.email}`}>{agency.email}</a></p>
+  </footer>
+  <script>import '../scripts/concept-character';</script>
+</body>
+</html>

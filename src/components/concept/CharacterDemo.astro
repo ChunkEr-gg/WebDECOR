@@ -1,0 +1,59 @@
+---
+// Three fictional businesses share one generic template; the slider reveals the website each could have with real art direction.
+const businesses = [
+  { id: 'bakery', tab: 'Bakery', name: 'Rise Bakery', note: 'Round, generous lettering and a loaf rising like the sun: it feels like the shop smells at 7am.' },
+  { id: 'clay', tab: 'Ceramics studio', name: 'Slow Clay', note: 'A quiet serif, earthy colour and a hand-thrown shape: calm, unhurried, made by hand.' },
+  { id: 'venue', tab: 'Music venue', name: 'The Backroom', note: 'Condensed poster type and a loud palette: it reads like the flyer on the door.' },
+];
+---
+<div class="cc-demo" data-business="bakery" data-character-demo style="--pos:50%">
+  <div class="cc-demo-tabs" role="tablist" aria-label="Choose a business">
+    {businesses.map((b, i) => <button type="button" role="tab" id={`cc-tab-${b.id}`} aria-controls="cc-demo-frame" aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-business-tab={b.id}>{b.tab}</button>)}
+  </div>
+
+  <div class="cc-demo-frame" id="cc-demo-frame" role="tabpanel" aria-labelledby="cc-tab-bakery">
+    <div class="cc-demo-bar" aria-hidden="true"><i></i><i></i><i></i>{businesses.map(b => <span data-for={b.id}>{b.name} — Home</span>)}<em class="cc-demo-legend"><b>◂ With character</b><b>Template ▸</b></em></div>
+    <div class="cc-demo-stage">
+      <!-- The template: identical for every business except the name. -->
+      <div class="cc-layer cc-template" aria-hidden="true">
+        <div class="cc-t-nav"><b>LOGO</b><span>Home</span><span>About</span><span>Services</span><span>Contact</span></div>
+        <div class="cc-t-hero"><div class="cc-t-image"><svg viewBox="0 0 60 40"><path d="M0 40L18 18l10 12 9-8 23 18z" fill="#c9cdd3"/><circle cx="44" cy="10" r="5" fill="#c9cdd3"/></svg></div><h4>Welcome to {businesses.map(b => <span data-for={b.id}>{b.name}</span>)}</h4><p>We are passionate about quality and customer service.</p><span class="cc-t-button">Learn More</span></div>
+        <div class="cc-t-cards"><span></span><span></span><span></span></div>
+      </div>
+
+      <!-- With character: one art direction per business. -->
+      <div class="cc-layer cc-character">
+        <div class="cc-c cc-bakery" data-for="bakery" aria-hidden="true">
+          <div class="cc-b-nav"><b>rise</b><span>bread</span><span>pastries</span><span>visit</span></div>
+          <div class="cc-b-sun"></div>
+          <h4>rise<i>.</i></h4>
+          <p class="cc-b-note">out of the oven at 7am ↓</p>
+          <span class="cc-b-badge">fresh<br/>daily</span>
+          <span class="cc-b-button">see today’s bake</span>
+        </div>
+        <div class="cc-c cc-clay" data-for="clay" aria-hidden="true">
+          <div class="cc-k-nav"><b>Slow Clay</b><span>TABLEWARE</span><span>CLASSES</span><span>STUDIO</span></div>
+          <div class="cc-k-shape"><span></span></div>
+          <h4>Made slowly,<br/><em>by hand.</em></h4>
+          <p>Tableware and wheel classes from a small studio.</p>
+          <span class="cc-k-chip">Thursday wheel class — 4 spots left</span>
+        </div>
+        <div class="cc-c cc-venue" data-for="venue" aria-hidden="true">
+          <div class="cc-v-nav"><b>THE BACKROOM</b><span>LISTINGS</span><span>BAR</span></div>
+          <h4>THE<br/>BACK<br/>ROOM</h4>
+          <ol><li><b>FRI 07</b> LOW TIDES</li><li><b>SAT 08</b> PAPER MOTH</li><li><b>SUN 09</b> OPEN MIC</li></ol>
+          <span class="cc-v-sticker">TONIGHT</span>
+        </div>
+      </div>
+
+      <input class="cc-demo-range" type="range" min="0" max="100" value="50" aria-label="Compare the template with the art-directed website" data-demo-range/>
+      <span class="cc-demo-handle" aria-hidden="true"><b></b></span>
+    </div>
+  </div>
+
+  <div class="cc-demo-caption">
+    {businesses.map(b => <p data-for={b.id}><strong>{b.name}.</strong> {b.note}</p>)}
+    <p class="cc-demo-small">Drag to compare. Fictional businesses, designed as concepts.</p>
+  </div>
+  <p class="cc-sr-only" aria-live="polite" data-demo-status>Showing Rise Bakery.</p>
+</div>

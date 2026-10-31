@@ -10,6 +10,10 @@ The original editorial style is restored: a light grid-based appearance by defau
 - `/services/`, `/studio/`, and `/start/` — services, studio information, and the project brief.
 - `/work/forme/` and `/work/object/` — self-initiated fashion and interiors concepts.
 
+## Concept: next site direction
+
+- `/concept/` — a proposed redesign built on the brand definition (bold and warm, for small local and creative businesses). It is self-contained (`src/pages/concept.astro`, `src/components/concept/`, `src/styles/concept-character.css`, `src/scripts/concept-character.ts`), is not linked from the current site, is excluded from the sitemap, and is marked `noindex`. Its Cybercore switch is stored separately from the main site's appearance setting.
+
 ## Design archive
 
 - `/explore/` — the design archive for Collage, Swiss, Hackerlair, and The Weird Internet.
