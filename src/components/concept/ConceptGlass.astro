@@ -1,0 +1,8 @@
+---
+// Gradient light seen through ribbed glass: each rib shows a slightly wider slice of the gradient, squeezed to fit.
+interface Props { ribs?: number; mobileRibs?: number; }
+const { ribs = 40, mobileRibs = 14 } = Astro.props;
+---
+<div class="cx-glass" style={`--ribs:${ribs};--ribs-m:${mobileRibs}`} aria-hidden="true">
+  {Array.from({ length: ribs }, (_, i) => <span style={`--i:${i}`} data-desktop-only={i >= mobileRibs ? '' : undefined}></span>)}
+</div>

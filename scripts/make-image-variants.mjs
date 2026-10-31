@@ -4,6 +4,7 @@ import sharp from 'sharp';
 const variants = {
   'crt-foil': [480], 'crt-eye': [480], 'crt-moon': [640],
   'cybercore-forme-scan': [800], 'cybercore-object-wireframe': [800],
+  forme: [800], object: [800], 'collage-playground': [640],
 };
 for (const [name, widths] of Object.entries(variants)) {
   for (const width of widths) {

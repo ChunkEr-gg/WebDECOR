@@ -1,4 +1,4 @@
-// Concept page: the Cybercore switch, and the template-versus-character demo.
+// Concept page: the header over the hero, the Cybercore switch, and the template-versus-character demo.
 const root = document.documentElement;
 const storageKey = 'webdecor-concept-cybercore';
 
@@ -6,7 +6,6 @@ const switchButton = document.querySelector<HTMLButtonElement>('[data-concept-sw
 const setPower = (on: boolean) => {
   if (on) root.dataset.on = 'true'; else delete root.dataset.on;
   switchButton?.setAttribute('aria-checked', String(on));
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', on ? '#1e1e1e' : '#e6e6e2');
 };
 switchButton?.addEventListener('click', () => {
   const on = root.dataset.on !== 'true';
@@ -14,6 +13,16 @@ switchButton?.addEventListener('click', () => {
   try { localStorage.setItem(storageKey, String(on)); } catch { /* Storage unavailable: the choice lasts for this visit. */ }
 });
 setPower(root.dataset.on === 'true');
+
+// The header is light-on-dark over the hero, then turns solid once the hero has scrolled past.
+const header = document.querySelector<HTMLElement>('[data-header]');
+const hero = document.querySelector<HTMLElement>('.cx-hero');
+if (header && hero) {
+  const update = () => header.toggleAttribute('data-solid', hero.getBoundingClientRect().bottom < header.offsetHeight);
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+}
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
