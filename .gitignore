@@ -4,3 +4,9 @@ dist/
 .env
 .env.*
 !.env.example
+
+# OS / local agent state
+.DS_Store
+.pi/
+.superpowers/
+.zcode/
