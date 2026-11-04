@@ -5,13 +5,16 @@ export const agency = {
  founder: 'Max',
  email: 'info@webdecor.ca',
  bookingUrl: '',
- // Add the full public profile URLs when ready; empty entries stay noninteractive.
+ // Optional form-service endpoint (e.g. https://formspree.io/f/<id>). When set, the project brief is
+ // sent directly from the website; when empty, the brief opens an email draft instead.
+ formEndpoint: '',
+ // Add the full public profile URLs when ready; profiles without a URL are hidden.
  socials: [
   {id:'instagram',name:'Instagram',purpose:'Images & process',url:''},
   {id:'linkedin',name:'LinkedIn',purpose:'Studio & connections',url:''},
   {id:'behance',name:'Behance',purpose:'Selected projects',url:''}
  ] satisfies Array<{id:'instagram'|'linkedin'|'behance';name:string;purpose:string;url:string}>,
- description: 'WebDECOR is Max’s independent web design practice. Art direction, website design, and development for brands with a point of view. Contact info@webdecor.ca.',
+ description: 'WebDECOR is an independent two-person web design studio led by Max. Art direction, website design, and development for brands with a point of view. Contact info@webdecor.ca.',
  pricing: [
   {id:'essential',number:'01',name:'Essential',price:'$1,200',description:'A focused site for one business, offer, or portfolio.',features:['Content hierarchy & creative direction','Custom responsive page design','Website build, launch & handover'],label:'DISCUSS ESSENTIAL'},
   {id:'expanded',number:'02',name:'Expanded',price:'$2,400',description:'A broader website with more content and distinct page layouts.',features:['Essential design, build & handover','Multi-page content architecture','Page-specific layouts & interactions'],label:'DISCUSS EXPANDED'},

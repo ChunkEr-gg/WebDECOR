@@ -1,10 +1,10 @@
 ---
 import Icon from './Icon.astro';
-const { email = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDECOR', showContactLinks = true } = Astro.props;
+const { email = '', endpoint = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDECOR', showContactLinks = true } = Astro.props;
 ---
 <div class="ag-inquiry project-inquiry">
-  {showContactLinks && (email || bookingUrl) && <div class="ag-contact-links">{email && <a href={`mailto:${email}`} class="ag-email">{email}<span aria-hidden="true"><Icon name="arrow-up-right" /></span></a>}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an introduction <Icon name="arrow-up-right" /></a>}</div>}
-  <form class="ag-inquiry-form project-brief-form" data-email={email} data-brand={brand}>
+  {showContactLinks && (email || bookingUrl) && <div class="ag-contact-links">{email && <a href={`mailto:${email}`} class="ag-email">{email}<span aria-hidden="true"><Icon name="arrow-up-right" /></span></a>}{email && <button type="button" class="ag-copy-email" data-copy-email={email} hidden>COPY EMAIL ADDRESS</button>}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Book an introduction <Icon name="arrow-up-right" /></a>}</div>}
+  <form class="ag-inquiry-form project-brief-form" data-email={email} data-endpoint={endpoint} data-brand={brand}>
     <fieldset class="ag-form-fieldset" disabled>
       <legend class="ag-form-legend">Project details</legend>
       <div class="ag-form-rail"><span>INPUT / YOUR PROJECT</span><span aria-hidden="true"><Icon name="plus" /></span></div>
@@ -16,8 +16,8 @@ const { email = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDE
       <label>Tell us about the project <span class="ag-optional">required</span><textarea name="idea" required rows="5" maxlength="4000" placeholder="Your starting point, your audience, and what you want the website to do."></textarea></label>
       <div class="wd-form-divider"><span>03</span> NEXT CHAPTER / TIMING</div>
       <div class="ag-form-row"><label>Ideal launch date <span class="ag-optional">optional</span><input name="timeline" maxlength="100" placeholder="A date, a season, or still exploring" /></label><label>Budget in mind <span class="ag-optional">optional</span><input name="budget" maxlength="100" placeholder="A range is helpful" /></label></div>
-      <div class="ag-form-actions"><button type="submit">{email ? 'OPEN EMAIL DRAFT' : 'DOWNLOAD YOUR BRIEF'}<span aria-hidden="true"><Icon name={email ? 'arrow-up-right' : 'arrow-down'} /></span></button>{email && <button class="ag-form-secondary" type="button" data-download-brief>DOWNLOAD A COPY <span aria-hidden="true"><Icon name="arrow-down" /></span></button>}</div>
-      <p class="ag-form-status project-form-status" role="status">{email ? 'Opens your email app. Review the draft and send it there. Nothing is sent through this website.' : 'Your brief downloads to your device. Nothing is submitted or sent.'}</p>
+      <div class="ag-form-actions"><button type="submit">{endpoint ? 'SEND YOUR BRIEF' : email ? 'OPEN EMAIL DRAFT' : 'DOWNLOAD YOUR BRIEF'}<span aria-hidden="true"><Icon name={endpoint || email ? 'arrow-up-right' : 'arrow-down'} /></span></button>{(endpoint || email) && <button class="ag-form-secondary" type="button" data-download-brief>DOWNLOAD A COPY <span aria-hidden="true"><Icon name="arrow-down" /></span></button>}</div>
+      <p class="ag-form-status project-form-status" role="status">{endpoint ? `Sends your brief to ${brand}. You will hear back by email${email ? ` from ${email}` : ''}.` : email ? 'Opens your email app. Review the draft and send it there. Nothing is sent through this website.' : 'Your brief downloads to your device. Nothing is submitted or sent.'}</p>
     </fieldset>
     <noscript><p>Enable JavaScript to prepare a brief.{email && <> You can also <a href={`mailto:${email}`}>email {brand} directly</a>.</>}</p></noscript>
   </form>
@@ -29,6 +29,8 @@ const { email = '', bookingUrl = '', services = [], pricing = [], brand = 'WebDE
   .project-brief-form .ag-form-status {line-height:1.6}
   .project-brief-form input,.project-brief-form select,.project-brief-form textarea,.project-brief-form button {min-height:44px}
   .ag-contact-links a {display:flex;align-items:center;min-height:44px}
+  .ag-contact-links .ag-copy-email {min-height:44px;padding:0 16px;border:1px solid currentColor;background:transparent;color:inherit;font:12px/1 'JetBrains Mono Variable',monospace;letter-spacing:.08em;cursor:pointer}
+  .ag-contact-links .ag-copy-email[hidden] {display:none}
   .project-brief-form .ag-form-actions {flex-wrap:wrap}
   .project-brief-form .ag-form-actions .ag-form-secondary {background:transparent;color:var(--cy-ink,currentColor);border-color:var(--cy-rule,currentColor)}
   .project-brief-form .ag-form-actions .ag-form-secondary>span {color:inherit}

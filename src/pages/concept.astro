@@ -1,0 +1,168 @@
+---
+// Concept for the next WebDECOR site: a clean product-style page set in WebDECOR Display, the studio's own typeface (scripts/build-font.py).
+// The hero and closing sections use Paper Shaders' fluted glass.
+// It stands apart from the current site: own layout, own styles, not in the sitemap, and not indexed.
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/bodoni-moda';
+import '@fontsource-variable/bodoni-moda/wght-italic.css';
+import '@fontsource-variable/fredoka';
+import '@fontsource/anton';
+import '@fontsource/caveat';
+import '../styles/concept-character.css';
+import { ArrowUpRight, Check, ChevronRight, Gauge, MessagesSquare, Palette, Power, Receipt, Rocket, Smartphone } from 'lucide-static';
+import CharacterDemo from '../components/concept/CharacterDemo.astro';
+import { agency } from '../data/agency';
+import { designStudies } from '../data/design-studies';
+
+const title = 'WebDECOR — Websites with character (concept)';
+const description = 'A two-person studio designing and building websites for small local and creative businesses.';
+// The hero's feature row, one short line each.
+const features = [
+  { icon: Palette, text: 'A look of its own for every business.' },
+  { icon: Smartphone, text: 'Designed for phones first, then desktops.' },
+  { icon: Gauge, text: 'Light pages, readable text, keyboard friendly.' },
+  { icon: MessagesSquare, text: 'You talk to the two people building your site.' },
+  { icon: Rocket, text: 'Live on your domain, with a proper handover.' },
+];
+const steps = [
+  { name: 'Say hello', text: 'Email us or send a short brief. We reply with questions, not a sales pitch.' },
+  { name: 'Find the direction', text: 'We explore type, colour, imagery and tone, and show you the direction on real pages.' },
+  { name: 'Design and build', text: 'We design every page for phones and desktops, then build the site ourselves.' },
+  { name: 'Launch', text: 'We put the site live on your domain and show you how to keep it up to date.' },
+];
+// The hero panel shows the two fixed-price plans.
+const heroPlans = agency.pricing.filter(plan => plan.id !== 'custom').map(plan => ({
+  ...plan, tag: plan.id === 'essential' ? 'One business' : 'More pages', scope: plan.id === 'essential' ? 'Focused' : 'Broader',
+}));
+const planNotes: Record<string, string> = { essential: 'Best for new businesses', expanded: 'For more pages and stories', custom: 'For shops, bookings and more' };
+// The FORME and OBJECT / ROOM studies are not shown on this page, so their FAQ entry is left out.
+const faqs = agency.faqs.filter(f => !f.question.includes('FORME'));
+const icon = (svg: string) => svg.replace('<svg', '<svg aria-hidden="true" focusable="false"');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{title}</title><meta name="description" content={description}/><meta name="robots" content="noindex"/>
+  <meta name="theme-color" content="#0c1838"/>
+  <link rel="icon" href="/agency-favicon.svg" type="image/svg+xml"/>
+  <link rel="preload" href="/fonts/webdecor-display-light.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="/fonts/webdecor-display.woff2" as="font" type="font/woff2" crossorigin/>
+  <script is:inline>document.documentElement.classList.add('js');try{if(localStorage.getItem('webdecor-concept-cybercore')==='true')document.documentElement.dataset.on='true'}catch{}</script>
+</head>
+<body class="cx">
+  <a class="cx-skip" href="#main">Skip to content</a>
+
+  <header class="cx-header" data-header>
+    <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path class="cx-brand-dot" d="M258.5 188h27v27h-27z" fill="#ff5fa8"/></svg>
+      <span>WebDECOR</span>
+    </a>
+    <nav class="cx-nav" aria-label="Page sections"><a href="#top" aria-current="true">Home</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <div class="cx-header-end">
+      <button class="cx-icon-btn cx-icon-btn-light" type="button" role="switch" aria-checked="false" aria-label="Cybercore" title="Cybercore" data-concept-switch><Fragment set:html={icon(Power)}/></button>
+      <a class="cx-icon-btn cx-icon-btn-glass" href="/start/" aria-label="Start a project" title="Start a project"><Fragment set:html={icon(ArrowUpRight)}/></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="cx-hero" id="top" aria-labelledby="cx-hero-title">
+      <div class="cx-shader" data-shader="glass" data-figure aria-hidden="true"></div>
+      <aside class="cx-panel" aria-label="Pricing at a glance" data-hero-step>
+        <span class="cx-panel-handle" aria-hidden="true"></span>
+        <p class="cx-panel-meta"><Fragment set:html={icon(Receipt)}/>Fixed prices · custom work quoted up front</p>
+        {heroPlans.map(plan => (
+          <div class="cx-slot">
+            <p class="cx-slot-head"><strong>{plan.name}</strong><span class="cx-slot-tag"><span class="cx-dot" aria-hidden="true"></span>{plan.tag}</span></p>
+            <p class="cx-slot-row">
+              <span><span class="cx-slot-label">Price</span><span class="cx-slot-value" data-count>{plan.price}</span></span>
+              <span class="cx-slot-chip">fixed</span>
+              <span><span class="cx-slot-label">Scope</span><span class="cx-slot-value">{plan.scope}</span></span>
+            </p>
+          </div>
+        ))}
+      </aside>
+      <div class="cx-hero-copy" data-hero-parallax>
+        <h1 id="cx-hero-title"><span class="cx-line" data-hero-step>Websites with</span> <span class="cx-line" data-hero-step><span class="cx-end">character<span class="cx-stop">.</span></span></span></h1>
+        <p class="cx-hero-sub" data-hero-step>A two-person studio designing and building websites for small local and creative businesses. Each one gets a look of its own.</p>
+      </div>
+      <div class="cx-hero-actions" data-hero-step>
+        <a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a>
+        <a class="cx-text-link" href="#pricing">See pricing <Fragment set:html={icon(ChevronRight)}/></a>
+      </div>
+      <ul class="cx-strip" aria-label="What every project includes" data-hero-step>
+        {features.map(f => <li data-hero-step><span class="cx-strip-icon" set:html={icon(f.icon)}/>{f.text}</li>)}
+      </ul>
+    </section>
+
+    <section class="cx-section cx-features" id="features" aria-labelledby="cx-features-title">
+      <div class="cx-wrap">
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">The difference</p><h2 class="cx-h2" id="cx-features-title">A website that could only be <span class="cx-end"><span class="cx-mark">yours</span><span class="cx-stop">.</span></span></h2></div><p class="cx-lead">Most small business sites start from the same template. Ours start from your business. Pick one and drag to compare.</p></div>
+        <div class="cx-demo-card" data-reveal><CharacterDemo/></div>
+      </div>
+    </section>
+
+    <section class="cx-section cx-lab" id="lab" aria-labelledby="cx-lab-title">
+      <div class="cx-wrap">
+        <div class="cx-head cx-head-row" data-reveal><div><p class="cx-kicker">Lab</p><h2 class="cx-h2" id="cx-lab-title">Where we test <span class="cx-end">ideas<span class="cx-stop">.</span></span></h2></div><p class="cx-lead">Four experimental websites we designed and built ourselves. Each one is live: open it and try it.</p></div>
+        <ul class="cx-lab-list" data-stagger>
+          {designStudies.map(study => <li data-reveal><a href={study.live}><span class="cx-lab-name"><strong>{study.name}</strong><span>{study.label}</span></span><span class="cx-lab-summary">{study.summary}</span><span class="cx-lab-open">Open <Fragment set:html={icon(ArrowUpRight)}/></span></a></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="cx-section cx-process" id="process" aria-labelledby="cx-process-title">
+      <div class="cx-wrap">
+        <div class="cx-head" data-reveal><p class="cx-kicker">Process</p><h2 class="cx-h2" id="cx-process-title">How a project <span class="cx-end">runs<span class="cx-stop">.</span></span></h2></div>
+        <ol class="cx-steps" data-stagger>{steps.map((s, i) => <li data-reveal style={`--i:${i}`}><span>0{i + 1}</span><h3>{s.name}</h3><p>{s.text}</p></li>)}</ol>
+      </div>
+    </section>
+
+    <section class="cx-section cx-pricing" id="pricing" aria-labelledby="cx-pricing-title">
+      <div class="cx-wrap">
+        <div class="cx-head cx-head-center" data-reveal><p class="cx-kicker">Pricing</p><h2 class="cx-h2" id="cx-pricing-title">Straightforward <span class="cx-end">pricing<span class="cx-stop">.</span></span></h2><p class="cx-lead">Fixed prices for most projects. Anything bigger is quoted up front.</p></div>
+        <div class="cx-plans" data-stagger>
+          {agency.pricing.map(plan => (
+            <article class:list={['cx-plan', { 'cx-plan-featured': plan.id === 'essential' }]} data-reveal>
+              <p class="cx-plan-note">{planNotes[plan.id]}</p>
+              <h3>{plan.name}</h3>
+              <p class="cx-plan-price">{plan.id === 'custom' ? 'Quoted' : plan.price}</p>
+              <p class="cx-plan-text">{plan.description}</p>
+              <ul>{plan.features.map(f => <li><Fragment set:html={icon(Check)}/>{f}</li>)}</ul>
+              <a class:list={['cx-btn', plan.id === 'essential' ? 'cx-btn-accent' : 'cx-btn-line']} href={`/start/?plan=${plan.id}`}>{plan.id === 'custom' ? 'Ask for a quote' : `Choose ${plan.name}`}</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cx-section cx-faq" id="faq" aria-labelledby="cx-faq-title">
+      <div class="cx-wrap cx-faq-grid">
+        <div data-reveal><p class="cx-kicker">FAQ</p><h2 class="cx-h2" id="cx-faq-title"><span class="cx-end">Questions<span class="cx-stop">.</span></span></h2><p class="cx-lead">Something else? Email <a href={`mailto:${agency.email}`}>{agency.email}</a>.</p></div>
+        <div class="cx-faq-list" data-reveal>{faqs.map(f => <details><summary>{f.question}<span class="cx-plus" aria-hidden="true"></span></summary><p>{f.answer}</p></details>)}</div>
+      </div>
+    </section>
+
+    <section class="cx-final" aria-labelledby="cx-final-title">
+      <div class="cx-final-box" data-reveal>
+        <div class="cx-shader" data-shader="glass" aria-hidden="true"></div>
+        <h2 id="cx-final-title">Tell us about your <span class="cx-end">business<span class="cx-stop">.</span></span></h2>
+        <p>Send a few lines about what you do. We'll reply with questions and next steps.</p>
+        <div class="cx-actions"><a class="cx-btn cx-btn-light" href="/start/">Start a project <Fragment set:html={icon(ArrowUpRight)}/></a><a class="cx-btn cx-btn-glass" href={`mailto:${agency.email}`}>{agency.email}</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cx-footer">
+    <div class="cx-wrap cx-footer-row">
+      <a class="cx-brand" href="#top" aria-label="WebDECOR, back to top"><svg viewBox="0 0 300 300" aria-hidden="true"><g transform="translate(6.5 63)" fill="none" stroke="currentColor" stroke-width="25" stroke-linecap="square" stroke-linejoin="round"><path d="M20 65v64q0 18 18 18h24V91h30v56h25q18 0 18-18V65"/><path d="M241 27v119h-68q-23 0-23-23V89q0-24 24-24h64"/></g><path class="cx-brand-dot" d="M258.5 188h27v27h-27z" fill="#ff5fa8"/></svg><span>WebDECOR</span></a>
+      <nav aria-label="Footer"><a href="#features">The difference</a><a href="#lab">Lab</a><a href="#pricing">Pricing</a><a href="/explore/">Design archive</a><a href={`mailto:${agency.email}`}>{agency.email}</a></nav>
+    </div>
+    <p class="cx-wrap cx-footer-base"><span>© 2026 WebDECOR · Websites with character</span><span>Concept preview · <a href="/">Current site</a></span></p>
+    <p class="cx-footer-mark" aria-hidden="true">{[...'WebDECOR'].map(letter => <span>{letter}</span>)}<span class="cx-stop">.</span></p>
+  </footer>
+
+  <script>import '../scripts/concept-character';</script>
+</body>
+</html>
